@@ -259,7 +259,7 @@ void matrix_init_user(void) {
 #+end_src
 
 *** config
-#+begin_src c :tangle qmk_firmware/keyboards/splitkb/kyria/keymaps/jat/config.h
+#+begin_src C :tangle qmk_firmware/keyboards/splitkb/kyria/keymaps/jat/config.h
 /* Copyright 2021 Freja Wegert
  *
  * This program is free software: you can redistribute it and/or modify
@@ -308,7 +308,7 @@ void matrix_init_user(void) {
 #+end_src
 
 *** rules
-#+begin_src c :tangle qmk_firmware/keyboards/splitkb/kyria/keymaps/jat/rules.mk
+#+begin_src C :tangle qmk_firmware/keyboards/splitkb/kyria/keymaps/jat/rules.mk
 OLED_DRIVER_ENABLE = yes
 RGBLIGHT_ENABLE = yes
 WPM_ENABLE = yes
@@ -318,7 +318,7 @@ COMBO_ENABLE = yes
 #+end_src
 
 *** luna
-#+begin_src c :tangle qmk_firmware/users/jat/jat__luna.h
+#+begin_src C :tangle qmk_firmware/users/jat/jat__luna.h
 /*
  * this is the implementation of luna, the 4×3 keyboard pet.
  * see [[this][https://github.com/HellSingCoder/qmk_firmware/tree/master/keyboards/sofle/keymaps/HellSingCoder]] for more information

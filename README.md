@@ -21,7 +21,8 @@ This will download the repo, download the qmk repo and run `qmk setup`.
 ---
 ## License
 
-Yea, legal stuff, I know, annoying, but required and without it, you aren't allowed to even use it.Yea.
+Yea, legal stuff, I know, annoying, but required and without it, you aren't allowed to even use it.
+Yea.
 
 > Copyright 2021 Freja Wegert
 >
