@@ -1,18 +1,40 @@
 # keymaps
 
 This repo is my approach to code my keymaps using literate programming.
-To get started, you need the following:
+Before we can begin, you need the following:
 
-- Something capable for parsing `org` including `babel`
-  - `emacs` is recommended
-- A workable toolchain for `qmk`
-  - TODO: add `kmonad` and `zmk`. Maybe.
-  
-That's it, you don't need anything else.
+- `git` duh
+- Something capable for parsing `org` and the source blocks
+  - `emacs` is recommended since I use elisp for scripting
+- `qmk`
+
+Afterwards run the following:
+
+``` sh
+git clone https://git.sr.ht/~jat/keymaps
+cd keymaps
+make setup
+```
+
+This will download the repo, download the qmk repo and run `qmk setup`.
 
 ---
 ## License
 
-Yea, legal stuff, I know, annoying, buy required and without it, you aren't allowed to even use it. Yea.
+Yea, legal stuff, I know, annoying, buy required and without it, you aren't allowed to even use it.Yea.
 
-Unless otherwise specified, this is licensed under the GPL. A copy is available in `LICENSE`
+> Copyright 2021 Freja Wegert
+>
+> This program is free software: you can redistribute it and/or modify
+> it under the terms of the GNU General Public License as published by
+> the Free Software Foundation, either version 2 of the License, or
+> (at your option) any later version.
+>
+> This program is distributed in the hope that it will be useful,
+> but WITHOUT ANY WARRANTY; without even the implied warranty of
+> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> GNU General Public License for more details.
+>
+> You should have received a copy of the GNU General Public License
+> along with this program.  If not, see <http://www.gnu.org/licenses/>.
+

@@ -7,5 +7,6 @@ setup: submodules
 submodules:
 	git submodule update --init --recursive
 
-update: submodules
-	git pull
+update:
+	git pull origin developement
+	git submodule update --recursive
