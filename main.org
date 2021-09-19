@@ -1,4 +1,529 @@
 #+title: keymaps
+#+author: Freja
+#+startup: overview
 
-* What is that?
-lorem ipsum n shit
+* Pre-stuff
+
+** keymaps?
+Yes, keymaps, QWERTY is boring and as someone who writes a lot on their keyboard, I wanted to spice up the game and use a better suited layout so I tried colemak.
+Well, after a year or so, here I am, on my kyria, writing in hands down and thinking about trying out stenotype.
+This document is intended to 1. *document* (pun intended) and 2. to generate working keymap files through literate programming for ~qmk~ and maybe even ~kmonad~ and ~zmk~, who knows what the future will bring up.
+Maybe I'll go even more bollocks and write my stenolibrary i-- although, no, let's not do that.
+
+** literate programming?
+Literate programming is basically generating stuff using src code blocks in an markup/outline document.
+This approach takes documentation extremly to the front and makes it easy to completely restructure the source and do my own shit.
+I can write code here which generates stuff which is used to generate stuff, it's very powerful and very convinient.
+Simply said, this makes reading source like reading a book.
+When I first started to go /deep/ into the abyss, I was shocked how some people just ignore documentation and make it a big mess, how some are using macros extensivelly which are defined /somewhere/ in ~users/~ and I wanted to do better.
+I try to explain everything and make everything very clearly visible.
+I kinda try to make it very automatic, so that you in the end only need to edit the [[*Data][data]] and you just need to tangle those using something like [[https://github.com/hlissner/doom-emacs/blob/develop/bin/org-tangle][this]].
+Since this is more modified to me specifically in the first run, the tangled files and some things are hardcoded and you need to go through the [[*Building][building section]] to change those but I would only recommend that if you want to change a lot of the logic and not only the layout.
+
+** how to use this document?
+It's very straight forward, you edit the data, tangle the stuff and go for ~qmk compile~ or whatever you wanna do.
+
+* Data
+** TODO
+
+* Building
+** QMK
+#+property: header-args: :result silent
+
+*** keymap
+#+begin_src c :tangle qmk_firmware/keyboards/splitkb/kyria/keymaps/jat/keymap.c
+/* Copyright 2021 Freja Wegert
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include QMK_KEYBOARD_H
+#include "jat__luna.h"
+
+// homerow mods
+#define HM_R MT(MOD_LGUI, KC_R)
+#define HM_S MT(MOD_LALT, KC_S)
+#define HM_N MT(MOD_LSFT, KC_N)
+#define HM_D MT(MOD_LCTL, KC_D)
+#define HM_A MT(MOD_RCTL, KC_A)
+#define HM_E MT(MOD_RSFT, KC_E)
+#define HM_I MT(MOD_LALT, KC_I)  // LALT is used here as RALT aka Alt Gr has a different role and is used for diatrics
+#define HM_H MT(MOD_RGUI, KC_H)
+
+#ifdef COMBO_ENABLE
+enum combos {
+    J_F_Z,
+    M_P_Q,
+};
+
+const uint16_t PROGMEM j_f_z[] = {KC_J, KC_F, COMBO_END};
+const uint16_t PROGMEM m_p_q[] = {KC_M, KC_P, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+    [J_F_Z] = COMBO(j_f_z, KC_Z),
+    [M_P_Q] = COMBO(m_p_q, KC_Q),
+};
+#endif
+
+enum layers {
+    BASE = 0,  // hands down alt
+    GAME,      // for gaming and stuff
+    RAISE,     // symbols and numbers
+    LOWER,     // fn keys and navigation
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    // clang-format off
+    /* /\* */
+    /*  * Base Layer: Hands Down alt */
+    /*  * ; <-> " (for a reason) */
+    /*  * homerow mods too (refer `jat__homerow_mod.h`) */
+    /*  *  */
+    /*  * ,--------------------------------------------.                                    ,---------------------------------------------. */
+    /*  * | GESC  |   w  |   g  |   h   |   m  |   k   |                                    |   q  |   c   |   u   |   j  |   ;  |  \ |   | */
+    /*  * |-------+------+------+-------+------+-------|                                    |------+-------+-------+------+------+--------| */
+    /*  * | Bksp  |   r  |   s  |   n   |   t  |   f   |                                    |   y  |   a   |   e   |   o  |   i  |  ' "   | */
+    /*  * |-------+------+------+-------+------+-------+----------------.  ,----------------+------+-------+-------+------+------+--------| */
+    /*  * | Tab   |   x  |   b  |   l   |   d  |   v   |       |        |  | Game   |       |   z  |   p   | ,  <  | . >  | /  ? |  - _   | */
+    /*  * `---------------------+-------+------+-------+-------+--------|  |--------+-------+------+-------+-------+----------------------' */
+    /*  *                       |       |      | Bksp  | Raise | Alt Gr |  | Alt Gr | Lower |      |       |       | */
+    /*  *                       |       |      |       | Enter |        |  |        | Space |      |       |       | */
+    /*  *                       `---------------------------------------'  `---------------------------------------' */
+    /*  *\/ */
+    /* [BASE] = LAYOUT( */
+    /*     KC_GESC, KC_W, KC_G, KC_H,  KC_M,  KC_K,                                                     KC_Q,      KC_C,  KC_U,    KC_J,   KC_SCLN, KC_BSLS, */
+    /*     KC_BSPC, HM_R, HM_S, HM_N,  HM_T,  KC_F,                                                     KC_Y,      HM_A,  HM_E,    HM_O,   HM_I,    KC_QUOT, */
+    /*     KC_TAB,  KC_X, KC_B, KC_L,  KC_D,  KC_V,     KC_NO,             KC_NO,   TG(GAME), KC_NO,    KC_Z,      KC_P,  KC_COMM, KC_DOT, KC_SLSH, KC_MINS, */
+    /*                          KC_NO, KC_NO, KC_BSPC,  LT(RAISE, KC_ENT), KC_RALT, KC_RALT,  LT(LOWER, KC_SPACE), KC_NO, KC_NO,   KC_NO */
+    /* ), */
+
+
+
+    /*
+     * Hands Down Gold
+     *
+     *
+     * ,-------------------------------------------.                                    ,---------------------------------------------.
+     * |        | j    | f /z | m    | p /q | v    |                                    | :      | .    | /    | '    | =    |        |
+     * |--------+------+------+------+------+------|                                    |--------+------+------+------+------+--------|
+     * |        | r    | s    | n    | d    | w    |                                    | ,      | a    | e    | i    | h    |        |
+     * |--------+------+------+------+------+------+----------------.  ,----------------+--------+------+------+------+------+--------|
+     * |        | x    | g    | l    | c    | b    | esc    |       |  | _game |        | -      | u    | o    | y    | k    |        |
+     * `----------------------+------+------+------+--------+-------|  |-------+--------+--------+------+------+----------------------'
+     *                        |      | tab  | bspc | t      | enter |  | bksp  | space  | alt gr | gui  |      |
+     *                        |      |      |      | _raise |       |  |       | _lower |        |      |      |
+     *                        `-------------------------------------'  `---------------------------------------'
+     */
+    [BASE] = LAYOUT(
+          KC_NO, KC_J, KC_F, KC_M,    KC_P,   KC_V,                                                            KC_SCLN, KC_DOT,  KC_SLASH, KC_QUOT, KC_EQL, KC_NO,
+          KC_NO, HM_R, HM_S, HM_N,    HM_D,   KC_W,                                                            KC_COMM, HM_A,    HM_E,     HM_I,    HM_H,   KC_NO,
+          KC_NO, KC_X, KC_G, KC_L,    KC_C,   KC_B,  KC_ESC,          _______,  TG(GAME), _______,             KC_MINS, KC_U,    KC_O,     KC_Y,    KC_K,   KC_NO,
+                             KC_NO, KC_TAB, KC_BSPC, LT(RAISE, KC_T), KC_ENTER, KC_BSPC,  LT(LOWER, KC_SPACE), KC_RALT,  KC_LGUI, KC_NO
+    ),
+
+
+
+    /*
+     * Gaming layer
+     *
+     * ,-------------------------------------------.                                ,-------------------------------------------.
+     * |        |   Q  |   W  |   E  |   R  |   T  |                                |      |      |      |      |      |        |
+     * |--------+------+------+------+------+------|                                |------+------+------+------+------+--------|
+     * |        |   A  |   S  |   D  |   F  |   G  |                                |      |      |      |      |      |        |
+     * |--------+------+------+------+------+------+---------------.  ,-------------+------+------+------+------+------+--------|
+     * |        |   Y  |   X  |   C  |   V  |   B  |       |       |  | Game |      |      |      |      |      |      |        |
+     * `----------------------+------+------+------+-------+-------|  |------+------+------+------+------+----------------------'
+     *                        |      |      | Alt  | Space | Raise |  |      |      |      |      |      |
+     *                        |      |      |      |       |       |  |      |      |      |      |      |
+     *                        `------------------------------------'  `----------------------------------'
+     */
+    [GAME] = LAYOUT(
+        _______, KC_Q, KC_W, KC_E,    KC_R,    KC_T,                                            _______, _______, _______, _______, _______, _______,
+        _______, KC_A, KC_S, KC_D,    KC_F,    KC_G,                                            _______, _______, _______, _______, _______, _______,
+        _______, KC_Y, KC_X, KC_C,    KC_V,    KC_B,    _______,  _______,   TG(GAME), _______, _______, _______, _______, _______, _______, _______,
+                             _______, _______, KC_LALT, KC_SPACE, MO(RAISE), _______,  _______, _______, _______, _______
+    ),
+
+    /*
+     *  Raise Layer: Numbers and Symbols
+     *
+     * ,-------------------------------------------.                              ,------------------------------------------.
+     * | GAME   |  1   |  2   |  3   |  4   |  5   |                              |  !   |  @   |  #   |  $   |  %   |       |
+     * |--------+------+------+------+------+------|                              |------+------+------+------+------+-------|
+     * |        |  6   |  7   |  8   |  9   |  0   |                              |  ^   |  &   |  *   |  (   |  )   |       |
+     * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+-------|
+     * |        |  -   |  =   |  [   |  ]   |  \   |      |      |  |      |      |  |   |  {   |  }   |  +   |  _   |       |
+     * `----------------------+------+------+------+------+------|  |------+------+------+------+------+---------------------'
+     *                        |      |      |      |      |      |  |      |      |      |      |      |
+     *                        |      |      |      |      |      |  |      |      |      |      |      |
+     *                        `----------------------------------'  `----------------------------------'
+     */
+    [RAISE] = LAYOUT(
+        _______, KC_1,    KC_2,   KC_3,    KC_4,    KC_5,                                        S(KC_1), S(KC_2),    S(KC_3),    S(KC_4),   S(KC_5),    _______,
+        _______, KC_6,    KC_7,   KC_8,    KC_9,    KC_0,                                        S(KC_6), S(KC_7),    S(KC_8),    S(KC_9),   S(KC_0),    _______,
+        _______, KC_MINS, KC_EQL, KC_LBRC, KC_RBRC, _______, _______, _______, _______, _______, _______, S(KC_LBRC), S(KC_RBRC), S(KC_EQL), S(KC_MINS), _______,
+                                  _______, _______, _______, _______, _______, _______, _______, _______, _______,    _______
+    ),
+
+    /*
+     * Lower Layer: media, navigation
+     *
+     * ,---------------------------------------------.                              ,-------------------------------------------.
+     * |        |      |      |       |      |       |                              |      |      |      |      |      |        |
+     * |--------+------+------+-------+------+-------|                              |------+------+------+------+------+--------|
+     * |        |      | Prev | Play  | Next | VolUp |                              | Left | Down | Up   | Right|      |        |
+     * |--------+------+------+-------+------+-------+-------------.  ,-------------+------+------+------+------+------+--------|
+     * |        | Undo | Copy | Paste | Mute | VolDn |      |      |  |      |      |      |      |      |      |      |        |
+     * `----------------------+-------+------+-------+------+------|  |------+------+------+------+------+----------------------'
+     *                        |       |      |       |      |      |  |      |      |      |      |      |
+     *                        |       |      |       |      |      |  |      |      |      |      |      |
+     *                        `------------------------------------'  `----------------------------------'
+     */
+    [LOWER] = LAYOUT(
+        _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+        _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,                                     KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+        _______, KC_UNDO, KC_COPY, KC_PSTE, KC_MUTE, KC_VOLD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+                                   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    ),
+
+    // /*
+    //  * Layer template
+    //  *
+    //  * ,-------------------------------------------.                              ,-------------------------------------------.
+    //  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+    //  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+    //  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+    //  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+    //  * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
+    //  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+    //  *                        |      |      |      |      |      |  |      |      |      |      |      |
+    //  *                        |      |      |      |      |      |  |      |      |      |      |      |
+    //  *                        `----------------------------------'  `----------------------------------'
+    //  */
+    //     [_LAYERINKCX] = LAYOUT(
+    //       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+    //       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+    //       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    //                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    //     ),
+
+    // clang-format on
+};
+
+#ifdef OLED_DRIVER_ENABLE
+
+oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_180; }
+
+void oled_task_user(void) {
+    /* current_wpm = get_current_wpm(); */
+    /* led_usb_state = host_keyboard_led_state(); */
+
+    if (is_keyboard_master()) {
+        oled_set_cursor(1, 0);
+        oled_write_P(PSTR(" Layer:"), false);
+
+        switch (get_highest_layer(layer_state)) {
+            case GAME:
+                oled_write_P(PSTR(" Game"), false);
+                break;
+            default:
+                oled_write_P(PSTR(" Base"), false);
+        }
+
+        animate_luna(7, 5);
+    }
+}
+
+#endif
+
+void matrix_init_user(void) {
+    combo_enable();
+
+#ifdef RGBLIGHT_ENABLE
+    rgblight_sethsv_noeeprom(HSV_RED);
+#endif
+
+    return;
+}
+#+end_src
+
+*** config
+#+begin_src c :tangle qmk_firmware/keyboards/splitkb/kyria/keymaps/jat/config.h
+/* Copyright 2021 Freja Wegert
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#pragma once
+
+#ifdef OLED_DRIVER_ENABLE
+#    define OLED_DISPLAY_128X64
+#endif
+
+#ifdef NKRO_ENABLE
+#    define FORCE_NKRO
+#endif
+
+#ifdef RGBLIGHT_ENABLE
+#    define RGBLIGHT_SLEEP
+//#define RGBLIGHT_LAYER    S
+#endif
+
+#define EE_HANDS
+
+#ifdef COMBO_ENABLE
+#    define COMBO_COUNT 2
+#endif
+
+#ifdef UNICODEMAP_ENABLE
+#    define UNICODE_SELECTED_MODES UC_WINC
+#endif
+
+#define TAPPING_TERM 400
+#define IGNORE_MOD_TAP_INTERRUPT
+
+// define USB_POLLING_INTERVAL_MS 5
+#+end_src
+
+*** rules
+#+begin_src c :tangle qmk_firmware/keyboards/splitkb/kyria/keymaps/jat/rules.mk
+OLED_DRIVER_ENABLE = yes
+RGBLIGHT_ENABLE = yes
+WPM_ENABLE = yes
+MOUSEKEY_ENABLE = no
+NKRO_ENABLE = yes
+COMBO_ENABLE = yes
+#+end_src
+
+*** luna
+#+begin_src c :tangle qmk_firmware/users/jat/jat__luna.h
+/*
+ * this is the implementation of luna, the 4×3 keyboard pet.
+ * see [[this][https://github.com/HellSingCoder/qmk_firmware/tree/master/keyboards/sofle/keymaps/HellSingCoder]] for more information
+ *
+ * this header uses a modified version to adapt to 128x64 screens
+ * see [[here][https://gist.github.com/louckousse/74cd3f5cacf04fa585c127d89a149cfc]]
+ * using this   header implies `OLED_ENABLE` and `WPM_ENABLE` are set to `yes` and thus defined
+ */
+
+#pragma once
+
+// Animation frame defaults
+#define MIN_WALK_SPEED 10
+#define MIN_RUN_SPEED 40
+#define LUNA_SIZE 96  // 96-byte arrays for the little dog
+#define LUNA_FRAMES 2
+#define LUNA_FRAME_DURATION 200  // Number of ms per frame
+
+uint32_t        luna_anim_timer    = 0;
+uint32_t        luna_anim_sleep    = 0;
+uint8_t         luna_current_frame = 0;
+static long int luna_oled_timeout  = 50000;
+
+static void render_luna_sit(int luna_x, int luna_y) {
+    static const char PROGMEM sit[LUNA_FRAMES][3][LUNA_SIZE / 3] = {
+        // clang-format off
+        {
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xe0,0x1c,
+            0x02,0x05,0x02,0x24,0x04,0x04,0x02,0xa9,0x1e,0xe0,0x00,0x00,0x00,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x00,0xe0,0x10,0x08,0x68,0x10,0x08,0x04,0x03,0x00,0x00,
+            0x00,0x00,0x00,0x00,0x00,0x02,0x06,0x82,0x7c,0x03,0x00,0x00,0x00,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x02,0x04,0x0c,0x10,0x10,0x20,0x20,0x20,0x28,
+            0x3e,0x1c,0x20,0x20,0x3e,0x0f,0x11,0x1f,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}
+        },
+        {
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xe0,0x1c,
+            0x02,0x05,0x02,0x24,0x04,0x04,0x02,0xa9,0x1e,0xe0,0x00,0x00,0x00,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0xe0,0x90,0x08,0x18,0x60,0x10,0x08,0x04,0x03,0x00,0x00,
+            0x00,0x00,0x00,0x00,0x00,0x02,0x0e,0x82,0x7c,0x03,0x00,0x00,0x00,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x02,0x04,0x0c,0x10,0x10,0x20,0x20,0x20,0x28,
+            0x3e,0x1c,0x20,0x20,0x3e,0x0f,0x11,0x1f,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}
+        }
+        // clang-format on
+    };
+    oled_set_cursor(luna_x, luna_y);
+    luna_current_frame = (luna_current_frame + 1) % LUNA_FRAMES;
+    oled_write_raw_P(sit[abs(1 - luna_current_frame)][0], LUNA_SIZE / 3);
+    oled_set_cursor(luna_x, luna_y + 1);
+    oled_write_raw_P(sit[abs(1 - luna_current_frame)][1], LUNA_SIZE / 3);
+    oled_set_cursor(luna_x, luna_y + 2);
+    oled_write_raw_P(sit[abs(1 - luna_current_frame)][2], LUNA_SIZE / 3);
+}
+
+static void render_luna_walk(int luna_x, int luna_y) {
+    static const char PROGMEM walk[LUNA_FRAMES][3][LUNA_SIZE / 3] = {
+        // clang-format off
+        {
+            {0x00,0x00,0x00,0x00,0x00,0x80,0x40,0x20,0x10,0x90,0x90,0x90,0xa0,0xc0,0x80,0x80,
+            0x80,0x70,0x08,0x14,0x08,0x90,0x10,0x10,0x08,0xa4,0x78,0x80,0x00,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x07,0x08,0xfc,0x01,0x00,0x00,0x00,0x00,0x80,0x00,0x00,
+            0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x08,0x18,0xea,0x10,0x0f,0x00,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x03,0x1c,0x20,0x20,0x3c,0x0f,0x11,0x1f,0x03,
+            0x06,0x18,0x20,0x20,0x3c,0x0c,0x12,0x1e,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00}
+        },
+        {
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x80,0x40,0x20,0x20,0x20,0x40,0x80,0x00,0x00,0x00,
+            0x00,0xe0,0x10,0x28,0x10,0x20,0x20,0x20,0x10,0x48,0xf0,0x00,0x00,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x1f,0x20,0xf8,0x02,0x01,0x01,0x01,0x01,0x01,0x01,0x01,
+            0x03,0x00,0x00,0x00,0x00,0x01,0x00,0x10,0x30,0xd5,0x20,0x1f,0x00,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3f,0x20,0x30,0x0c,0x02,0x05,0x09,0x12,0x1e,
+            0x02,0x1c,0x14,0x08,0x10,0x20,0x2c,0x32,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00}
+        }
+        // clang-format on
+    };
+    oled_set_cursor(luna_x, luna_y);
+    luna_current_frame = (luna_current_frame + 1) % LUNA_FRAMES;
+    oled_write_raw_P(walk[abs(1 - luna_current_frame)][0], LUNA_SIZE / 3);
+    oled_set_cursor(luna_x, luna_y + 1);
+    oled_write_raw_P(walk[abs(1 - luna_current_frame)][1], LUNA_SIZE / 3);
+    oled_set_cursor(luna_x, luna_y + 2);
+    oled_write_raw_P(walk[abs(1 - luna_current_frame)][2], LUNA_SIZE / 3);
+}
+
+static void render_luna_run(int luna_x, int luna_y) {
+    static const char PROGMEM run[LUNA_FRAMES][3][LUNA_SIZE / 3] = {
+        // clang-format off
+        {
+            {0x00,0x00,0x00,0x00,0xe0,0x10,0x08,0x08,0xc8,0xb0,0x80,0x80,0x80,0x80,0x80,0x80,
+            0x80,0x40,0x40,0x3c,0x14,0x04,0x08,0x90,0x18,0x04,0x08,0xb0,0x40,0x80,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x01,0x02,0xc4,0xa4,0xfc,0x00,0x00,0x00,0x00,0x80,0x00,0x00,
+            0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xc8,0x58,0x28,0x2a,0x10,0x0f,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x0e,0x09,0x04,0x04,0x04,0x04,0x02,0x03,0x02,0x01,0x01,
+            0x02,0x02,0x04,0x08,0x10,0x26,0x2b,0x32,0x04,0x05,0x06,0x00,0x00,0x00,0x00,0x00}
+        },
+        {
+            {0x00,0x00,0x00,0xe0,0x10,0x10,0xf0,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,
+            0x80,0x80,0x78,0x28,0x08,0x10,0x20,0x30,0x08,0x10,0x20,0x40,0x80,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x03,0x04,0x08,0x10,0x11,0xf9,0x01,0x01,0x01,0x01,0x01,0x01,0x00,
+            0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x10,0xb0,0x50,0x55,0x20,0x1f,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x02,0x0c,0x10,0x20,0x28,0x37,
+            0x02,0x1e,0x20,0x20,0x18,0x0c,0x14,0x1e,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00}
+        }
+        // clang-format on
+    };
+    luna_current_frame = (luna_current_frame + 1) % LUNA_FRAMES;
+    oled_set_cursor(luna_x, luna_y);
+    oled_write_raw_P(run[abs(1 - luna_current_frame)][0], LUNA_SIZE / 3);
+    oled_set_cursor(luna_x, luna_y + 1);
+    oled_write_raw_P(run[abs(1 - luna_current_frame)][1], LUNA_SIZE / 3);
+    oled_set_cursor(luna_x, luna_y + 2);
+    oled_write_raw_P(run[abs(1 - luna_current_frame)][2], LUNA_SIZE / 3);
+}
+
+static void render_luna_bark(int luna_x, int luna_y) {
+    static const char PROGMEM bark[LUNA_FRAMES][3][LUNA_SIZE / 3] = {
+        // clang-format off
+        {
+            {0x00,0xc0,0x20,0x10,0xd0,0x30,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0x80,0x40,
+            0x3c,0x14,0x04,0x08,0x90,0x18,0x04,0x08,0xb0,0x40,0x80,0x00,0x00,0x00,0x00,0x00},
+            {0x00,0x03,0x04,0x08,0x10,0x11,0xf9,0x01,0x01,0x01,0x01,0x01,0x01,0x00,0x00,0x00,
+            0x00,0x00,0x00,0x00,0x80,0xc8,0x48,0x28,0x2a,0x10,0x0f,0x00,0x00,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x02,0x0c,0x10,0x20,0x28,0x37,0x02,0x02,
+            0x04,0x08,0x10,0x26,0x2b,0x32,0x04,0x05,0x06,0x00,0x00,0x00,0x00,0x00,0x00,0x00}
+        },
+        {
+            {0x00,0xe0,0x10,0x10,0xf0,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0x80,0x40,
+            0x40,0x2c,0x14,0x04,0x08,0x90,0x18,0x04,0x08,0xb0,0x40,0x80,0x00,0x00,0x00,0x00},
+            {0x00,0x03,0x04,0x08,0x10,0x11,0xf9,0x01,0x01,0x01,0x01,0x01,0x01,0x00,0x00,0x00,
+            0x00,0x00,0x00,0x00,0x00,0x80,0xc0,0x48,0x28,0x2a,0x10,0x0f,0x20,0x4a,0x09,0x10},
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x02,0x0c,0x10,0x20,0x28,0x37,0x02,0x02,
+            0x04,0x08,0x10,0x26,0x2b,0x32,0x04,0x05,0x06,0x00,0x00,0x00,0x00,0x00,0x00,0x00}
+        }
+        // clang-format on
+    };
+    luna_current_frame = (luna_current_frame + 1) % LUNA_FRAMES;
+    oled_set_cursor(luna_x, luna_y);
+    oled_write_raw_P(bark[abs(1 - luna_current_frame)][0], LUNA_SIZE / 3);
+    oled_set_cursor(luna_x, luna_y + 1);
+    oled_write_raw_P(bark[abs(1 - luna_current_frame)][1], LUNA_SIZE / 3);
+    oled_set_cursor(luna_x, luna_y + 2);
+    oled_write_raw_P(bark[abs(1 - luna_current_frame)][2], LUNA_SIZE / 3);
+}
+
+static void render_luna_sneak(int luna_x, int luna_y) {
+    static const char PROGMEM sneak[LUNA_FRAMES][3][LUNA_SIZE / 3] = {
+        // clang-format off
+        {
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x80,0x40,0x40,0x40,0x40,0x80,0x00,0x00,0x00,0x00,
+            0x00,0x00,0xc0,0x40,0x40,0x80,0x00,0x80,0x40,0x80,0x00,0x00,0x00,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x1e,0x21,0xf0,0x04,0x02,0x02,0x02,0x02,0x03,0x02,0x02,0x04,
+            0x04,0x04,0x03,0x01,0x00,0x00,0x09,0x01,0x80,0x80,0xab,0x04,0xf8,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x03,0x1c,0x20,0x20,0x3c,0x0f,0x11,0x1f,0x02,0x06,
+            0x18,0x20,0x20,0x38,0x08,0x10,0x18,0x04,0x04,0x02,0x02,0x01,0x00,0x00,0x00,0x00}
+        },
+        {
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x80,0x40,0x40,0x40,0x80,0x00,0x00,0x00,0x00,0x00,
+            0x00,0x00,0xe0,0xa0,0x20,0x40,0x80,0xc0,0x20,0x40,0x80,0x00,0x00,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x3e,0x41,0xf0,0x04,0x02,0x02,0x02,0x03,0x02,0x02,0x02,0x04,
+            0x04,0x02,0x01,0x00,0x00,0x00,0x04,0x00,0x40,0x40,0x55,0x82,0x7c,0x00,0x00,0x00},
+            {0x00,0x00,0x00,0x00,0x00,0x00,0x3f,0x20,0x30,0x0c,0x02,0x05,0x09,0x12,0x1e,0x04,
+            0x18,0x10,0x08,0x10,0x20,0x28,0x34,0x06,0x02,0x01,0x01,0x00,0x00,0x00,0x00,0x00}
+        }
+        // clang-format on
+    };
+    luna_current_frame = (luna_current_frame + 1) % LUNA_FRAMES;
+    oled_set_cursor(luna_x, luna_y);
+    oled_write_raw_P(sneak[abs(1 - luna_current_frame)][0], LUNA_SIZE / 3);
+    oled_set_cursor(luna_x, luna_y + 1);
+    oled_write_raw_P(sneak[abs(1 - luna_current_frame)][1], LUNA_SIZE / 3);
+    oled_set_cursor(luna_x, luna_y + 2);
+    oled_write_raw_P(sneak[abs(1 - luna_current_frame)][2], LUNA_SIZE / 3);
+}
+
+void animate_luna(int luna_x, int luna_y) {
+    void animation_phase(void) {
+        if (get_mods() & (MOD_MASK_SHIFT)) {
+            render_luna_bark(luna_x, luna_y);
+        } else if (get_mods() & (MOD_MASK_CAG)) {
+            render_luna_sneak(luna_x, luna_y);
+        } else if (get_current_wpm() <= MIN_WALK_SPEED) {
+            render_luna_sit(luna_x, luna_y);
+        } else if (get_current_wpm() <= MIN_RUN_SPEED) {
+            render_luna_walk(luna_x, luna_y);
+        } else {
+            render_luna_run(luna_x, luna_y);
+        }
+    }
+
+    // Animate on WPM, turn off OLED on idle
+    if (get_current_wpm() != 000 || host_keyboard_led_state().caps_lock || get_mods() & (MOD_MASK_CSAG)) {
+        oled_on();
+        if (timer_elapsed32(luna_anim_timer) > LUNA_FRAME_DURATION) {
+            luna_anim_timer = timer_read32();
+            animation_phase();
+        }
+        luna_anim_sleep = timer_read32();
+    } else {
+        if (timer_elapsed32(luna_anim_sleep) > luna_oled_timeout) {
+            oled_off();
+        } else {
+            if (timer_elapsed32(luna_anim_timer) > LUNA_FRAME_DURATION) {
+                luna_anim_timer = timer_read32();
+                animation_phase();
+            }
+        }
+    }
+}
+#+end_src
