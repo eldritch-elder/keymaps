@@ -8,15 +8,13 @@ Before we can begin, you need the following:
   - `emacs` is recommended since I use elisp for scripting
 - `qmk`
 
-Afterwards run the following:
+Afterwards, you need to add it to the qmk firmware
 
 ``` sh
-git clone https://git.sr.ht/~jat/keymaps
-cd keymaps
-make setup
+qmk setup
+cd ~/qmk_firmware
+git submodule add https://git.sr.ht/~jat/keymaps keyboards/splitkb/kyria/jat --init
 ```
-
-This will download the repo, download the qmk repo and run `qmk setup`.
 
 ---
 ## License
