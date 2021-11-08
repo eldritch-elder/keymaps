@@ -1,12 +1,8 @@
-FOLDERS=qmk_firmware/keyboards/splitkb/kyria/keymaps/jat qmk_firmware/users/jat
+FILES=keymap.c config.h rules.mk
 
-setup: submodules
-	mkdir $(FOLDERS)
-	qmk setup -H ./qmk_firmware
 
-submodules:
-	git submodule update --init --recursive
+tangle:
+	org-tangle main.org
 
-update:
-	git pull origin developement
-	git submodule update --recursive
+clean:
+	rm -rf $(FILES)
