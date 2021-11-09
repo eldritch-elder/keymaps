@@ -48,28 +48,30 @@ Here, combos are a nice feature allowing to add keys at places where they don't 
 ** encoder
 Rotary encoders add a lot of features and functionality, they are extremly useful.
 For me, I like to have volume control on one side and window control on the other.
+
+Simple structure is the function ~encoder_update_user(index, clockwise)~, this runs a simple /this encoder does this when turned clockwise, this then otherwise/.
 #+name: encoder
 #+begin_src C :main no :tangle no
 bool is_alt_tab = false;
 uint16_t alt_tab_timer = 0;
 
-void encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 1) {
         if (clockwise) {
             tap_code(KC_VOLU);
         } else {
             tap_code(KC_VOLD);
         }
-    } else if (index == 1) {
+    } else if (index == 0) {
         if (clockwise) {
-            if (!is_alt_tab_active) {
+            if (!is_alt_tab) {
                 is_alt_tab = true;
                 register_code(KC_LALT);
             }
             alt_tab_timer = timer_read();
             tap_code16(KC_TAB);
         } else {
-            if (!is_alt_tab_active) {
+            if (!is_alt_tab) {
                 is_alt_tab = true;
                 register_code(KC_LALT);
             }
@@ -77,6 +79,8 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             tap_code16(S(KC_TAB));
         }
     }
+
+    return false;
 }
 
 void matrix_scan_user(void) {
@@ -138,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          [_raise] = LAYOUT(_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
          [_adj] = LAYOUT(_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
          [_misc] = LAYOUT(_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-}
+};
 #+end_src
 ** putting it all together
 *** keymap.c
@@ -160,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #+end_src
 
 *** config
-#+begin_src C :tangle config.h
+#+begin_src C :noweb yes :tangle config.h
 <<license>>
 <<header>>
 
@@ -197,9 +201,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #    define RGBLIGHT_LIMIT_VAL 150
 #endif
 
-
-#ifdef UNICODEMAP_ENABLE
-#    define UNICODE_SELECTED_MODES UC_WINC
+#ifdef ENCODER_ENABLE
+#define ENCODER_RESOLUTION 2
+#define ENCODER_DIRECTION_FLIP
 #endif
 
 
@@ -217,6 +221,8 @@ COMBO_ENABLE = yes
 VIA_ENABLE = yes
 ENCODER_ENABLE = yes
 
+BOOTLOADER=qmk-hid
+BOOTLOADER_SIZE=512
 #+end_src
 
 *** luna
