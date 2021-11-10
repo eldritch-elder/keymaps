@@ -1,37 +1,51 @@
 #+title: keymaps
 #+author: Freja
-
-* Pre-stuff
-** keymaps?
-Yes, keymaps, QWERTY is boring and as someone who writes a lot on their keyboard, I wanted to spice up the game and use a better suited layout so I tried colemak.
-Well, after a year or so, here I am, on my kyria, writing in hands down and thinking about trying out stenotype.
-This document is intended to 1. *document* (pun intended) and 2. to generate working keymap files through literate programming for ~qmk~ and maybe even ~kmonad~ and ~zmk~, who knows what the future will bring up.
-Maybe I'll go even more bollocks and write my stenolibrary i-- although, no, let's not do that.
-
-** literate programming?
-Literate programming is basically generating stuff using src code blocks in an markup/outline document.
-This approach takes documentation extremly to the front and makes it easy to completely restructure the source and do my own stuff.
-I can write code here which generates stuff which is used to generate stuff, it's very powerful and very convinient.
-Simply said, this makes reading source like reading a book.
-When I first started to go /deep/ into the abyss, I was shocked how some people just ignore documentation and make it a big mess, how some are using macros extensivelly which are defined /somewhere/ in ~users/~ and I wanted to do better.
-I try to explain everything and make everything very clearly visible.
-I kinda try to make it very automatic, so that you in the end only need to edit the [[*The keymap][data]] and you just need to tangle those using something like [[https://github.com/hlissner/doom-emacs/blob/develop/bin/org-tangle][this script]].
-Some things like the filenames and the keyboard matrix are hardcoded and you need to go through the [[*Building][building]] to change those.
-
-** how to use this document?
-It's very straight forward, you edit the data, tangle the stuff and go for ~qmk compile~ or whatever you wanna do.
-Be sure not to change anything in the [[*Building][building section]] unless you want to fork it since that might break stuff.
-Currently the layout uses [[https://caniusevia.com/][via]] which enables us to set stuff the fast way without reflashing the firmware.
-Not everything can be changed so if you need to set things like [[*encoders][encoders]], [[*combos][combos]], or oleds, you need to edit this file
+#+startup: content
 
 * The keymap
 ** The layout
 I primarily type in German, English and Swedish so the keyboard should be cabable or outputing the used characters like ~ü~ or ~å~.
 For that I am using [[https://eurkey.steffen.bruentjen.eu/][EurKey]] - but US Intl should be fine too - on my system.  These are QWERTY layouts but they are able to output letters used in different languages using Alt Gr aka Right Alt.
 
-** combos
-Here, combos are a nice feature allowing to add keys at places where they don't impear your typing yet are comfortable to use
+*** Base layer
+On the keyboard however I will use a modified version of [[https://sites.google.com/alanreiser.com/handsdown/home?authuser=0#h.rt23wndkh65l][hands down gold]], until something better comes up.
+#+name: base_layout
+| &nop | &kp k      | &kp f      | &kp m      | &kp p      | &kp v   |            |          |           |                 | &kp semi  | &kp dot    | &kp fslh   | &kp sqt    | &kp equal  | &nop |
+| &nop | &mt lgui r | &mt lalt s | &mt lsft n | &mt lctl d | &kp w   |            |          |           |                 | &kp comma | &mt rctl a | &mt rsft e | &mt lalt o | &mt rgui i | &nop |
+| &nop | &kp x      | &kp q      | &kp l      | &kp c      | &kp b   | &mo _adj   | &kp gesc | &tg _game | &nop            | &kp minus | &kp h      | &kp u      | &kp z      | &kp k      | &nop |
+|      |            |            | &kp lgui   | &kp tab    | &kp del | &lt _low t | &kp ret  | &kp ralt  | &lt _high space | &kp bspc  | &nop       | &kp mute   |            |            |      |
 
+*** g*ming layout
+Too lazy to config shit in every game I use a keyboard with.
+#+name: game_layout
+| &nop | &kp a | &kp w | &kp e    | &kp r   | &kp t    |                |          |           |      | &nop   | &nop   | &kp n3   | &kp n4 | &nop   | &nop |
+| &nop | &kp q | &kp s | &kp d    | &kp f   | &kp g    |                |          |           |      | &kp n7 | &kp n1 | &kp n2   | &kp n5 | &kp n6 | &nop |
+| &nop | &kp z | &kp x | &kp c    | &kp v   | &kp b    | &kp lsft       | &kp gesc | &tg _game | &nop | &nop   | &nop   | &nop     | &nop   | &nop   | &nop |
+|      |       |       | &kp lgui | &kp tab | &kp lalt | &lt _low space | &kp ret  | &nop      | &nop | &nop   | &nop   | &kp mute |        |        |      |
+
+*** lower layer
+#+name: low_layout
+| &nop | &kp n1 | &kp n2   | &kp n3   | &kp n4   | &kp n5 |       |       |       |       | &kps n1 | &kps n2   | &kps n3   | &kps n4   | &kps n5 | &nop |
+| &nop | &kp n6 | &kp n7   | &kp n8   | &kp n9   | &kp n0 |       |       |       |       | &kps n6 | &kps n7   | &kps n8   | &kps n9   | &kps n0 | &nop |
+| &nop | &trns  | &kp bslh | &kp lbrc | &kp rbrc | &trns  | &trns | &trns | &trns | &trns | &trns   | &kps lbrc | &kps rbrc | &kps bslh | &trns   | &nop |
+|      |        |          | &trns    | &trns    | &trns  | &trns | &trns | &trns | &trns | &trns   | &trns     | &trns     |           |         |      |
+
+*** raise layer
+#+name: high_layout
+| &nop | &trns    | &kp volu | &trns    | &trns     | &trns    |       |       |       |       | &trns   | &trns    | &trns    | &trns     | &trns  | &nop |
+| &nop | &trns    | &kp vold | &kp prev | &kp pause | &kp next |       |       |       |       | &kps n6 | &kp left | &kp down | &kp right | &kp up | &nop |
+| &nop | &kp undo | &kp cut  | &kp copy | &kp paste | &trns    | &trns | &trns | &trns | &trns | &trns   | &trns    | &trns    | &trns     | &trns  | &nop |
+|      |          |          | &trns    | &trns     | &trns    | &trns | &trns | &trns | &trns | &trns   | &trns    | &trns    |           |        |      |
+
+*** adjusting shit
+This layer contains stuff for adjusting, be it ~EE_HANDS~ or rgb stuff.
+#+name: adj_layout
+| &nop | &kp eelh  | &kp eerh  | &nop | &nop | &nop |      |      |      |       | &nop | &kp rgbhu | &kp rgbsu | &kp rgbvu | &kp rgbmu | &nop |
+| &nop | &nop      | &nop      | &nop | &nop | &nop |      |      |      |       | &nop | &kp rgbhd | &kp rgbsd | &kp rgbvd | &kp rgbmd | &nop |
+| &nop | &kp reset | &kp eeprt | &nop | &nop | &nop | &nop | &nop | &nop | &trns | &nop | &nop      | &nop      | &nop      | &nop      | &nop |
+|      |           |           | &nop | &nop | &nop | &nop | &nop | &nop | &nop  | &nop | &nop      | &nop      |           |           |      |
+** combos
+Here, combos are a nice feature allowing to add keys at places where they don't impear your typing yet are comfortable to use.
 #+name: combo
 #+begin_src C :main no :tangle no :results none
 // combo part here
@@ -84,8 +98,186 @@ void matrix_scan_user(void) {
     }
 }
 #+end_src
-* Building
+
+
+* Abandon all hope, ye who enter here
+This section is the build section. from this point on it's code and code only, be it elisp or c.
+I would not recommend altering anything up there, escpecially the generator code, unless you know what you are doing.
+
+I try to write it fairly pessimistic, but if anything faulty goes through, qmk will complain about it.
+** generators and parser
+*** layers
+#+name: parse_layout
+#+begin_src elisp :var input=adj_layout keycode=keycode_table modcode=mod_table :results value
+(defun get-keycode (name)
+  "Returns the keycode if it exists."
+  (let ((code (nth 1 (assoc name keycode))))
+    (if (not code)
+        (error "The key %s does't exist - yet." name)
+        code)))
+
+(defun get-mod (name)
+  "Returns the mod if it exists."
+  (let ((code (nth 1 (assoc name modcode))))
+    (if (not code)
+        (error "The mod %s does't exist." name)
+        code)))
+
+(setq input (flatten-tree input) ; flat is justice
+      result "")
+
+(unless (eq (length input) 64)
+  (error "Either you use a different keyboard with a different matrix, or you missed a col or two, it's %d long instead of 64 long" (length input)))
+
+(while input
+  (let ((word (pop input)))
+    (unless (eq word "")
+      (let* ((expr (split-string word))
+             (pre (car expr)))
+        ;(print expr)
+        (pcase pre
+          ("&nop"       (setq result (concat result "XXXXXXX")))
+          ("&trns"      (setq result (concat result "_______")))
+          ("&kp"  ; normal keycode
+            (let ((key (get-keycode (nth 1 expr))))
+              (setq result (concat result key))))
+          ("&kps"  ; shifted keycode
+            (let ((key (get-keycode (nth 1 expr))))
+              (setq result (concat result (format "S(%s)" key)))))
+          ("&tg"  ; toggle layer
+            (let ((layer (nth 1 expr)))
+              (setq result (concat result (format "TG(%s)" layer)))))
+          ("&lt"  ; layer tap
+            (let ((layer (nth 1 expr))
+                  (key (get-keycode (nth 2 expr))))
+              (setq result (concat result (format "LT(%s, %s)" layer key)))))
+          ("&mo"  ; layer hold
+            (let ((layer (nth 1 expr)))
+              (setq result (concat result (format "MO(%s)" layer)))))
+          ("&mt"  ; mod tap
+            (let ((modkey (get-mod (nth 1 expr)))
+                  (key (get-keycode (nth 2 expr))))
+              (setq result (concat result (format "MT(%s, %s)" modkey key)))))
+          (any  ; unknown key
+           (let ((x (% (1+ (length input)) 16))
+                 (y (1+ (/ (length input) 16))))
+             (error "Unknown key %s at %d:%d" any x y))))
+      (setq result (concat result ", "))))))
+
+(substring result 0 -2)  ; cutting of the last ", "
+;(s-chop-suffix ", " result) <- doesn't work outside emacs
+#+end_src
+
+#+RESULTS: parse_layout
+: XXXXXXX, EE_LEFT, EE_RIGHT, XXXXXXX, XXXXXXX, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RGB_HUD, RGB_SAD, RGB_VAD, RGB_RMOD, XXXXXXX, XXXXXXX, RESET, EEP_RST, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+
+*** combos
+
 ** stuff
+this section just contains data, be it snippets or tables for translations
+*** keycodes
+A not so complete list of keycodes
+#+name: keycode_table
+| a     | KC_A      |
+| b     | KC_B      |
+| c     | KC_C      |
+| d     | KC_D      |
+| e     | KC_E      |
+| f     | KC_F      |
+| g     | KC_G      |
+| h     | KC_H      |
+| i     | KC_I      |
+| j     | KC_J      |
+| k     | KC_K      |
+| l     | KC_L      |
+| m     | KC_M      |
+| n     | KC_N      |
+| o     | KC_O      |
+| p     | KC_P      |
+| q     | KC_Q      |
+| r     | KC_R      |
+| s     | KC_S      |
+| t     | KC_T      |
+| u     | KC_U      |
+| v     | KC_V      |
+| w     | KC_W      |
+| x     | KC_X      |
+| y     | KC_Y      |
+| z     | KC_Z      |
+| n1    | KC_1      |
+| n2    | KC_2      |
+| n3    | KC_3      |
+| n4    | KC_4      |
+| n5    | KC_5      |
+| n6    | KC_6      |
+| n7    | KC_7      |
+| n8    | KC_8      |
+| n9    | KC_9      |
+| n0    | KC_0      |
+| ret   | KC_ENTER  |
+| esc   | KC_ESC    |
+| gesc  | KC_GESC   |
+| bspc  | KC_BSPACE |
+| del   | KC_DEL    |
+| tab   | KC_TAB    |
+| space | KC_SPACE  |
+| minus | KC_MINUS  |
+| equal | KC_EQUAL  |
+| lbrc  | KC_LBRC   |
+| rbrc  | KC_RBRC   |
+| fslh  | KC_SLASH  |
+| bslh  | KC_BSLASH |
+| semi  | KC_SCOLON |
+| dot   | KC_DOT    |
+| comma | KC_COMMA  |
+| sqt   | KC_QUOTE  |
+| grave | KC_GRAVE  |
+| lsft  | KC_LSHIFT |
+| rsft  | KC_RSHIFT |
+| lctl  | KC_LCTRL  |
+| rctl  | KC_RCTRL  |
+| lalt  | KC_LALT   |
+| ralt  | KC_RALT   |
+| lgui  | KC_LGUI   |
+| rgui  | KC_RGUI   |
+| mute  | KC_MUTE   |
+| left  | KC_LEFT   |
+| down  | KC_DOWN   |
+| up    | KC_UP     |
+| right | KC_RIGHT  |
+| volu  | KC_VOLU   |
+| vold  | KC_VOLD   |
+| pause | KC_MPLY   |
+| next  | KC_MNXT   |
+| prev  | KC_MPRV   |
+| undo  | KC_UNDO   |
+| cut   | KC_CUT    |
+| copy  | KC_COPY   |
+| paste | KC_PASTE  |
+| eelh  | EH_LEFT   |
+| eerh  | EH_RGHT   |
+| rgbhu | RGB_HUI   |
+| rgbhd | RGB_HUD   |
+| rgbsu | RGB_SAI   |
+| rgbsd | RGB_SAD   |
+| rgbvu | RGB_VAI   |
+| rgbvd | RGB_VAD   |
+| rgbmu | RGB_MOD   |
+| rgbmd | RGB_RMOD  |
+| reset | RESET     |
+| eeprt | EEP_RST   |
+
+A semi complete list of modifier codes
+#+name: mod_table
+| lsft | MOD_LSFT |
+| rsft | MOD_RSFT |
+| lctl | MOD_LCTL |
+| rctl | MOD_RCTL |
+| lalt | MOD_LALT |
+| ralt | MOD_RALT |
+| lgui | MOD_LGUI |
+| rgui | MOD_RGUI |
+
 *** header
 #+name: header
 #+begin_src C :main no :tangle no :results none
@@ -94,13 +286,9 @@ void matrix_scan_user(void) {
  *
  * This is autogenerated using doom/org-tangle DO NOT EDIT.
  * Please refer to main.org in [[https://git.sr.ht/~jat/keymaps]]
- */
-#+end_src
-
-*** license
-#+name: license
-#+begin_src C :main no :tangle no :results none
-/* Copyright 2021 Freja
+ *
+ *
+ * Copyright 2021 Freja
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -115,33 +303,31 @@ void matrix_scan_user(void) {
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- #+end_src
+#+end_src
+
 *** matrix stuff
 #+name: keymap
-#+begin_src C :results none :main no :tangle no
+#+begin_src C :main no :tangle no :noweb yes :results none
 enum layers {
     _base = 0,
     _game,
     _low,
     _high,
     _adj,
-    _misc,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-         [_base] = LAYOUT(_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-         [_game] = LAYOUT(_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-         [_low] = LAYOUT(_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-         [_high] = LAYOUT(_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-         [_adj] = LAYOUT(_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-         [_misc] = LAYOUT(_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
+         [_base] = LAYOUT(<<parse_layout(input=base_layout)>>),
+         [_game] = LAYOUT(<<parse_layout(input=game_layout)>>),
+         [_low] = LAYOUT(<<parse_layout(input=low_layout)>>),
+         [_high] = LAYOUT(<<parse_layout(input=high_layout)>>),
+         [_adj] = LAYOUT(<<parse_layout(input=adj_layout)>>),
 };
 #+end_src
 
 ** putting it all together
 *** keymap.c
 #+begin_src C :noweb yes :tangle keymap.c
-<<license>>
 <<header>>
 
 #include QMK_KEYBOARD_H
@@ -159,7 +345,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 *** config
 #+begin_src C :noweb yes :tangle config.h
-<<license>>
 <<header>>
 
 #pragma once
@@ -170,26 +355,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define IGNORE_MOD_TAP_INTERRUPT
 
 #ifdef OLED_DRIVER_ENABLE
-#    define OLED_DISPLAY_128X64
+#define OLED_DISPLAY_128X64
 #endif
 
 #ifdef NKRO_ENABLE
-#    define FORCE_NKRO
+#define FORCE_NKRO
 #endif
 
 #ifdef RGBLIGHT_ENABLE
-#    define RGBLIGHT_SLEEP
-#    define RGBLIGHT_EFFECT_BREATHING
-#    define RGBLIGHT_EFFECT_RAINBOW_MOOD
-#    define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-#    define RGBLIGHT_EFFECT_SNAKE
-#    define RGBLIGHT_EFFECT_KNIGHT
-#    define RGBLIGHT_EFFECT_STATIC_GRADIENT
+#define RGBLIGHT_SLEEP
+#define RGBLIGHT_EFFECT_BREATHING
+#define RGBLIGHT_EFFECT_KNIGHT
 
-#    define RGBLIGHT_HUE_STEP 8
-#    define RGBLIGHT_SAT_STEP 8
-#    define RGBLIGHT_VAL_STEP 8
-#    define RGBLIGHT_LIMIT_VAL 150
+
+#define RGBLIGHT_HUE_STEP 8
+#define RGBLIGHT_SAT_STEP 8
+#define RGBLIGHT_VAL_STEP 8
+#define RGBLIGHT_LIMIT_VAL 150
 #endif
 
 #ifdef ENCODER_ENABLE
@@ -202,19 +384,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #+end_src
 
 *** rules
-#+begin_src C :tangle rules.mk
+#+begin_src C :tangle rules.mk :results none
 OLED_DRIVER_ENABLE = no
 RGBLIGHT_ENABLE = yes
-WPM_ENABLE = no
-MOUSEKEY_ENABLE = no
 NKRO_ENABLE = yes
-COMBO_ENABLE = yes
-VIA_ENABLE = yes
+COMBO_ENABLE = no
 ENCODER_ENABLE = yes
 
 BOOTLOADER=qmk-hid
 BOOTLOADER_SIZE=512
 #+end_src
-
-#+RESULTS:
-

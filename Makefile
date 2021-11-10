@@ -3,6 +3,9 @@ FILES=keymap.c config.h rules.mk
 KM=jat
 KB=splitkb/kyria
 
+$(FILES): main.org
+	./org-tangle main.org
+
 flash: $(FILES)
 	qmk flash -kb $(KB) -km $(KM)
 
@@ -11,9 +14,6 @@ compile: $(FILES)
 
 lint: $(FILES)
 	qmk lint -kb $(KB) -km $(KM)
-
-$(FILES): main.org
-	org-tangle main.org
 
 clean:
 	rm -rf $(FILES)
