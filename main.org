@@ -163,7 +163,7 @@ I try to write it fairly pessimistic, but if anything faulty goes through, qmk w
                  (y (1+ (/ (length input) 16))))
              (error "Unknown key %s at %d:%d" any x y))))))))
 
-(substring result 0 -2)  ; cutting of the last ", "
+(substring result 0 -2)  ; cutting of the last `,` since macros can't handle trailing commas for shit
 ;(s-chop-suffix ", " result) <- doesn't work outside emacs
 #+end_src
 
@@ -406,7 +406,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #endif
 #+end_src
 
-*** config
+*** config.h
 #+begin_src C :noweb yes :tangle config.h
 <<header>>
 
@@ -430,7 +430,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define RGBLIGHT_EFFECT_BREATHING
 #define RGBLIGHT_EFFECT_KNIGHT
 
-
 #define RGBLIGHT_HUE_STEP 8
 #define RGBLIGHT_SAT_STEP 8
 #define RGBLIGHT_VAL_STEP 8
@@ -449,9 +448,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // define USB_POLLING_INTERVAL_MS 5
 #+end_src
 
-*** rules
+*** rules.mk
 #+begin_src C :tangle rules.mk :results none
 OLED_DRIVER_ENABLE = no
+WPM_ENABLE = no
 RGBLIGHT_ENABLE = yes
 NKRO_ENABLE = yes
 COMBO_ENABLE = yes
