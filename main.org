@@ -131,17 +131,17 @@ This section contains stuff used for parsing the key definitions.
   "Parses the expression and returns the keycode.  It takes a string as input and ignores empty expressions"
   (unless (eq word "")
     (pcase word
-      ((or "&nop" "xxx")                                                                "KC_NO")
-      ((or "&trns" "___" "---")                                                         "KC_TRNS")
-      ;; FIXME the `rx` shit does not work when tangling with a script
-      ((rx bos "&kp" (+ space) (let head (+ word)) eos)                                 (get-keycode head))
-      ((rx bos "&kps" (+ space) (let head (+ word)) eos)                                (format "S(%s)" (get-keycode head)))
-      ((rx bos "&tg" (+ space) (let head (+ word)) eos)                                 (format "TG(%s)" head))
-      ((rx bos "&lt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) eos)    (format "LT(%s, %s)" arg (get-keycode head)))
-      ((rx bos "&mo" (+ space) (let head (+ word)) eos)                                 (format "MO(%s)" head))
-      ((rx bos "&mt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) eos)    (format "MT(%s, %s)" (get-mod arg) (get-keycode head)))
-      ((rx bos "&osm" (+ space) (let head (+ word)) eos)                                (format "OSM(%s)" (get-mod head)))
-      (-                                                                                (error "unknown expr `%s`" word)))))
+      ((or "&nop" "xxx")                                                                          "KC_NO")
+      ((or "&trns" "___" "---")                                                                   "KC_TRNS")
+      ;; FIXME the `rx` shit does not work when tangling with a script/in batch mode
+      ((rx bos "&kp" (+ space) (let head (+ word)) (* space) eos)                                 (get-keycode head))
+      ((rx bos "&kps" (+ space) (let head (+ word)) (* space) eos)                                (format "S(%s)" (get-keycode head)))
+      ((rx bos "&tg" (+ space) (let head (+ word)) (* space) eos)                                 (format "TG(%s)" head))
+      ((rx bos "&lt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "LT(%s, %s)" arg (get-keycode head)))
+      ((rx bos "&mo" (+ space) (let head (+ word)) (* space) eos)                                 (format "MO(%s)" head))
+      ((rx bos "&mt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "MT(%s, %s)" (get-mod arg) (get-keycode head)))
+      ((rx bos "&osm" (+ space) (let head (+ word)) (* space) eos)                                (format "OSM(%s)" (get-mod head)))
+      (-                                                                                          (error "unknown expr `%s`" word)))))
 #+end_src
 **** tables n shit
 A not so complete list of keycodes
@@ -381,7 +381,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #+end_src
 ** putting it all together
 *** keymap.c
-#+begin_src C :noweb yes :tangle keymap.c
+#+begin_src C :noweb yes :tangle keymap.c :results none :no-expand
 <<header>>
 
 #include QMK_KEYBOARD_H
@@ -417,6 +417,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #endif
 
 #ifdef RGBLIGHT_ENABLE
+#define RGBLIGHT_LED_MAP {0,1,2,9,8,7,4,3,5,6,19,18,17,10,11,12,15,16,14,13}
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_EFFECT_BREATHING
 #define RGBLIGHT_EFFECT_KNIGHT
