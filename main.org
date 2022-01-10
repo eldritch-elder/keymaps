@@ -10,49 +10,65 @@ For that I am using [[https://eurkey.steffen.bruentjen.eu/][EurKey]] - but US In
 *** Base layer
 On the keyboard however I will use a modified version of [[https://sites.google.com/alanreiser.com/handsdown/home?authuser=0#h.rt23wndkh65l][hands down gold]], until something better comes up.
 #+name: base_layout
-| &nop | &kp z | &kp f | &kp m    | &kp p   | &kp v    |          |          |           |           | &kp semi  | &kp dot  | &kp fslh | &kp sqt | &kp equal | &nop |
-| &nop | &kp r | &kp s | &kp n    | &kp d   | &kp w    |          |          |           |           | &kp comma | &kp a    | &kp e    | &kp i   | &kp o     | &nop |
-| &nop | &kp x | &kp g | &kp l    | &kp c   | &kp b    | &mo _adj | &kp gesc | &tg _game | &nop      | &kp minus | &kp h    | &kp u    | &kp j   | &kp k     | &nop |
-|      |       |       | &kp lgui | &kp tab | &mo _low | &kp t    | &kp ret  | &kp bspc  | &kp space | &mo _high | &kp ralt | &kp mute |         |           |      |
+| xxx | &kp z | &kp f | &kp m    | &kp p   | &kp v   |          |          |           |           | &kp semi  | &kp dot  | &kp fslh | &kp sqt | &kp equal | xxx |
+| xxx | &kp r | &kp s | &kp n    | &kp d   | &kp w   |          |          |           |           | &kp comma | &kp a    | &kp e    | &kp i   | &kp o     | xxx |
+| xxx | &kp x | &kp g | &kp l    | &kp c   | &kp b   | &mo _adj | &kp gesc | &tg _game | xxx       | &kp minus | &kp h    | &kp u    | &kp j   | &kp k     | xxx |
+|     |       |       | &kp lgui | &kp tab | &kp ret | &kp t    | &mo _low | &mo _high | &kp space | &kp bspc  | &kp ralt | &kp mute |         |           |     |
+
 *** g*ming layout
 Too lazy to config shit in every game I use a keyboard with.
 #+name: game_layout
-| &nop | &kp a | &kp w | &kp e    | &kp r   | &kp t    |                |          |           |      | &nop   | &nop   | &kp n3   | &kp n4 | &nop   | &nop |
-| &nop | &kp q | &kp s | &kp d    | &kp f   | &kp g    |                |          |           |      | &kp n7 | &kp n1 | &kp n2   | &kp n5 | &kp n6 | &nop |
-| &nop | &kp z | &kp x | &kp c    | &kp v   | &kp b    | &kp lsft       | &kp gesc | &tg _game | &nop | &nop   | &nop   | &nop     | &nop   | &nop   | &nop |
-|      |       |       | &kp lgui | &kp tab | &kp lalt | &lt _low space | &kp ret  | &nop      | &nop | &nop   | &nop   | &kp mute |        |        |      |
+| xxx | &kp a | &kp w | &kp e    | &kp r   | &kp t    |                |          |           |     | xxx    | xxx    | &kp n3   | &kp n4 | xxx    | xxx |
+| xxx | &kp q | &kp s | &kp d    | &kp f   | &kp g    |                |          |           |     | &kp n7 | &kp n1 | &kp n2   | &kp n5 | &kp n6 | xxx |
+| xxx | &kp z | &kp x | &kp c    | &kp v   | &kp b    | &kp lsft       | &kp gesc | &tg _game | xxx | xxx    | xxx    | xxx      | xxx    | xxx    | xxx |
+|     |       |       | &kp lgui | &kp tab | &kp lalt | &lt _low space | &kp ret  | xxx       | xxx | xxx    | xxx    | &kp mute |        |        |     |
+
 *** lower layer
 #+name: low_layout
-| &nop | &kp n1 | &kp n2   | &kp n3   | &kp n4   | &kp n5 |       |       |       |       | &kps n1 | &kps n2   | &kps n3   | &kps n4   | &kps n5 | &nop |
-| &nop | &kp n6 | &kp n7   | &kp n8   | &kp n9   | &kp n0 |       |       |       |       | &kps n6 | &kps n7   | &kps n8   | &kps n9   | &kps n0 | &nop |
-| &nop | &trns  | &kp bslh | &kp lbrc | &kp rbrc | &trns  | &trns | &trns | &trns | &trns | &trns   | &kps lbrc | &kps rbrc | &kps bslh | &trns   | &nop |
-|      |        |          | &trns    | &trns    | &trns  | &trns | &trns | &trns | &trns | &trns   | &trns     | &trns     |           |         |      |
+| xxx | &kp n1 | &kp n2 | &kp n3   | &kp n4   | &kp n5 |     |     |     |     | &kps n1 | &kps n2   | &kps n3   | &kps n4   | &kps n5 | xxx |
+| xxx | &kp n6 | &kp n7 | &kp n8   | &kp n9   | &kp n0 |     |     |     |     | &kps n6 | &kps n7   | &kps n8   | &kps n9   | &kps n0 | xxx |
+| xxx | ---    | ---    | &kp lbrc | &kp rbrc | ---    | --- | --- | --- | --- | ---     | &kps lbrc | &kps rbrc | &kps bslh | ---     | xxx |
+|     |        |        | ---      | ---      | ---    | --- | --- | --- | --- | ---     | ---       | ---       |           |         |     |
+
 *** raise layer
 #+name: high_layout
-| &nop | &trns    | &kp volu | &trns    | &trns     | &trns    |       |       |       |       | &trns    | &trns    | &trns  | &trns     | &trns | &nop |
-| &nop | &trns    | &kp vold | &kp prev | &kp pause | &kp next |       |       |       |       | &kp left | &kp down | &kp up | &kp right | &trns | &nop |
-| &nop | &kp undo | &kp cut  | &kp copy | &kp paste | &trns    | &trns | &trns | &trns | &trns | &trns    | &trns    | &trns  | &trns     | &trns | &nop |
-|      |          |          | &trns    | &trns     | &trns    | &trns | &trns | &trns | &trns | &trns    | &trns    | &trns  |           |       |      |
+| xxx | ---      | &kp volu | ---      | ---       | ---      |     |     |     |     | ---      | ---      | ---    | ---       | --- | xxx |
+| xxx | ---      | &kp vold | &kp prev | &kp pause | &kp next |     |     |     |     | &kp left | &kp down | &kp up | &kp right | --- | xxx |
+| xxx | &kp undo | &kp cut  | &kp copy | &kp paste | ---      | --- | --- | --- | --- | ---      | ---      | ---    | ---       | --- | xxx |
+|     |          |          | ---      | ---       | ---      | --- | --- | --- | --- | ---      | ---      | ---    |           |     |     |
+
 *** adjusting shit
 This layer contains stuff for adjusting, be it ~EE_HANDS~ or rgb stuff.
 #+name: adj_layout
-| &nop | &kp eelh  | &kp eerh  | &nop | &nop | &nop |       |      |      |      | &nop | &kp rgbhu | &kp rgbsu | &kp rgbvu | &kp rgbmu | &nop |
-| &nop | &nop      | &nop      | &nop | &nop | &nop |       |      |      |      | &nop | &kp rgbhd | &kp rgbsd | &kp rgbvd | &kp rgbmd | &nop |
-| &nop | &kp reset | &kp eeprt | &nop | &nop | &nop | &trns | &nop | &nop | &nop | &nop | &nop      | &nop      | &nop      | &nop      | &nop |
-|      |           |           | &nop | &nop | &nop | &nop  | &nop | &nop | &nop | &nop | &nop      | &nop      |           |           |      |
+| xxx | &kp eelh  | &kp eerh  | xxx | xxx | xxx |     |     |     |     | xxx | &kp rgbhu | &kp rgbsu | &kp rgbvu | &kp rgbmu | xxx |
+| xxx | xxx       | xxx       | xxx | xxx | xxx |     |     |     |     | xxx | &kp rgbhd | &kp rgbsd | &kp rgbvd | &kp rgbmd | xxx |
+| xxx | &kp reset | &kp eeprt | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx       | xxx       | xxx       | xxx       | xxx |
+|     |           |           | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx       | xxx       |           |           |     |
+
 ** combos
 Here, combos are a nice feature allowing to add keys at places where they don't impear your typing yet are comfortable to use.
 It expects a table with each row taking one combo, the first cell is the result you want to have and all the following cells contain the keys you want to press to, to the key in the first cell.
 Leave an empty table to disable this feature.  Leaving the first cell empty will do the trick too.
 #+name: combo-table
-| &kp q     | &kp z    | &kp f   |
-| &kp y     | &kp m    | &kp p   |
-| &kp tab   | &kp c    | &kp b   |
-| &kp gesc  | &kp p    | &kp v   |
-| &osm lsft | &kp f    | &kp m   |
-| &osm lctl | &kp g    | &kp l   |
-| &osm lgui | &kp fslh | &kp sqt |
-| &osm lalt | &kp u    | &kp j   |
+| &osm lsft | &kp f     | &kp m    |
+| &osm lctl | &kp g     | &kp l    |
+| &osm lgui | &kp fslh  | &kp sqt  |
+| &osm lalt | &kp u     | &kp j    |
+| &kp q     | &kp z     | &kp f    |
+| &kp y     | &kp m     | &kp p    |
+| &kp tab   | &kp c     | &kp b    |
+| &kp gesc  | &kp p     | &kp v    |
+| &kps n9   | &kp f     | &kp d    |
+| &kps n0   | &kp a     | &kp sqt  |
+| &kp lbrc  | &kp f     | &kp p    |
+| &kp rbrc  | &kp dot   | &kp sqt  |
+| &kps lbrc | &kp f     | &kp n    |
+| &kps rbrc | &kp e     | &kp sqt  |
+| &kpag a   | &kp a     | &kp fslh |
+| &kpag w   | &kp a     | &kp o    |
+| &kpag o   | &kp comma | &kp o    |
+| &kpag u   | &kp minus | &kp u    |
+
 ** encoder
 Rotary encoders add a lot of features and functionality, they are extremly useful.
 For me, I like to have volume control on one side and window control on the other.
@@ -100,13 +116,16 @@ void matrix_scan_user(void) {
     }
 }
 #+end_src
+
 ** one shot one kill
 I use callums implementation for oneshot mods.  For more information check callums userspace and the joinked stuff down in [[*fixing osm stuff][the building section]].
 I'm gonna take over the ~OSM()~ keycodes since this is basically osm except better.
+
 *** canceling oneshotkeys
 Since they don't use a timer and queue up indefinetly you need some way to cancel the keys when you missclicked or something.
 #+name: cancel-keys
 | &mo _high |
+
 *** ignoring keys
 Sometimes you don't want to activate the mods on some keys, e.g. to stack mods or use them across layers.
 #+name: ignore-keys
@@ -119,7 +138,7 @@ Sometimes you don't want to activate the mods on some keys, e.g. to stack mods o
 | &osm lgui  |
 | &osm rgui  |
 | &mo _low   |
-| &mo _high  |
+
 * Abandon all hope, ye who enter here
 This section is the build section. from this point on it's code and code only, be it elisp or c.
 I would not recommend altering anything up there, escpecially the generator code, unless you know what you are doing.
@@ -127,6 +146,7 @@ I would not recommend altering anything up there, escpecially the generator code
 I try to write it fairly pessimistic, but if anything faulty goes through, qmk will complain about it.
 ** generators and parser
 This section contains stuff used for parsing the key definitions.
+
 *** keycodes
 #+name: keycode-parsing
 #+begin_src elisp :results none
@@ -155,6 +175,7 @@ This section contains stuff used for parsing the key definitions.
       ((rx bos "&kps" (+ space) (let head (+ word)) (* space) eos)                                (format "S(%s), " (get-keycode head)))
       ((rx bos "&kpc" (+ space) (let head (+ word)) (* space) eos)                                (format "C(%s), " (get-keycode head)))
       ((rx bos "&kpa" (+ space) (let head (+ word)) (* space) eos)                                (format "A(%s), " (get-keycode head)))
+      ((rx bos "&kpag" (+ space) (let head (+ word)) (* space) eos)                               (format "RALT(%s), " (get-keycode head)))
       ((rx bos "&kpg" (+ space) (let head (+ word)) (* space) eos)                                (format "G(%s), " (get-keycode head)))
       ((rx bos "&tg" (+ space) (let head (+ word)) (* space) eos)                                 (format "TG(%s), " head))
       ((rx bos "&lt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "LT(%s, %s), " arg (get-keycode head)))
@@ -163,6 +184,7 @@ This section contains stuff used for parsing the key definitions.
       ((rx bos "&osm" (+ space) (let head (+ word)) (* space) eos)                                (format "OSM(%s), " (get-mod head)))
       (-                                                                                          (error "unknown expr `%s`" word)))))
 #+end_src
+
 **** tables n shit
 A not so complete list of keycodes
 #+name: keycode_table
@@ -265,6 +287,7 @@ A semi complete list of modifier codes
 | ralt | MOD_RALT |
 | lgui | MOD_LGUI |
 | rgui | MOD_RGUI |
+
 *** layers
 For processing the table and generating the layers
 #+name: generate-layer
@@ -281,6 +304,7 @@ For processing the table and generating the layers
 (substring result 0 -2)  ; cutting of the last `,` since c macros can't handle trailing commas for shit
 ;(s-chop-suffix ", " result) <- doesn't work outside emacs
 #+end_src
+
 *** combos
 Parsing and generating the code for the combos
 #+name: combo-enable
@@ -327,6 +351,7 @@ Parsing and generating the code for the combos
           id (1+ id)))
   (concat result "};"))
 #+end_src
+
 *** osm
 #+name: cancel_osm
 #+begin_src elisp :main no :noweb yes :var in=cancel-keys keycode=keycode_table modcode=mod_table :results value drawer
@@ -403,6 +428,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 <<generate-combosequence()>>
 <<generate-combocombination()>>
 #+end_src
+
 *** fixing osm stuff
 #+name: oneshot
 #+begin_src C :main no :noweb yes :results none
@@ -438,6 +464,7 @@ case OSM(MOD_LGUI):
 case OSM(MOD_RGUI):
     return false;
 #+end_src
+
 **** the implementation
 I just joinked callums oneshot implementation since I don't want to deal with foreign userspace stuff and depend on those.  Look at callums userspace for more information.
 #+name: oneshot_implementation
@@ -500,6 +527,7 @@ void update_oneshot(oneshot_state *state, uint16_t mod, uint16_t trigger, uint16
     }
 }
 #+end_src
+
 ** putting it all together
 *** keymap.c
 #+begin_src C :noweb yes :tangle keymap.c :results none :no-expand
@@ -524,6 +552,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         <<override_oneshot>>
         default: return true;
     }
+}
+
+void matrix_init_user(void) {
+#ifdef RGB_MATRIX_ENABLE
+    g_led_config = (led_config_t){
+        {
+            {NO_LED, NO_LED, 3, 4, 4, 5, 5},
+            {NO_LED, NO_LED, 3, 4, 4, 5, 6},
+            {0, 0, 1, 2, 2, 7, 6},
+            {0, 0, 1, 2, 7, NO_LED, NO_LED},
+            {NO_LED, NO_LED, 11, 12, 12, 13, 13},
+            {NO_LED, NO_LED, 11, 12, 12, 13, 14},
+            {8, 8, 9, 10, 10, 15, 14},
+            {8, 8, 9, 10, 15, NO_LED, NO_LED},
+        },
+        {
+            {91,40}, {77,56}, {63,56}, {77,24}, {63,8}, {21,8}, {21,40}, {35,40}, {133,40}, {147,56}, {161,56}, {147,24}, {161,8}, {203,8}, {203,40}, {189,40}
+        },
+        {
+            255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255
+        }
+    };
+#endif
 }
 #+end_src
 
@@ -560,6 +611,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define RGBLIGHT_LIMIT_VAL 150
 #endif
 
+#ifdef RGB_MATRIX_ENABLE
+#define ENABLE_LED_MATRIX_SOLID
+#define ENABLE_LED_MATRIX_BREATHING
+#define LED_MATRIX_KEYPRESSES
+#define ENABLE_LED_MATRIX_SOLID_REACTIVE_SIMPLE
+#endif
+
 #ifdef ENCODER_ENABLE
 #define ENCODER_RESOLUTION 2
 #define ENCODER_DIRECTION_FLIP
@@ -567,6 +625,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #ifdef COMBO_ENABLE
 #define COMBO_COUNT <<get-combocount()>>
+#define EXTRA_SHORT_COMBOS
+#define COMBO_NO_TIMER
 #endif
 
 // define USB_POLLING_INTERVAL_MS 5
@@ -576,7 +636,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #+begin_src C :tangle rules.mk :noweb yes :results none :no-expand
 OLED_DRIVER_ENABLE = no
 WPM_ENABLE = no
-RGBLIGHT_ENABLE = yes
+RGBLIGHT_ENABLE = no
+RGB_MATRIX_ENABLE = yes
 COMBO_ENABLE = <<combo-enable()>>
 ENCODER_ENABLE = yes
 
