@@ -22,7 +22,7 @@ git submodule add https://git.sr.ht/~jat/keymaps keyboards/splitkb/kyria/jat --i
 Yea, legal stuff, I know, annoying, but required and without it, you aren't allowed to even use it.
 Yea.
 
-> Copyright 2021 Freja Wegert
+> Copyright 2021 Freja
 >
 > This program is free software: you can redistribute it and/or modify
 > it under the terms of the GNU General Public License as published by

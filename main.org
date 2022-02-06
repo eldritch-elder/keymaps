@@ -56,8 +56,9 @@ Leave an empty table to disable this feature.  Leaving the first cell empty will
 | &osm lalt | &kp u     | &kp j    |
 | &kp q     | &kp z     | &kp f    |
 | &kp y     | &kp m     | &kp p    |
-| &kp tab   | &kp c     | &kp b    |
+| &kp tab   | &kp x     | &kp c    |
 | &kp gesc  | &kp p     | &kp v    |
+| &kp bspc  | &kp minus | &kp h    |
 | &kps n9   | &kp f     | &kp d    |
 | &kps n0   | &kp a     | &kp sqt  |
 | &kp lbrc  | &kp f     | &kp p    |
