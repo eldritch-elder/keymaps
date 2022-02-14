@@ -10,18 +10,18 @@ For that I am using [[https://eurkey.steffen.bruentjen.eu/][EurKey]] - but US In
 *** Base layer
 On the keyboard however I will use a modified version of [[https://sites.google.com/alanreiser.com/handsdown/home?authuser=0#h.rt23wndkh65l][hands down gold]], until something better comes up.
 #+name: base_layout
-| xxx | &kp z | &kp f | &kp m    | &kp p   | &kp v    |          |          |           |           | &kp semi  | &kp dot  | &kp fslh | &kp sqt | &kp equal | xxx |
-| xxx | &kp r | &kp s | &kp n    | &kp d   | &kp w    |          |          |           |           | &kp comma | &kp a    | &kp e    | &kp i   | &kp o     | xxx |
-| xxx | &kp x | &kp g | &kp l    | &kp c   | &kp b    | &mo _adj | &kp gesc | &tg _game | xxx       | &kp minus | &kp h    | &kp u    | &kp j   | &kp k     | xxx |
-|     |       |       | &kp lgui | &kp tab | &mo _low | &kp t    | &kp ret  | &kp bspc  | &kp space | &mo _high | &kp ralt | &kp mute |         |           |     |
+| xxx | &kp z | &kp f | &kp m    | &kp p   | &kp v    |          |          |          |           | &kp semi  | &kp dot  | &kp fslh | &kp sqt | &kp equal | xxx |
+| xxx | &kp r | &kp s | &kp n    | &kp d   | &kp w    |          |          |          |           | &kp comma | &kp a    | &kp e    | &kp i   | &kp o     | xxx |
+| xxx | &kp x | &kp g | &kp l    | &kp c   | &kp b    | &mo _adj | &kp gesc | xxx      | &tg _game | &kp minus | &kp h    | &kp u    | &kp y   | &kp k     | xxx |
+|     |       |       | &kp lgui | &kp tab | &mo _low | &kp t    | &kp ret  | &kp bspc | &kp space | &mo _high | &kp ralt | &kp mute |         |           |     |
 
 *** g*ming layout
 Too lazy to config shit in every game I use a keyboard with.
 #+name: game_layout
-| xxx | &kp a | &kp w | &kp e    | &kp r   | &kp t    |                |          |           |     | xxx    | xxx    | &kp n3   | &kp n4 | xxx    | xxx |
-| xxx | &kp q | &kp s | &kp d    | &kp f   | &kp g    |                |          |           |     | &kp n7 | &kp n1 | &kp n2   | &kp n5 | &kp n6 | xxx |
-| xxx | &kp z | &kp x | &kp c    | &kp v   | &kp b    | &kp lsft       | &kp gesc | &tg _game | xxx | xxx    | xxx    | xxx      | xxx    | xxx    | xxx |
-|     |       |       | &kp lgui | &kp tab | &kp lalt | &lt _low space | &kp ret  | xxx       | xxx | xxx    | xxx    | &kp mute |        |        |     |
+| xxx | &kp a | &kp w | &kp e    | &kp r   | &kp t    |                |          |     |     | xxx    | xxx    | &kp n3   | &kp n4 | xxx    | xxx |
+| xxx | &kp q | &kp s | &kp d    | &kp f   | &kp g    |                |          |     |     | &kp n7 | &kp n1 | &kp n2   | &kp n5 | &kp n6 | xxx |
+| xxx | &kp z | &kp x | &kp c    | &kp v   | &kp b    | &kp lsft       | &kp gesc | --- | --- | xxx    | xxx    | xxx      | xxx    | xxx    | xxx |
+|     |       |       | &kp lgui | &kp tab | &kp lalt | &lt _low space | &kp ret  | xxx | xxx | xxx    | xxx    | &kp mute |        |        |     |
 
 *** lower layer
 #+name: low_layout
@@ -50,25 +50,26 @@ Here, combos are a nice feature allowing to add keys at places where they don't 
 It expects a table with each row taking one combo, the first cell is the result you want to have and all the following cells contain the keys you want to press to, to the key in the first cell.
 Leave an empty table to disable this feature.  Leaving the first cell empty will do the trick too.
 #+name: combo-table
-| &osm lsft | &kp f     | &kp m    |
-| &osm lctl | &kp g     | &kp l    |
-| &osm lgui | &kp fslh  | &kp sqt  |
-| &osm lalt | &kp u     | &kp j    |
-| &kp q     | &kp z     | &kp f    |
-| &kp y     | &kp m     | &kp p    |
-| &kp tab   | &kp x     | &kp c    |
-| &kp gesc  | &kp p     | &kp v    |
-| &kp bspc  | &kp minus | &kp h    |
-| &kps n9   | &kp f     | &kp d    |
-| &kps n0   | &kp a     | &kp sqt  |
-| &kp lbrc  | &kp f     | &kp p    |
-| &kp rbrc  | &kp dot   | &kp sqt  |
-| &kps lbrc | &kp f     | &kp n    |
-| &kps rbrc | &kp e     | &kp sqt  |
-| &kpag a   | &kp a     | &kp fslh |
-| &kpag w   | &kp a     | &kp o    |
-| &kpag o   | &kp comma | &kp o    |
-| &kpag u   | &kp comma | &kp u    |
+| &osm lsft | &kp f     | &kp m     |
+| &osm lctl | &kp g     | &kp l     |
+| &osm lgui | &kp fslh  | &kp sqt   |
+| &osm lalt | &kp u     | &kp y     |
+| &kp q     | &kp z     | &kp f     |
+| &kp j     | &kp m     | &kp p     |
+| &kp tab   | &kp x     | &kp c     |
+| &kp esc   | &kp z     | &kp p     |
+| &kp bspc  | &kp minus | &kp h     |
+| &kps n9   | &kp f     | &kp d     |
+| &kps n0   | &kp a     | &kp sqt   |
+| &kp lbrc  | &kp f     | &kp p     |
+| &kp rbrc  | &kp dot   | &kp sqt   |
+| &kps lbrc | &kp f     | &kp n     |
+| &kps rbrc | &kp e     | &kp sqt   |
+| &kp grave | &kp sqt   | &kp equal |
+| &kpag a   | &kp a     | &kp sqt   |
+| &kpag w   | &kp minus | &kp o     |
+| &kpag o   | &kp comma | &kp o     |
+| &kpag u   | &kp minus | &kp u     |
 
 ** encoder
 Rotary encoders add a lot of features and functionality, they are extremly useful.
@@ -302,8 +303,7 @@ For processing the table and generating the layers
   (let ((word (pop input)))
     (setq result (concat result (parse-key word)))))
 
-(substring result 0 -2)  ; cutting of the last `,` since c macros can't handle trailing commas for shit
-;(s-chop-suffix ", " result) <- doesn't work outside emacs
+(s-chop-suffix ", " result)  ; <- doesn't work outside emacs
 #+end_src
 
 *** combos
@@ -433,11 +433,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 *** fixing osm stuff
 #+name: oneshot
 #+begin_src C :main no :noweb yes :results none
-<<cancel_osm()>>
+<<cancel_osm()>>;
 
-<<ignore_osm()>>
+<<ignore_osm()>>;
 
-<<oneshot_implementation>>
+<<oneshot_implementation>>;
 
 oneshot_state sft_state = os_up_unqueued;
 oneshot_state ctl_state = os_up_unqueued;
