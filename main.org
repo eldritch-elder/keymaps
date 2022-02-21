@@ -66,7 +66,7 @@ Leave an empty table to disable this feature.  Leaving the first cell empty will
 | &kps lbrc | &kp f     | &kp n     |
 | &kps rbrc | &kp e     | &kp sqt   |
 | &kp grave | &kp sqt   | &kp equal |
-| &kpag a   | &kp a     | &kp sqt   |
+| &kpag a   | &kp a     | &kp equal |
 | &kpag w   | &kp minus | &kp o     |
 | &kpag o   | &kp comma | &kp o     |
 | &kpag u   | &kp minus | &kp u     |
@@ -576,6 +576,18 @@ void matrix_init_user(void) {
     };
 #endif
 }
+
+
+/* layer_state_t layer_state_set_user(layer_state_t state) { */
+/* #ifdef COMBO_ENABLE */
+/*     if (IS_LAYER_ON_STATE(state, _game)) { */
+/*         combo_disable(); */
+/*     } else { */
+/*         combo_enable(); */
+/*     } */
+/* #endif */
+/*     return state; */
+/* } */
 #+end_src
 
 *** config.h
@@ -626,7 +638,7 @@ void matrix_init_user(void) {
 #ifdef COMBO_ENABLE
 #define COMBO_COUNT <<get-combocount()>>
 #define EXTRA_SHORT_COMBOS
-#define COMBO_NO_TIMER
+/* #define COMBO_NO_TIMER */
 #endif
 
 // define USB_POLLING_INTERVAL_MS 5
