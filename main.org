@@ -10,18 +10,18 @@ For that I am using [[https://eurkey.steffen.bruentjen.eu/][EurKey]] - but US In
 *** Base layer
 On the keyboard however I will use a modified version of [[https://sites.google.com/alanreiser.com/handsdown/home?authuser=0#h.rt23wndkh65l][hands down gold]], until something better comes up.
 #+name: base_layout
-| xxx | &kp z | &kp f | &kp m    | &kp p   | &kp v    |          |          |          |           | &kp semi  | &kp dot  | &kp fslh | &kp sqt | &kp equal | xxx |
-| xxx | &kp r | &kp s | &kp n    | &kp d   | &kp w    |          |          |          |           | &kp comma | &kp a    | &kp e    | &kp i   | &kp o     | xxx |
-| xxx | &kp x | &kp g | &kp l    | &kp c   | &kp b    | &mo _adj | &kp gesc | xxx      | &tg _game | &kp minus | &kp h    | &kp u    | &kp y   | &kp k     | xxx |
-|     |       |       | &kp lgui | &kp tab | &mo _low | &kp t    | &kp ret  | &kp bspc | &kp space | &mo _high | &kp ralt | &kp mute |         |           |     |
+| xxx | &kp z | &kp f | &kp m    | &kp p | &kp v    |          |         |          |           | &kp semi  | &kp dot  | &kp fslh | &kp sqt | &kp equal | xxx |
+| xxx | &kp r | &kp s | &kp n    | &kp d | &kp w    |          |         |          |           | &kp comma | &kp a    | &kp e    | &kp i   | &kp o     | xxx |
+| xxx | &kp x | &kp g | &kp l    | &kp c | &kp b    | &mo _adj | xxx     | xxx      | &tg _game | &kp minus | &kp h    | &kp u    | &kp y   | &kp k     | xxx |
+|     |       |       | &kp lgui | xxx   | &mo _low | &kp t    | &kp ret | &kp bspc | &kp space | &mo _high | &kp ralt | &kp mute |         |           |     |
 
 *** g*ming layout
 Too lazy to config shit in every game I use a keyboard with.
 #+name: game_layout
-| xxx | &kp a | &kp w | &kp e    | &kp r   | &kp t    |                |          |     |     | xxx    | xxx    | &kp n3   | &kp n4 | xxx    | xxx |
-| xxx | &kp q | &kp s | &kp d    | &kp f   | &kp g    |                |          |     |     | &kp n7 | &kp n1 | &kp n2   | &kp n5 | &kp n6 | xxx |
-| xxx | &kp z | &kp x | &kp c    | &kp v   | &kp b    | &kp lsft       | &kp gesc | --- | --- | xxx    | xxx    | xxx      | xxx    | xxx    | xxx |
-|     |       |       | &kp lgui | &kp tab | &kp lalt | &lt _low space | &kp ret  | xxx | xxx | xxx    | xxx    | &kp mute |        |        |     |
+| xxx | &kp a | &kp w | &kp e    | &kp r   | &kp t    |           |              |     |     | xxx    | xxx    | &kp n3   | &kp n4 | xxx    | xxx |
+| xxx | &kp q | &kp s | &kp d    | &kp f   | &kp g    |           |              |     |     | &kp n7 | &kp n1 | &kp n2   | &kp n5 | &kp n6 | xxx |
+| xxx | &kp z | &kp x | &kp c    | &kp v   | &kp b    | ---       | &kp gesc     | --- | --- | xxx    | xxx    | xxx      | xxx    | xxx    | xxx |
+|     |       |       | &kp lgui | &kp tab | &kp lalt | &kp space | &lt _low ret | xxx | xxx | xxx    | xxx    | &kp mute |        |        |     |
 
 *** lower layer
 #+name: low_layout
@@ -32,44 +32,46 @@ Too lazy to config shit in every game I use a keyboard with.
 
 *** raise layer
 #+name: high_layout
-| xxx | ---      | &kp volu | ---      | ---       | ---      |     |     |     |     | ---      | ---      | ---    | ---       | --- | xxx |
-| xxx | ---      | &kp vold | &kp prev | &kp pause | &kp next |     |     |     |     | &kp left | &kp down | &kp up | &kp right | --- | xxx |
-| xxx | &kp undo | &kp cut  | &kp copy | &kp paste | ---      | --- | --- | --- | --- | ---      | ---      | ---    | ---       | --- | xxx |
-|     |          |          | ---      | ---       | ---      | --- | --- | --- | --- | ---      | ---      | ---    |           |     |     |
+| xxx | &kp print | &kp volu | ---      | ---       | ---      |     |     |     |     | ---      | ---      | ---    | ---       | --- | xxx |
+| xxx | ---       | &kp vold | &kp prev | &kp pause | &kp next |     |     |     |     | &kp left | &kp down | &kp up | &kp right | --- | xxx |
+| xxx | &kp undo  | &kp cut  | &kp copy | &kp paste | ---      | --- | --- | --- | --- | ---      | ---      | ---    | ---       | --- | xxx |
+|     |           |          | ---      | ---       | ---      | --- | --- | --- | --- | ---      | ---      | ---    |           |     |     |
 
 *** adjusting shit
 This layer contains stuff for adjusting, be it ~EE_HANDS~ or rgb stuff.
 #+name: adj_layout
-| xxx | &kp eelh  | &kp eerh  | xxx | xxx | xxx |     |     |     |     | xxx | &kp rgbhu | &kp rgbsu | &kp rgbvu | &kp rgbmu | xxx |
-| xxx | xxx       | xxx       | xxx | xxx | xxx |     |     |     |     | xxx | &kp rgbhd | &kp rgbsd | &kp rgbvd | &kp rgbmd | xxx |
-| xxx | &kp reset | &kp eeprt | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx       | xxx       | xxx       | xxx       | xxx |
-|     |           |           | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx       | xxx       |           |           |     |
+| xxx | &kp eelh  | &kp eerh  | xxx | xxx | xxx |     |     |     |           | xxx | &kp rgbhu | &kp rgbsu | &kp rgbvu | &kp rgbmu | xxx |
+| xxx | xxx       | xxx       | xxx | xxx | xxx |     |     |     |           | xxx | &kp rgbhd | &kp rgbsd | &kp rgbvd | &kp rgbmd | xxx |
+| xxx | &kp reset | &kp eeprt | xxx | xxx | xxx | xxx | xxx | xxx | &tg _game | xxx | xxx       | xxx       | xxx       | xxx       | xxx |
+|     |           |           | xxx | xxx | xxx | xxx | xxx | xxx | xxx       | xxx | xxx       | xxx       |           |           |     |
 
 ** combos
 Here, combos are a nice feature allowing to add keys at places where they don't impare your typing yet are comfortable to use.
 It expects a table with each row taking one combo, the first cell is the result you want to have and all the following cells contain the keys you want to press to, to the key in the first cell.
 Leave an empty table to disable this feature.  Leaving the first cell empty will do the trick too.
 #+name: combo-table
-| &osm lsft | &kp f     | &kp m     |
-| &osm lctl | &kp g     | &kp l     |
-| &osm lgui | &kp fslh  | &kp sqt   |
-| &osm lalt | &kp u     | &kp y     |
-| &kp q     | &kp z     | &kp f     |
-| &kp j     | &kp m     | &kp p     |
-| &kp tab   | &kp x     | &kp c     |
-| &kp esc   | &kp z     | &kp p     |
-| &kp bspc  | &kp minus | &kp h     |
-| &kps n9   | &kp f     | &kp d     |
-| &kps n0   | &kp a     | &kp sqt   |
-| &kp lbrc  | &kp f     | &kp p     |
-| &kp rbrc  | &kp dot   | &kp sqt   |
-| &kps lbrc | &kp f     | &kp n     |
-| &kps rbrc | &kp e     | &kp sqt   |
-| &kp grave | &kp sqt   | &kp equal |
-| &kpag a   | &kp a     | &kp equal |
-| &kpag w   | &kp minus | &kp o     |
-| &kpag o   | &kp comma | &kp o     |
-| &kpag u   | &kp minus | &kp u     |
+| &osm lsft | &kp f     | &kp m     |          |         |
+| &osm lctl | &kp g     | &kp l     |          |         |
+| &osm lgui | &kp fslh  | &kp sqt   |          |         |
+| &osm lalt | &kp u     | &kp y     |          |         |
+| &kp q     | &kp z     | &kp f     |          |         |
+| &kp j     | &kp m     | &kp p     |          |         |
+| &kp tab   | &kp x     | &kp c     |          |         |
+| &kp esc   | &kp z     | &kp p     |          |         |
+| &kp bspc  | &kp minus | &kp h     |          |         |
+| &kps n9   | &kp f     | &kp d     |          |         |
+| &kps n0   | &kp a     | &kp sqt   |          |         |
+| &kp lbrc  | &kp f     | &kp p     |          |         |
+| &kp rbrc  | &kp dot   | &kp sqt   |          |         |
+| &kps lbrc | &kp f     | &kp n     |          |         |
+| &kps rbrc | &kp e     | &kp sqt   |          |         |
+| &kp grave | &kp sqt   | &kp equal |          |         |
+| &kps n1   | &kp f     | &kp m     | &kp e    | &kp i   |
+| &kps fslh | &kp s     | &kp n     | &kp fslh | &kp sqt |
+| &kpag a   | &kp g     | &kp c     |          |         |
+| &kpag w   | &kp dot   | &kp o     |          |         |
+| &kpag o   | &kp comma | &kp o     |          |         |
+| &kpag u   | &kp h     | &kp y     |          |         |
 
 ** encoder
 Rotary encoders add a lot of features and functionality, they are extremly useful.
@@ -265,6 +267,7 @@ A not so complete list of keycodes
 | undo  | KC_UNDO   |
 | cut   | KC_CUT    |
 | copy  | KC_COPY   |
+| print | KC_PSCR   |
 | paste | KC_PASTE  |
 | eelh  | EH_LEFT   |
 | eerh  | EH_RGHT   |
