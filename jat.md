@@ -11,7 +11,7 @@ isSplit: true
 isTapDanceEnabled: false
 keybindings: [Vim]
 keyboard: splitkb/kyria
-keyCount: 36
+keyCount: 46
 keymapImage: "https://git.sr.ht/~jat/keymap/blob/development/layout.png"
 keymapUrl: "https://git.sr.ht/~jat/keymap"
 languages: ["English", "German", "Swedish"]
