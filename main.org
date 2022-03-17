@@ -361,29 +361,29 @@ Parsing and generating the code for the combos
 #+begin_src elisp :main no :noweb yes :var in=cancel-keys keycode=keycode_table modcode=mod_table :results value drawer
 <<keycode_parsing>>
 
-(setq result "bool is_oneshot_cancel_key(uint16_t keycode) {\n  switch (keycode) {\n")
+(setq result "bool is_oneshot_cancel_key(uint16_t keycode) {switch (keycode) {")
 
 (while in
   (unless (eq (parse-key (caar in)) "")
-    (setq result (concat result "    case " (s-chop-suffix ", " (parse-key (car (pop in)))) ":\n"))))
+    (setq result (concat result "case " (s-chop-suffix ", " (parse-key (car (pop in)))) ": "))))
 
-(concat result "      return true;\n    default:\n      return false;\n  }\n}")
+(concat result "return true; default: return false;}}")
 #+end_src
 
 #+name: ignore_osm
 #+begin_src elisp :main no :noweb yes :var in=ignore-keys keycode=keycode_table modcode=mod_table :results value drawer
 <<keycode_parsing>>
 
-(setq result "bool is_oneshot_ignored_key(uint16_t keycode) {\n  switch (keycode) {\n")
+(setq result "bool is_oneshot_ignored_key(uint16_t keycode) {switch (keycode) {")
 
 (while in
   (unless (eq (parse-key (caar in)) "")
-    (setq result (concat result "    case " (s-chop-suffix ", " (parse-key (car (pop in)))) ":\n"))))
+    (setq result (concat result "case " (s-chop-suffix ", " (parse-key (car (pop in)))) ": "))))
 
-(concat result "      return true;\n    default:\n      return false;\n  }\n}")
+(concat result "return true; default: return false;}}")
 #+end_src
 
-** stuff
+** stuf
 Here we take everything from the section before and format these accordingly before taking everything together.
 *** header
 #+name: header
