@@ -1,7 +1,7 @@
 FILES=keymap.c config.h rules.mk
 
 KM=jat
-KB=splitkb/kyria
+KB=splitkb/kyria/rev1
 
 compile:
 	qmk compile -kb $(KB) -km $(KM)

@@ -1,5 +1,5 @@
-#+title: keymaps
-#+author: Freja
+#+title: keymap
+#+author: Freja 'jat
 #+startup: content
 
 * The keymap
@@ -12,7 +12,7 @@ On the keyboard however I will use a modified version of [[https://sites.google.
 #+name: base_layout
 | xxx | &kp z | &kp f | &kp m    | &kp p | &kp v    |          |         |          |           | &kp semi  | &kp dot  | &kp fslh | &kp sqt | &kp equal | xxx |
 | xxx | &kp r | &kp s | &kp n    | &kp d | &kp w    |          |         |          |           | &kp comma | &kp a    | &kp e    | &kp i   | &kp o     | xxx |
-| xxx | &kp x | &kp g | &kp l    | &kp c | &kp b    | &mo _adj | xxx     | xxx      | &tg _game | &kp minus | &kp h    | &kp u    | &kp y   | &kp k     | xxx |
+| xxx | &kp x | &kp g | &kp l    | &kp c | &kp b    | &mo _adj | xxx     | xxx      | xxx       | &kp minus | &kp h    | &kp u    | &kp y   | &kp k     | xxx |
 |     |       |       | &kp lgui | xxx   | &mo _low | &kp t    | &kp ret | &kp bspc | &kp space | &mo _high | &kp ralt | &kp mute |         |           |     |
 
 *** g*ming layout
@@ -50,13 +50,12 @@ Here, combos are a nice feature allowing to add keys at places where they don't 
 It expects a table with each row taking one combo, the first cell is the result you want to have and all the following cells contain the keys you want to press to, to the key in the first cell.
 Leave an empty table to disable this feature.  Leaving the first cell empty will do the trick too.
 #+name: combo-table
-| &osm lsft | &kp f     | &kp m     |          |         |
+| &osm lsft | &kp fslh  | &kp sqt   |          |         |
 | &osm lctl | &kp g     | &kp l     |          |         |
-| &osm lgui | &kp fslh  | &kp sqt   |          |         |
 | &osm lalt | &kp u     | &kp y     |          |         |
 | &kp q     | &kp z     | &kp f     |          |         |
 | &kp j     | &kp m     | &kp p     |          |         |
-| &kp tab   | &kp x     | &kp c     |          |         |
+| &kp tab   | &kp f     | &kp m     |          |         |
 | &kp esc   | &kp z     | &kp p     |          |         |
 | &kp bspc  | &kp minus | &kp h     |          |         |
 | &kps n9   | &kp f     | &kp d     |          |         |
@@ -70,7 +69,7 @@ Leave an empty table to disable this feature.  Leaving the first cell empty will
 | &kps fslh | &kp s     | &kp n     | &kp fslh | &kp sqt |
 | &kpag a   | &kp g     | &kp c     |          |         |
 | &kpag w   | &kp dot   | &kp o     |          |         |
-| &kpag o   | &kp comma | &kp o     |          |         |
+| &kpag o   | &kp a     | &kp o     |          |         |
 | &kpag u   | &kp h     | &kp y     |          |         |
 
 ** encoder
@@ -145,9 +144,10 @@ Sometimes you don't want to activate the mods on some keys, e.g. to stack mods o
 
 * Abandon all hope, ye who enter here
 This section is the build section. from this point on it's code and code only, be it elisp or c.
-I would not recommend altering anything up there, escpecially the generator code, unless you know what you are doing.
+I would not recommend altering anything down there, escpecially the generator code, unless you know what you are doing.
 
 I try to write it fairly pessimistic, but if anything faulty goes through, qmk will complain about it.
+
 ** generators and parser
 This section contains stuff used for parsing the key definitions.
 
@@ -628,9 +628,9 @@ void matrix_init_user(void) {
 
 #ifdef RGB_MATRIX_ENABLE
 #define ENABLE_LED_MATRIX_SOLID
-#define ENABLE_LED_MATRIX_BREATHING
-#define LED_MATRIX_KEYPRESSES
-#define ENABLE_LED_MATRIX_SOLID_REACTIVE_SIMPLE
+/* #define ENABLE_LED_MATRIX_BREATHING */
+/* #define LED_MATRIX_KEYPRESSES */
+/* #define ENABLE_LED_MATRIX_SOLID_REACTIVE_SIMPLE */
 #endif
 
 #ifdef ENCODER_ENABLE
@@ -641,6 +641,7 @@ void matrix_init_user(void) {
 #ifdef COMBO_ENABLE
 #define COMBO_COUNT <<get-combocount()>>
 #define EXTRA_SHORT_COMBOS
+#define COMBO_TERM 70
 /* #define COMBO_NO_TIMER */
 #endif
 
