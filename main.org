@@ -259,6 +259,7 @@ A not so complete list of keycodes
 | ralt  | KC_RALT   |
 | lgui  | KC_LGUI   |
 | rgui  | KC_RGUI   |
+| caps  | KC_CAPS   |
 | mute  | KC_MUTE   |
 | left  | KC_LEFT   |
 | down  | KC_DOWN   |
@@ -536,6 +537,103 @@ void update_oneshot(oneshot_state *state, uint16_t mod, uint16_t trigger, uint16
     }
 }
 #+end_src
+
+*** caps word
+#+name: process_caps_word
+#+begin_src C :main no :results none
+  if (!process_caps_word(keycode, record)) { return false; }
+#+end_src
+
+#+name: override_caps
+#+begin_src C :main no :results none
+case KC_CAPS:
+    return false;
+#+end_src
+
+**** the implementation
+Check [[https://getreuer.info/posts/keyboards/caps-word/index.html][this]] for more information
+
+#+name: caps_word_implementation
+#+begin_src C :main no :results none
+static bool caps_word_active = false;
+
+void caps_word_set(bool active) {
+    if (active != caps_word_active) {
+        if (active) {
+            clear_mods();
+            clear_oneshot_mods();
+        } else {
+            unregister_weak_mods(MOD_BIT(KC_LSFT));
+        }
+
+        caps_word_active = active;
+    }
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
+
+bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
+    if (!caps_word_active) {
+        if (record->event.pressed && keycode == KC_CAPS) {
+            caps_word_set(true);
+            return false;
+        }
+        return true;
+    }
+    if (!record->event.pressed) { return true; }
+
+    if (!((get_mods() | get_oneshot_mods()) & ~MOD_MASK_SHIFT)) {
+        switch (keycode) {
+            // Ignore MO, TO, TG, TT, and OSL layer switch keys.
+            case QK_MOMENTARY ... QK_MOMENTARY_MAX:
+            case QK_TO ... QK_TO_MAX:
+            case QK_TOGGLE_LAYER ... QK_TOGGLE_LAYER_MAX:
+            case QK_LAYER_TAP_TOGGLE ... QK_LAYER_TAP_TOGGLE_MAX:
+            case QK_ONE_SHOT_LAYER ... QK_ONE_SHOT_LAYER_MAX:
+                return true;
+            case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+                if (record->tap.count == 0) {
+                    // Deactivate if a mod becomes active through holding a mod-tap key.
+                    caps_word_set(false);
+                    return true;
+                }
+                keycode &= 0xff;
+                break;
+            case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+                if (record->tap.count == 0) { return true; }
+                keycode &= 0xff;
+                break;
+        }
+        clear_weak_mods();
+        if (caps_word_press_user(keycode)) {
+            send_keyboard_report();
+            return true;
+        }
+    }
+
+    caps_word_set(false);
+    return true;
+}
+
+#+end_src
 ** putting it all together
 *** keymap.c
 #+begin_src C :noweb yes :tangle keymap.c :results none :no-expand
@@ -553,11 +651,15 @@ void update_oneshot(oneshot_state *state, uint16_t mod, uint16_t trigger, uint16
 
 <<oneshot>>
 
+<<caps_word_implementation>>
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     <<update_oneshot_states>>
+    <<process_caps_word>>
 
     switch (keycode) {
         <<override_oneshot>>
+        <<override_caps>>
         default: return true;
     }
 }
