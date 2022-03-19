@@ -14,3 +14,4 @@ tangle: main.org
 
 clean:
 	rm -rf $(FILES)
+	qmk clean

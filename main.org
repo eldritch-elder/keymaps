@@ -17,6 +17,8 @@ On the keyboard however I will use a modified version of [[https://sites.google.
 
 *** g*ming layout
 Too lazy to config shit in every game I use a keyboard with.
+Currently deactivated since i don't use the keyboard to game atm.
+
 #+name: game_layout
 | xxx | &kp a | &kp w | &kp e    | &kp r   | &kp t    |           |              |     |     | xxx    | xxx    | &kp n3   | &kp n4 | xxx    | xxx |
 | xxx | &kp q | &kp s | &kp d    | &kp f   | &kp g    |           |              |     |     | &kp n7 | &kp n1 | &kp n2   | &kp n5 | &kp n6 | xxx |
@@ -40,37 +42,40 @@ Too lazy to config shit in every game I use a keyboard with.
 *** adjusting shit
 This layer contains stuff for adjusting, be it ~EE_HANDS~ or rgb stuff.
 #+name: adj_layout
-| xxx | &kp eelh  | &kp eerh  | xxx | xxx | xxx |     |     |     |           | xxx | &kp rgbhu | &kp rgbsu | &kp rgbvu | &kp rgbmu | xxx |
-| xxx | xxx       | xxx       | xxx | xxx | xxx |     |     |     |           | xxx | &kp rgbhd | &kp rgbsd | &kp rgbvd | &kp rgbmd | xxx |
-| xxx | &kp reset | &kp eeprt | xxx | xxx | xxx | xxx | xxx | xxx | &tg _game | xxx | xxx       | xxx       | xxx       | xxx       | xxx |
-|     |           |           | xxx | xxx | xxx | xxx | xxx | xxx | xxx       | xxx | xxx       | xxx       |           |           |     |
+| xxx | &kp eelh  | &kp eerh  | xxx | xxx | xxx |     |     |     |     | xxx | &kp rgbhu | &kp rgbsu | &kp rgbvu | &kp rgbmu | xxx |
+| xxx | xxx       | xxx       | xxx | xxx | xxx |     |     |     |     | xxx | &kp rgbhd | &kp rgbsd | &kp rgbvd | &kp rgbmd | xxx |
+| xxx | &kp reset | &kp eeprt | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx       | xxx       | xxx       | xxx       | xxx |
+|     |           |           | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx       | xxx       |           |           |     |
 
 ** combos
 Here, combos are a nice feature allowing to add keys at places where they don't impare your typing yet are comfortable to use.
 It expects a table with each row taking one combo, the first cell is the result you want to have and all the following cells contain the keys you want to press to, to the key in the first cell.
 Leave an empty table to disable this feature.  Leaving the first cell empty will do the trick too.
 #+name: combo-table
-| &osm lsft | &kp fslh  | &kp sqt   |          |         |
-| &osm lctl | &kp g     | &kp l     |          |         |
-| &osm lalt | &kp u     | &kp y     |          |         |
-| &kp q     | &kp z     | &kp f     |          |         |
-| &kp j     | &kp m     | &kp p     |          |         |
-| &kp tab   | &kp f     | &kp m     |          |         |
-| &kp esc   | &kp z     | &kp p     |          |         |
-| &kp bspc  | &kp minus | &kp h     |          |         |
-| &kps n9   | &kp f     | &kp d     |          |         |
-| &kps n0   | &kp a     | &kp sqt   |          |         |
-| &kp lbrc  | &kp f     | &kp p     |          |         |
-| &kp rbrc  | &kp dot   | &kp sqt   |          |         |
-| &kps lbrc | &kp f     | &kp n     |          |         |
-| &kps rbrc | &kp e     | &kp sqt   |          |         |
-| &kp grave | &kp sqt   | &kp equal |          |         |
-| &kps n1   | &kp f     | &kp m     | &kp e    | &kp i   |
-| &kps fslh | &kp s     | &kp n     | &kp fslh | &kp sqt |
-| &kpag a   | &kp g     | &kp c     |          |         |
-| &kpag w   | &kp dot   | &kp o     |          |         |
-| &kpag o   | &kp a     | &kp o     |          |         |
-| &kpag u   | &kp h     | &kp y     |          |         |
+| &osm lsft  | &kp fslh  | &kp sqt   |          |         |
+| &osm lctl  | &kp g     | &kp l     |          |         |
+| &osm lalt  | &kp u     | &kp y     |          |         |
+| &kp caps   | &kp v     | &kp semi  |          |         |
+| &kp q      | &kp z     | &kp f     |          |         |
+| &kp j      | &kp m     | &kp p     |          |         |
+| &kp tab    | &kp f     | &kp m     |          |         |
+| &kp esc    | &kp r     | &kp d     |          |         |
+| &kp bspc   | &kp minus | &kp h     |          |         |
+| &kps n9    | &kp f     | &kp d     |          |         |
+| &kps n0    | &kp a     | &kp sqt   |          |         |
+| &kp lbrc   | &kp f     | &kp p     |          |         |
+| &kp rbrc   | &kp dot   | &kp sqt   |          |         |
+| &kps lbrc  | &kp f     | &kp n     |          |         |
+| &kps rbrc  | &kp e     | &kp sqt   |          |         |
+| &kp grave  | &kp sqt   | &kp equal |          |         |
+| &kps grave | &kp y     | &kp k     |          |         |
+| &kps semi  | &kp semi  | &kp dot   |          |         |
+| &kps n1    | &kp f     | &kp m     | &kp e    | &kp i   |
+| &kps fslh  | &kp s     | &kp n     | &kp fslh | &kp sqt |
+| &kpag a    | &kp g     | &kp c     |          |         |
+| &kpag w    | &kp dot   | &kp o     |          |         |
+| &kpag o    | &kp minus | &kp h     |          |         |
+| &kpag u    | &kp h     | &kp y     |          |         |
 
 ** encoder
 Rotary encoders add a lot of features and functionality, they are extremly useful.
@@ -383,13 +388,13 @@ Parsing and generating the code for the combos
 (concat result "return true; default: return false;}}")
 #+end_src
 
-** stuf
+** stuff
 Here we take everything from the section before and format these accordingly before taking everything together.
 *** header
 #+name: header
 #+begin_src C :main no :tangle no :results none
-/* vim:ro
- * -*- buffer-read-only: t -*-
+/* -*- buffer-read-only: t -*-
+ * vim:ro
  *
  * This is autogenerated using babel DO NOT EDIT.
  * Please refer to main.org in [[https://git.sr.ht/~jat/keymap]]
@@ -415,11 +420,11 @@ Here we take everything from the section before and format these accordingly bef
 *** matrix stuff
 #+name: keymap
 #+begin_src C :main no :tangle no :noweb yes :results none
-enum layers { _base = 0, _game, _low, _high, _adj, };
+enum layers { _base = 0, _low, _high, _adj, };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          [_base] = LAYOUT(<<generate-layer(input=base_layout)>>),
-         [_game] = LAYOUT(<<generate-layer(input=game_layout)>>),
+         /* [_game] = LAYOUT(<<generate-layer(input=game_layout)>>), */
          [_low] = LAYOUT(<<generate-layer(input=low_layout)>>),
          [_high] = LAYOUT(<<generate-layer(input=high_layout)>>),
          [_adj] = LAYOUT(<<generate-layer(input=adj_layout)>>),
@@ -657,6 +662,7 @@ RGB_MATRIX_ENABLE = yes
 COMBO_ENABLE = <<combo-enable()>>
 ENCODER_ENABLE = yes
 STENO_ENABLE = no
+NKRO_ENABLE = no
 
 BOOTLOADER=qmk-hid
 BOOTLOADER_SIZE=512
