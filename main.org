@@ -34,10 +34,10 @@ Currently deactivated since i don't use the keyboard to game atm.
 
 *** raise layer
 #+name: high_layout
-| xxx | &kp print | &kp volu | ---      | ---       | ---      |     |     |     |     | ---      | ---      | ---    | ---       | --- | xxx |
-| xxx | ---       | &kp vold | &kp prev | &kp pause | &kp next |     |     |     |     | &kp left | &kp down | &kp up | &kp right | --- | xxx |
-| xxx | &kp undo  | &kp cut  | &kp copy | &kp paste | ---      | --- | --- | --- | --- | ---      | ---      | ---    | ---       | --- | xxx |
-|     |           |          | ---      | ---       | ---      | --- | --- | --- | --- | ---      | ---      | ---    |           |     |     |
+| xxx | &kp print | &kp volu | ---      | ---       | ---      |     |     |     |     | &kp prev | &kp pause | &kp next | ---       | --- | xxx |
+| xxx | ---       | &kp vold | &kp prev | &kp pause | &kp next |     |     |     |     | &kp left | &kp down  | &kp up   | &kp right | --- | xxx |
+| xxx | &kp undo  | &kp cut  | &kp copy | &kp paste | ---      | --- | --- | --- | --- | ---      | ---       | ---      | ---       | --- | xxx |
+|     |           |          | ---      | ---       | ---      | --- | --- | --- | --- | ---      | ---       | ---      |           |     |     |
 
 *** adjusting shit
 This layer contains stuff for adjusting, be it ~EE_HANDS~ or rgb stuff.
@@ -598,6 +598,7 @@ bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
         }
         return true;
     }
+
     if (!record->event.pressed) { return true; }
 
     if (!((get_mods() | get_oneshot_mods()) & ~MOD_MASK_SHIFT)) {
@@ -632,7 +633,6 @@ bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
     caps_word_set(false);
     return true;
 }
-
 #+end_src
 ** putting it all together
 *** keymap.c
