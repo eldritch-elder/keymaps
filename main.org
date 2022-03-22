@@ -126,7 +126,9 @@ void matrix_scan_user(void) {
 #+end_src
 
 ** one shot one kill
-I use callums implementation for oneshot mods.  For more information check callums userspace and the joinked stuff down in [[*fixing osm stuff][the building section]].
+Currently I'm using oneshot mods aka OSM on combos, these are keys which activate and hold the mod on press until a key (under normal circumstances) is pressed, the mod gets depressed/deactivated afterwards.
+The current problem with these is that they remain active too long so not only the first key gets the mod but a couple ones afterwards too so it makes shifting only the first letter in a sentence hard when typing fast.
+I use callums implementation for them.  For more information check callums userspace and the joinked stuff down in [[*fixing osm stuff][the building section]].
 I'm gonna take over the ~OSM()~ keycodes since this is basically osm except better.
 
 *** canceling oneshotkeys
@@ -488,34 +490,34 @@ typedef enum {
 } oneshot_state;
 
 void update_oneshot(oneshot_state *state, uint16_t mod, uint16_t trigger, uint16_t keycode, keyrecord_t *record) {
-    if (keycode == trigger) {
+    if (keycode == trigger) {  // start osm
         if (record->event.pressed) {
             // Trigger keydown
             if (*state == os_up_unqueued) {
                 register_code(mod);
             }
-            ,*state = os_down_unused;
+            *state = os_down_unused;
         } else {
             // Trigger keyup
             switch (*state) {
                 case os_down_unused:
                     // If we didn't use the mod while trigger was held, queue it.
-                    ,*state = os_up_queued;
+                    *state = os_up_queued;
                     break;
                 case os_down_used:
                     // If we did use the mod while trigger was held, unregister it.
-                    ,*state = os_up_unqueued;
+                    *state = os_up_unqueued;
                     unregister_code(mod);
                     break;
                 default:
                     break;
             }
         }
-    } else {
+    } else {  // trigger osm and handle key
         if (record->event.pressed) {
             if (is_oneshot_cancel_key(keycode) && *state != os_up_unqueued) {
                 // Cancel oneshot on designated cancel keydown.
-                ,*state = os_up_unqueued;
+                *state = os_up_unqueued;
                 unregister_code(mod);
             }
         } else {
@@ -523,10 +525,10 @@ void update_oneshot(oneshot_state *state, uint16_t mod, uint16_t trigger, uint16
                 // On non-ignored keyup, consider the oneshot used.
                 switch (*state) {
                     case os_down_unused:
-                        ,*state = os_down_used;
+                        *state = os_down_used;
                         break;
                     case os_up_queued:
-                        ,*state = os_up_unqueued;
+                        *state = os_up_unqueued;
                         unregister_code(mod);
                         break;
                     default:
