@@ -71,7 +71,7 @@ Leave an empty table to disable this feature.  Leaving the first cell empty will
 | &kps rbrc  | &kp e     | &kp sqt   |          |         |
 | &kp grave  | &kp sqt   | &kp equal |          |         |
 | &kps grave | &kp r     | &kp s     | &kp i    | &kp o   |
-| &kps sqt   | &kp f     | &kp m     | &kp fslh | &kp sqt |
+| &kps sqt   | &kp dot   | &kp equal |          |         |
 | &kps semi  | &kp semi  | &kp dot   |          |         |
 | &kps n1    | &kp f     | &kp m     | &kp e    | &kp i   |
 | &kps fslh  | &kp s     | &kp n     | &kp fslh | &kp sqt |
