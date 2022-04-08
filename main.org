@@ -1,6 +1,6 @@
 #+title: keymap
 #+author: Freja 'jat
-#+startup: content
+#+startup: overview
 
 * The keymap
 ** The layout
@@ -29,7 +29,7 @@ Currently deactivated since i don't use the keyboard to game atm.
 #+name: low_layer
 | xxx | &kp n1 | &kp n2 | &kp n3   | &kp n4   | &kp n5 |     |     |     |     | &kps n1 | &kps n2   | &kps n3   | &kps n4   | &kps n5 | xxx |
 | xxx | &kp n6 | &kp n7 | &kp n8   | &kp n9   | &kp n0 |     |     |     |     | &kps n6 | &kps n7   | &kps n8   | &kps n9   | &kps n0 | xxx |
-| xxx | ---    | ---    | &kp lbrc | &kp rbrc | ---    | --- | --- | --- | --- | ---     | &kps lbrc | &kps rbrc | &kps bslh | ---     | xxx |
+| xxx | ---    | ---    | &kp lbrc | &kp rbrc | ---    | --- | --- | --- | --- | ---     | &kps lbrc | &kps rbrc | &kp bslh  | ---     | xxx |
 |     |        |        | ---      | ---      | ---    | --- | --- | --- | --- | ---     | ---       | ---       |           |         |     |
 
 *** raise layer
@@ -60,15 +60,13 @@ Leave an empty table to disable this feature.  Leaving the first cell empty will
 | &kp j      | &kp m     | &kp p     |          |         |
 | &kp tab    | &kp f     | &kp m     |          |         |
 | &kp esc    | &kp r     | &kp d     |          |         |
-| &kp ret    | &kp comma | &kp a     |          |         |
-| &kp bspc   | &kp d     | &kp w     |          |         |
-| &kp bspc   | &kp minus | &kp h     |          |         |
+| &kpc bspc  | &kp minus | &kp h     |          |         |
 | &kps n9    | &kp f     | &kp d     |          |         |
 | &kps n0    | &kp a     | &kp sqt   |          |         |
 | &kp lbrc   | &kp f     | &kp p     |          |         |
 | &kp rbrc   | &kp dot   | &kp sqt   |          |         |
-| &kps lbrc  | &kp f     | &kp n     |          |         |
-| &kps rbrc  | &kp e     | &kp sqt   |          |         |
+| &kps lbrc  | &kp r     | &kp n     |          |         |
+| &kps rbrc  | &kp e     | &kp o     |          |         |
 | &kp grave  | &kp sqt   | &kp equal |          |         |
 | &kps grave | &kp r     | &kp s     | &kp i    | &kp o   |
 | &kps sqt   | &kp dot   | &kp equal |          |         |
@@ -76,7 +74,7 @@ Leave an empty table to disable this feature.  Leaving the first cell empty will
 | &kps n1    | &kp f     | &kp m     | &kp e    | &kp i   |
 | &kps fslh  | &kp s     | &kp n     | &kp fslh | &kp sqt |
 | &kpag a    | &kp g     | &kp c     |          |         |
-| &kpag w    | &kp dot   | &kp o     |          |         |
+| &kpag w    | &kp z     | &kp p     |          |         |
 | &kpag o    | &kp h     | &kp k     |          |         |
 | &kpag u    | &kp h     | &kp y     |          |         |
 | &kpag q    | &kp x     | &kp c     |          |         |
@@ -735,7 +733,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef COMBO_ENABLE
 #define COMBO_COUNT <<get-combocount()>>
 #define EXTRA_SHORT_COMBOS
-#define COMBO_TERM 70
+#define COMBO_TERM 60
 /* #define COMBO_NO_TIMER */
 #endif
 
