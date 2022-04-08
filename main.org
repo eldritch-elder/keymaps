@@ -49,13 +49,11 @@ This layer contains stuff for adjusting, be it ~EE_HANDS~ or rgb stuff.
 
 ** combos
 Here, combos are a nice feature allowing to add keys at places where they don't impare your typing yet are comfortable to use.
+Instead of using the wrapper ~COMBO~ it uses ~COMBO_ACTION~ and adds the stuff directly into ~process_combo_event()~, this allows me to do more complex stuff like ~SEND_STRING()~ or bigrams.
 It expects a table with each row taking one combo, the first cell is the result you want to have and all the following cells contain the keys you want to press to, to the key in the first cell.
+Currently it supports the following: ~&ss "stuff"~ and the normal (basic) stuff.
 Leave an empty table to disable this feature.  Leaving the first cell empty will do the trick too.
 #+name: combo-table
-| &osm lsft  | &kp fslh  | &kp sqt   |          |         |
-| &osm lctl  | &kp g     | &kp l     |          |         |
-| &osm lalt  | &kp u     | &kp y     |          |         |
-| &kp caps   | &kp p     | &kp dot   |          |         |
 | &kp q      | &kp z     | &kp f     |          |         |
 | &kp j      | &kp m     | &kp p     |          |         |
 | &kp tab    | &kp f     | &kp m     |          |         |
@@ -78,6 +76,15 @@ Leave an empty table to disable this feature.  Leaving the first cell empty will
 | &kpag o    | &kp h     | &kp k     |          |         |
 | &kpag u    | &kp h     | &kp y     |          |         |
 | &kpag q    | &kp x     | &kp c     |          |         |
+| &ss "⠀"    | &kp z     | &kp n     |          |         |
+
+Sometimes it's easier to just use the wrapper because the kc can't easily called using stuff like ~register_code16()~, or other stuff stands in between.
+You can add those here.
+#+name: basic-combo-table
+| &osm lsft | &kp fslh | &kp sqt |
+| &osm lctl | &kp g    | &kp l   |
+| &osm lalt | &kp u    | &kp y   |
+| &kp caps  | &kp p    | &kp dot |
 
 ** encoder
 Rotary encoders add a lot of features and functionality, they are extremly useful.
@@ -181,20 +188,20 @@ This section contains stuff used for parsing the key definitions.
   "Parses the expression and returns the keycode.  It takes a string as input and ignores empty expressions"
   (unless (eq word "")
     (pcase word
-      ((or "&nop" "xxx")                                                                          "KC_NO, ")
-      ((or "&trns" "___" "---")                                                                   "KC_TRNS, ")
+      ((or "&nop" "xxx")                                                                          "KC_NO")
+      ((or "&trns" "___" "---")                                                                   "KC_TRNS")
       ;; FIXME the `rx` shit does not work when tangling with a script/in batch mode
-      ((rx bos "&kp" (+ space) (let head (+ word)) (* space) eos)                                 (concat (get-keycode head) ", "))
-      ((rx bos "&kps" (+ space) (let head (+ word)) (* space) eos)                                (format "S(%s), " (get-keycode head)))
-      ((rx bos "&kpc" (+ space) (let head (+ word)) (* space) eos)                                (format "C(%s), " (get-keycode head)))
-      ((rx bos "&kpa" (+ space) (let head (+ word)) (* space) eos)                                (format "A(%s), " (get-keycode head)))
-      ((rx bos "&kpag" (+ space) (let head (+ word)) (* space) eos)                               (format "RALT(%s), " (get-keycode head)))
-      ((rx bos "&kpg" (+ space) (let head (+ word)) (* space) eos)                                (format "G(%s), " (get-keycode head)))
-      ((rx bos "&tg" (+ space) (let head (+ word)) (* space) eos)                                 (format "TG(%s), " head))
-      ((rx bos "&lt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "LT(%s, %s), " arg (get-keycode head)))
-      ((rx bos "&mo" (+ space) (let head (+ word)) (* space) eos)                                 (format "MO(%s), " head))
-      ((rx bos "&mt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "MT(%s, %s), " (get-mod arg) (get-keycode head)))
-      ((rx bos "&osm" (+ space) (let head (+ word)) (* space) eos)                                (format "OSM(%s), " (get-mod head)))
+      ((rx bos "&kp" (+ space) (let head (+ word)) (* space) eos)                                 (get-keycode head))
+      ((rx bos "&kps" (+ space) (let head (+ word)) (* space) eos)                                (format "S(%s)" (get-keycode head)))
+      ((rx bos "&kpc" (+ space) (let head (+ word)) (* space) eos)                                (format "C(%s)" (get-keycode head)))
+      ((rx bos "&kpa" (+ space) (let head (+ word)) (* space) eos)                                (format "A(%s)" (get-keycode head)))
+      ((rx bos "&kpag" (+ space) (let head (+ word)) (* space) eos)                               (format "RALT(%s)" (get-keycode head)))
+      ((rx bos "&kpg" (+ space) (let head (+ word)) (* space) eos)                                (format "G(%s)" (get-keycode head)))
+      ((rx bos "&tg" (+ space) (let head (+ word)) (* space) eos)                                 (format "TG(%s)" head))
+      ((rx bos "&lt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "LT(%s, %s)" arg (get-keycode head)))
+      ((rx bos "&mo" (+ space) (let head (+ word)) (* space) eos)                                 (format "MO(%s)" head))
+      ((rx bos "&mt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "MT(%s, %s)" (get-mod arg) (get-keycode head)))
+      ((rx bos "&osm" (+ space) (let head (+ word)) (* space) eos)                                (format "OSM(%s)" (get-mod head)))
       (-                                                                                          (error "unknown expr `%s`" word)))))
 #+end_src
 
@@ -314,7 +321,7 @@ For processing the table and generating the layers
 
 (while input
   (let ((word (pop input)))
-    (setq result (concat result (parse-key word)))))
+    (setq result (concat result (parse-key word) (unless (eq (parse-key word) nil) ", ")))))
 
 (s-chop-suffix ", " result)  ; <- doesn't work outside emacs
 #+end_src
@@ -328,42 +335,72 @@ Parsing and generating the code for the combos
 #+end_src
 
 #+name: get-combocount
-#+begin_src elisp :main no :var in=combo-table :result value drawer
-(length in)
+#+begin_src elisp :main no :var in=combo-table in2=basic-combo-table :result value drawer
+(+ (length in) (length in2))
 #+end_src
 
 #+name: generate-combosequence
-#+begin_src elisp :main no :noweb yes :var in=combo-table keycode=keycode_table modcode=mod_table :result value drawer
+#+begin_src elisp :main no :noweb yes :var in=combo-table in2=basic-combo-table keycode=keycode_table modcode=mod_table :result value drawer
 <<keycode-parsing>>
 
 (setq result ""
       id 0)  ; too lazy to create names, I just use a running number
 
-(unless (eq (caar in) "")
-  (while in
-    (setq row (cdr (pop in))
-          result (concat result (format "const uint16_t PROGMEM unique_combo%d[] = { " id)))
-    (while row
-      (setq result (concat result (parse-key (pop row)))))
-    (setq result (concat result "COMBO_END, };\n")
-          id (1+ id)))
+(while in
+  (setq row (cdr (pop in))
+        result (concat result (format "const uint16_t PROGMEM unique_combo%d[] = { " id)))
+  (while row
+    (setq result (concat result (parse-key (car row)) (unless (eq (parse-key (pop row)) nil) ", "))))
+  (setq result (concat result "COMBO_END, };\n")
+        id (1+ id)))
 
-    (print result))
+(while in2
+  (setq row (cdr (pop in2))
+        result (concat result (format "const uint16_t PROGMEM unique_combo%d[] = { " id)))
+  (while row
+    (setq result (concat result (parse-key (car row)) (unless (eq (parse-key (pop row)) nil) ", "))))
+  (setq result (concat result "COMBO_END, };\n")
+        id (1+ id)))
+
+  (print result)
 #+end_src
 
 #+name: generate-combocombination
+#+begin_src elisp :main no :noweb yes :var in=combo-table in2=basic-combo-table keycode=keycode_table modcode=mod_table :result value drawer
+<<keycode-parsing>>
+
+(setq result ""
+      id 0)
+
+(while in
+  (setq key (pop in)  ; just to keep track, i don't actually need it
+        result (concat result (format "COMBO_ACTION(unique_combo%d), \n" id))
+        id (1+ id)))
+
+  (while in2
+    (setq key (car (pop in2))
+          result (concat result (format "COMBO(unique_combo%d, %s), \n" id (parse-key key)))
+          id (1+ id)))
+(print result)
+
+#+end_src
+
+#+name: generate-combo-event
 #+begin_src elisp :main no :noweb yes :var in=combo-table keycode=keycode_table modcode=mod_table :result value drawer
 <<keycode-parsing>>
 
-(setq result "combo_t key_combos[COMBO_COUNT] = { "
+(setq result "switch (combo_index) { \n"
       id 0)
 
-(unless (eq (caar in) "")
-  (while in
-    (setq key (car (pop in))
-          result (concat result (format "COMBO(unique_combo%d, %s), " id (s-chop-suffix ", " (parse-key key))))
-          id (1+ id)))
-  (concat result "};"))
+(while in
+  (setq key (car (pop in))
+        result (concat result (format "case %d: " id)
+                       (pcase key
+                         ((rx bos "&ss" (+ space) (let head (+ nonl)) (* space) eos)  (format "if (pressed) SEND_STRING(%s); \n" head))
+                         (any                                                         (format "pressed ? register_code16(%s) : unregister_code16(%s); \n" (parse-key any) (parse-key any)))))
+        id (1+ id)))
+
+(concat result "}")
 #+end_src
 
 *** osm
@@ -439,8 +476,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 *** combo stuff
 #+name: combo
 #+begin_src C :main no :noweb yes :result none
+#ifdef COMBO_ENABLE
 <<generate-combosequence()>>
-<<generate-combocombination()>>
+
+combo_t key_combos[COMBO_COUNT] = {
+    <<generate-combocombination()>>
+};
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    #ifdef CONSOLE_ENABLE
+    if (pressed) {
+        combo_t *combo = &key_combos[combo_index];
+        uint8_t idx = 0;
+        uint16_t combo_keycode;
+        while ((combo_keycode = pgm_read_word(&combo->keys[idx])) != COMBO_END) {
+            uprintf("0x%04X,NA,NA,%u,%u,0x%02X,0x%02X,0\n",
+                combo_keycode,
+                /* <missing row information> */
+                /* <missing column information> */
+                get_highest_layer(layer_state),
+                pressed,
+                get_mods(),
+                get_oneshot_mods()
+            );
+            idx++;
+        }
+    }
+    #endif
+
+    <<generate-combo-event()>>
+}
+#endif
 #+end_src
 
 *** fixing osm stuff
@@ -750,6 +816,7 @@ COMBO_ENABLE = <<combo-enable()>>
 ENCODER_ENABLE = yes
 STENO_ENABLE = no
 NKRO_ENABLE = no
+CONSOLE_ENABLE = yes
 
 BOOTLOADER=qmk-hid
 BOOTLOADER_SIZE=512
