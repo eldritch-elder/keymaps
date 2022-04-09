@@ -351,7 +351,7 @@ Parsing and generating the code for the combos
         result (concat result (format "const uint16_t PROGMEM unique_combo%d[] = { " id)))
   (while row
     (setq result (concat result (parse-key (car row)) (unless (eq (parse-key (pop row)) nil) ", "))))
-  (setq result (concat result "COMBO_END, };\n")
+  (setq result (concat result "COMBO_END, };")
         id (1+ id)))
 
 (while in2
@@ -359,7 +359,7 @@ Parsing and generating the code for the combos
         result (concat result (format "const uint16_t PROGMEM unique_combo%d[] = { " id)))
   (while row
     (setq result (concat result (parse-key (car row)) (unless (eq (parse-key (pop row)) nil) ", "))))
-  (setq result (concat result "COMBO_END, };\n")
+  (setq result (concat result "COMBO_END, };")
         id (1+ id)))
 
   (print result)
@@ -374,12 +374,12 @@ Parsing and generating the code for the combos
 
 (while in
   (setq key (pop in)  ; just to keep track, i don't actually need it
-        result (concat result (format "COMBO_ACTION(unique_combo%d), \n" id))
+        result (concat result (format "COMBO_ACTION(unique_combo%d), " id))
         id (1+ id)))
 
   (while in2
     (setq key (car (pop in2))
-          result (concat result (format "COMBO(unique_combo%d, %s), \n" id (parse-key key)))
+          result (concat result (format "COMBO(unique_combo%d, %s), " id (parse-key key)))
           id (1+ id)))
 (print result)
 
@@ -389,15 +389,15 @@ Parsing and generating the code for the combos
 #+begin_src elisp :main no :noweb yes :var in=combo-table keycode=keycode_table modcode=mod_table :result value drawer
 <<keycode-parsing>>
 
-(setq result "switch (combo_index) { \n"
+(setq result "switch (combo_index) { "
       id 0)
 
 (while in
   (setq key (car (pop in))
         result (concat result (format "case %d: " id)
                        (pcase key
-                         ((rx bos "&ss" (+ space) (let head (+ nonl)) (* space) eos)  (format "if (pressed) SEND_STRING(%s); \n" head))
-                         (any                                                         (format "pressed ? register_code16(%s) : unregister_code16(%s); \n" (parse-key any) (parse-key any)))))
+                         ((rx bos "&ss" (+ space) (let head (+ nonl)) (* space) eos)                  (format "if (pressed) SEND_STRING(%s); break; " head))
+                         (any                                                                         (format "pressed ? register_code16(%s) : unregister_code16(%s); break; " (parse-key any) (parse-key any)))))
         id (1+ id)))
 
 (concat result "}")
@@ -408,7 +408,7 @@ Parsing and generating the code for the combos
 #+begin_src elisp :main no :noweb yes :var in=cancel-keys keycode=keycode_table modcode=mod_table :results value drawer
 <<keycode_parsing>>
 
-(setq result "bool is_oneshot_cancel_key(uint16_t keycode) {switch (keycode) {")
+(setq result "bool is_oneshot_cancel_key(uint16_t keycode) { switch (keycode) {")
 
 (while in
   (unless (eq (parse-key (caar in)) "")
@@ -479,9 +479,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef COMBO_ENABLE
 <<generate-combosequence()>>
 
-combo_t key_combos[COMBO_COUNT] = {
-    <<generate-combocombination()>>
-};
+combo_t key_combos[COMBO_COUNT] = { <<generate-combocombination()>> };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
     #ifdef CONSOLE_ENABLE
@@ -799,7 +797,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef COMBO_ENABLE
 #define COMBO_COUNT <<get-combocount()>>
 #define EXTRA_SHORT_COMBOS
-#define COMBO_TERM 60
+#define COMBO_TERM 50
 /* #define COMBO_NO_TIMER */
 #endif
 
