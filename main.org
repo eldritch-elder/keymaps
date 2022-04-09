@@ -54,29 +54,30 @@ It expects a table with each row taking one combo, the first cell is the result 
 Currently it supports the following: ~&ss "stuff"~ and the normal (basic) stuff.
 Leave an empty table to disable this feature.  Leaving the first cell empty will do the trick too.
 #+name: combo-table
-| &kp q      | &kp z     | &kp f     |          |         |
-| &kp j      | &kp m     | &kp p     |          |         |
-| &kp tab    | &kp f     | &kp m     |          |         |
-| &kp esc    | &kp r     | &kp d     |          |         |
-| &kpc bspc  | &kp minus | &kp h     |          |         |
-| &kps n9    | &kp f     | &kp d     |          |         |
-| &kps n0    | &kp a     | &kp sqt   |          |         |
-| &kp lbrc   | &kp f     | &kp p     |          |         |
-| &kp rbrc   | &kp dot   | &kp sqt   |          |         |
-| &kps lbrc  | &kp r     | &kp n     |          |         |
-| &kps rbrc  | &kp e     | &kp o     |          |         |
-| &kp grave  | &kp sqt   | &kp equal |          |         |
-| &kps grave | &kp r     | &kp s     | &kp i    | &kp o   |
-| &kps sqt   | &kp dot   | &kp equal |          |         |
-| &kps semi  | &kp semi  | &kp dot   |          |         |
-| &kps n1    | &kp f     | &kp m     | &kp e    | &kp i   |
-| &kps fslh  | &kp s     | &kp n     | &kp fslh | &kp sqt |
-| &kpag a    | &kp g     | &kp c     |          |         |
-| &kpag w    | &kp z     | &kp p     |          |         |
-| &kpag o    | &kp h     | &kp k     |          |         |
-| &kpag u    | &kp h     | &kp y     |          |         |
-| &kpag q    | &kp x     | &kp c     |          |         |
-| &ss "⠀"    | &kp z     | &kp n     |          |         |
+| &kp q             | &kp z     | &kp f     |          |         |
+| &kp j             | &kp m     | &kp p     |          |         |
+| &kp tab           | &kp f     | &kp m     |          |         |
+| &kp esc           | &kp r     | &kp d     |          |         |
+| &kpc bspc         | &kp minus | &kp h     |          |         |
+| &kps n9           | &kp f     | &kp d     |          |         |
+| &kps n0           | &kp a     | &kp sqt   |          |         |
+| &kp lbrc          | &kp f     | &kp p     |          |         |
+| &kp rbrc          | &kp dot   | &kp sqt   |          |         |
+| &kps lbrc         | &kp r     | &kp n     |          |         |
+| &kps rbrc         | &kp a     | &kp equal |          |         |
+| &kp grave         | &kp sqt   | &kp equal |          |         |
+| &kps grave        | &kp y     | &kp k     |          |         |
+| &kps sqt          | &kp dot   | &kp equal |          |         |
+| &kps semi         | &kp semi  | &kp dot   |          |         |
+| &kps n1           | &kp f     | &kp m     | &kp e    | &kp i   |
+| &kps fslh         | &kp s     | &kp n     | &kp fslh | &kp sqt |
+| &kpag a           | &kp g     | &kp c     |          |         |
+| &kpag w           | &kp z     | &kp p     |          |         |
+| &kpag o           | &kp h     | &kp k     |          |         |
+| &kpag u           | &kp h     | &kp y     |          |         |
+| &kpag q           | &kp x     | &kp c     |          |         |
+| &ss ":sip:"       | &kp r     | &kp w     |          |         |
+| &ss ":hundi_kek:" | &kp a     | &kp k     |          |         |
 
 Sometimes it's easier to just use the wrapper because the kc can't easily called using stuff like ~register_code16()~, or other stuff stands in between.
 You can add those here.
