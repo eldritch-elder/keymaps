@@ -78,8 +78,9 @@ Leave an empty table to disable this feature.  Leaving the first cell empty will
 | &kpag o               | 35 | 38 |    |    |
 | &kpag u               | 35 | 37 |    |    |
 | &kpag q               | 25 | 28 |    |    |
-| &ss ":sip:"           | 13 | 17 |    |    |
+| &ss ":sip:"           |  3 | 43 |    |    |
 | &ss ":BerucaPervert:" |  1 | 43 |    |    |
+| &ss ":hundi_kek:"     |  4 | 43 |    |    |
 
 Sometimes it's easier to just use the wrapper because the kc can't easily called using stuff like ~register_code16()~, or other stuff stands in between.
 You can add those here.
@@ -151,7 +152,6 @@ I'm gonna take over the ~OSM()~ keycodes since this is basically osm except bett
 Since they don't use a timer and queue up indefinetly you need some way to cancel the keys when you missclicked or something.
 #+name: cancel-keys
 | &mo _high |
-| &kp ralt  |
 
 *** ignoring keys
 Sometimes you don't want to activate the mods on some keys, e.g. to stack mods or use them across layers.
@@ -218,9 +218,8 @@ This section contains stuff used for parsing the key definitions.
       ((key_def (nth pos (remove "" (flatten-list base))))
        (keycode (parse-key key_def)))
     (pcase key_def
-      ((or "&nop" "xxx")        (error "the key at pos %d is nop, abort" pos))
-      ((or "&trns" "---" "___") (error "the key at pos %d is transparent, abort" pos))
-      (-                        keycode))))
+      ((or "&nop" "xxx" "&trns" "---" "___")        (error "the key at pos %d is nop or transparent, abort" pos))
+      (-                                            keycode))))
 #+end_src
 
 **** tables n shit
@@ -383,9 +382,6 @@ Parsing and generating the code for the combos
 (print result)
 #+end_src
 
-#+RESULTS: generate-combosequence
-: const uint16_t PROGMEM unique_combo0[] = { KC_V, KC_M, COMBO_END, };
-
 #+name: generate-combocombination
 #+begin_src elisp :main no :noweb yes :var in=combo-table in2=basic-combo-table keycode=keycode_table modcode=mod_table :result value drawer
 <<keycode-parsing>>
@@ -415,6 +411,7 @@ Parsing and generating the code for the combos
 
 (while in
   (setq key (car (pop in))
+        ; TODO: rewrite this weird hunk of code to a let or something
         result (concat result (format "case %d: " id)
                        (pcase key
                          ((rx bos "&ss" (+ space) (let head (+ nonl)) (* space) eos)                  (format "if (pressed) SEND_STRING(%s); break; " head))
@@ -427,26 +424,26 @@ Parsing and generating the code for the combos
 *** osm
 #+name: cancel_osm
 #+begin_src elisp :main no :noweb yes :var in=cancel-keys keycode=keycode_table modcode=mod_table :results value drawer
-<<keycode_parsing>>
+<<keycode-parsing>>
 
 (setq result "bool is_oneshot_cancel_key(uint16_t keycode) { switch (keycode) {")
 
 (while in
   (unless (eq (parse-key (caar in)) "")
-    (setq result (concat result "case " (s-chop-suffix ", " (parse-key (car (pop in)))) ": "))))
+    (setq result (concat result " case " (parse-key (car (pop in))) ": "))))
 
 (concat result "return true; default: return false;}}")
 #+end_src
 
 #+name: ignore_osm
 #+begin_src elisp :main no :noweb yes :var in=ignore-keys keycode=keycode_table modcode=mod_table :results value drawer
-<<keycode_parsing>>
+<<keycode-parsing>>
 
 (setq result "bool is_oneshot_ignored_key(uint16_t keycode) {switch (keycode) {")
 
 (while in
   (unless (eq (parse-key (caar in)) "")
-    (setq result (concat result "case " (s-chop-suffix ", " (parse-key (car (pop in)))) ": "))))
+    (setq result (concat result " case " (parse-key (car (pop in))) ": "))))
 
 (concat result "return true; default: return false;}}")
 #+end_src
@@ -630,7 +627,7 @@ void update_oneshot(oneshot_state *state, uint16_t mod, uint16_t trigger, uint16
 *** caps word
 #+name: process_caps_word
 #+begin_src C :main no :results none
-  if (!process_caps_word(keycode, record)) { return false; }
+if (!process_caps_word(keycode, record)) { return false; }
 #+end_src
 
 #+name: override_caps
@@ -835,7 +832,7 @@ COMBO_ENABLE = <<combo-enable()>>
 ENCODER_ENABLE = yes
 STENO_ENABLE = no
 NKRO_ENABLE = no
-CONSOLE_ENABLE = yes
+CONSOLE_ENABLE = no
 
 BOOTLOADER=qmk-hid
 BOOTLOADER_SIZE=512
