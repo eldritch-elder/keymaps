@@ -444,7 +444,7 @@ Here we take everything from the section before and format these accordingly bef
  * Please refer to main.org in [[https://git.sr.ht/~jat/keymap]]
  *
  *
- * Copyright 2021 Freja
+ * Copyright 2021-2022 Freja
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
