@@ -48,10 +48,10 @@ This layer contains stuff for adjusting, be it ~EE_HANDS~ or rgb stuff.
 |     |           |           | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx       | xxx       |           |           |     |
 
 ** combos
-Here, combos are a nice feature allowing to add keys at places where they don't impare your typing yet are comfortable to use.
-Instead of using the wrapper ~COMBO~ it uses ~COMBO_ACTION~ and adds the stuff directly into ~process_combo_event()~, this allows me to do more complex stuff like ~SEND_STRING()~ or bigrams.
-It expects a table with each row taking one combo, the first cell is the result you want to have and all the following cells contain the keys you want to press to, to the key in the first cell.
-Currently it supports the following: ~&ss "stuff"~ and the normal (basic) stuff.
+I've made defining combos way easier, the first cell contains what the combo should do and the following the positions of the keys which have to be pressed.
+Since i'm defining combos using the positions they are all based on the base layer making them independent of the active layer.
+Instead of using the wrapper ~COMBO~ i'm using ~COMBO_ACTION~ and handle the combos in ~process_combo_event()~, this allows me to do more complex stuff like ~SEND_STRING()~ or bigrams.
+Currently it supports ~&ss "stuff"~ to send strings next to the normal key definitions.
 Leave an empty table to disable this feature.  Leaving the first cell empty will do the trick too.
 #+name: combo-table
 | &kp q                 |  1 |  2 |    |    |
@@ -59,7 +59,7 @@ Leave an empty table to disable this feature.  Leaving the first cell empty will
 | &kp tab               |  2 |  3 |    |    |
 | &kp esc               | 13 | 16 |    |    |
 | &kp bspc              | 16 | 17 |    |    |
-| &kpc bspc             | 19 | 22 |    |    |
+| &kpc bspc             | 18 | 19 |    |    |
 | &kps n9               |  2 | 16 |    |    |
 | &kps n0               | 19 |  9 |    |    |
 | &kp lbrc              | 14 | 16 |    |    |
@@ -96,9 +96,7 @@ Heres a table with the positions for reference:
 |    |    |    | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49 |    |    |    |
 
 ** encoder
-Rotary encoders add a lot of features and functionality, they are extremly useful.
-For me, I like to have volume control on one side and window control on the other.
-
+Currently i do volume control and window switching with the encoders.
 Simple structure is the function ~encoder_update_user(index, clockwise)~, this runs a simple /this encoder does this when turned clockwise, this then otherwise/.
 #+name: encoder
 #+begin_src C :main no :tangle no :results none
@@ -153,6 +151,7 @@ I'm gonna take over the ~OSM()~ keycodes since this is basically osm except bett
 Since they don't use a timer and queue up indefinetly you need some way to cancel the keys when you missclicked or something.
 #+name: cancel-keys
 | &mo _high |
+| &kp ralt  |
 
 *** ignoring keys
 Sometimes you don't want to activate the mods on some keys, e.g. to stack mods or use them across layers.
