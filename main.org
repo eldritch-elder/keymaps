@@ -27,10 +27,10 @@ Currently deactivated since i don't use the keyboard to game atm.
 
 *** lower layer
 #+name: low_layer
-| xxx | &kp n1 | &kp n2 | &kp n3   | &kp n4   | &kp n5 |     |     |     |     | &kps n1 | &kps n2   | &kps n3   | &kps n4   | &kps n5 | xxx |
-| xxx | &kp n6 | &kp n7 | &kp n8   | &kp n9   | &kp n0 |     |     |     |     | &kps n6 | &kps n7   | &kps n8   | &kps n9   | &kps n0 | xxx |
-| xxx | ---    | ---    | &kp lbrc | &kp rbrc | ---    | --- | --- | --- | --- | ---     | &kps lbrc | &kps rbrc | &kp bslh  | ---     | xxx |
-|     |        |        | ---      | ---      | ---    | --- | --- | --- | --- | ---     | ---       | ---       |           |         |     |
+| xxx | &kp n1 | &kp n2 | &kp n3 | &kp n4 | &kp n5 |     |     |     |     | &kps n1 | &kps n2 | &kps n3 | &kps n4 | &kps n5 | xxx |
+| xxx | &kp n6 | &kp n7 | &kp n8 | &kp n9 | &kp n0 |     |     |     |     | &kps n6 | &kps n7 | &kps n8 | &kps n9 | &kps n0 | xxx |
+| xxx | ---    | ---    | ---    | ---    | ---    | --- | --- | --- | --- | ---     | ---     | ---     | ---     | ---     | xxx |
+|     |        |        | ---    | ---    | ---    | --- | --- | --- | --- | ---     | ---     | ---     |         |         |     |
 
 *** raise layer
 #+name: high_layer
@@ -54,41 +54,44 @@ Instead of using the wrapper ~COMBO~ i'm using ~COMBO_ACTION~ and handle the com
 Currently it supports ~&ss "stuff"~ to send strings next to the normal key definitions.
 Leave an empty table to disable this feature.  Leaving the first cell empty will do the trick too.
 #+name: combo-table
-| &kp q                 |  1 |  2 |    |    |
-| &kp j                 |  3 |  4 |    |    |
-| &kp tab               |  2 |  3 |    |    |
-| &kp esc               | 13 | 16 |    |    |
-| &kp bspc              | 16 | 17 |    |    |
-| &kpc bspc             | 18 | 19 |    |    |
-| &kps n9               |  2 | 16 |    |    |
-| &kps n0               | 19 |  9 |    |    |
-| &kp lbrc              | 14 | 16 |    |    |
-| &kp rbrc              | 19 | 21 |    |    |
-| &kps lbrc             |  3 | 16 |    |    |
-| &kps rbrc             | 19 |  8 |    |    |
-| &kp grave             |  9 | 10 |    |    |
-| &kps grave            | 37 | 38 |    |    |
-| &kps sqt              |  7 | 10 |    |    |
-| &kps semi             |  6 |  7 |    |    |
-| &kps n1               |  2 |  3 | 20 | 21 |
-| &kps fslh             | 14 | 15 |  8 |  9 |
-| &kp bslh              |  2 | 43 |    |    |
-| &kpag a               | 26 | 28 |    |    |
-| &kpag w               |  1 |  4 |    |    |
-| &kpag o               | 35 | 38 |    |    |
-| &kpag u               | 35 | 37 |    |    |
-| &kpag q               | 25 | 28 |    |    |
-| &ss ":sip:"           |  3 | 43 |    |    |
-| &ss ":BerucaPervert:" |  1 | 43 |    |    |
-| &ss ":hundi_kek:"     |  4 | 43 |    |    |
+| &kp tab                   |  2 |  3 |    |
+| &kp esc                   | 13 | 16 |    |
+| &kp bspc                  | 16 | 17 |    |
+| &kpc bspc                 | 18 | 19 |    |
+| &kps n9                   |  2 | 16 |    |
+| &kps n0                   | 19 |  9 |    |
+| &kp lbrc                  | 14 | 16 |    |
+| &kp rbrc                  | 19 | 21 |    |
+| &kps lbrc                 |  3 | 16 |    |
+| &kps rbrc                 | 19 |  8 |    |
+| &kp grave                 |  9 | 10 |    |
+| &kps grave                | 37 | 38 |    |
+| &kps sqt                  |  7 | 10 |    |
+| &kps semi                 |  6 |  7 |    |
+| &kps n1                   |  2 |  3 | 16 |
+| &kps fslh                 | 14 | 15 |  4 |
+| &kp bslh                  | 25 | 16 |    |
+| &kpag n5                  | 20 | 36 |    |
+| &ss ":kuzco_nice:"        |  3 | 43 |    |
+| &ss ":BerucaPervert:"     |  1 | 43 |    |
+| &ss ":hundi_kek:"         |  2 | 43 |    |
+| &ss ":rainbow::rainbow2:" |  4 | 43 |    |
 
 Sometimes it's easier to just use the wrapper because the kc can't easily called using stuff like ~register_code16()~, or other stuff stands in between.
 You can add those here.
+Neither osm nor caps word behave nicely when defining them manually and the alphas aren't shifted with caps word active.
 #+name: basic-combo-table
-| &osm lsft |  8 |  9 |   |
-| &osm lctl | 26 | 27 |   |
-| &osm lalt | 36 | 37 |   |
-| &kp caps  |  4 |  8 | 9 |
+| &osm lsft |  8 |  9 |
+| &osm lctl | 26 | 27 |
+| &osm lalt | 36 | 37 |
+| &kp caps  |  4 |  7 |
+| &kp q     |  1 |  2 |
+| &kp j     |  3 |  4 |
+| &kpag a   | 26 | 28 |
+| &kpag w   |  1 |  4 |
+| &kpag o   | 35 | 38 |
+| &kpag u   | 35 | 37 |
+| &kpag q   | 25 | 28 |
 
 Heres a table with the positions for reference:
 |  0 |  1 |  2 |  3 |  4 |  5 |    |    |    |    |  6 |  7 |  8 |  9 | 10 | 11 |
@@ -366,7 +369,8 @@ Parsing and generating the code for the combos
 
 (mapcar #'(lambda (x)
             (let ((keydef (pop x)))
-              (if (eq "" (car x)) (error "empty combo `%s`" keydef))))
+              (if (eq "" keydef) (error "a combo can't do nothing"))
+              (if (eq "" (car x)) (error "combo `%s` seems to be empty" keydef))))
         in)
 
 (while in
