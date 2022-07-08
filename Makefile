@@ -1,17 +1,11 @@
-FILES=keymap.c config.h rules.mk
+#FILES=keymap.c config.h rules.mk
 
-KM=jat
-KB=splitkb/kyria/rev1
+#KM=jat
+KB=splaytoraid40
+B=nice_nano
 
 compile:
-	qmk compile -kb $(KB) -km $(KM)
-
-flash: compile
-	nix run github:eldritch-elder/hid-bootloader-cli.nix# -- --mcu=atmega32u4 -wv ../../../../../splitkb_kyria_rev1_jat.hex
-
-tangle: main.org
-	./org-tangle main.org
+	$(foreach keeb,$(KB),west build -s ../app -d build/$(keeb) -b $(B) -p -- -DSHIELD=$(keeb) -DZMK_CONFIG=$(shell pwd)/config;)
 
 clean:
-	rm -rf $(FILES)
-	qmk clean
+	rm -rf build/*

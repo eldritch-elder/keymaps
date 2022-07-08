@@ -1,6 +1,6 @@
 #+title: keymap
 #+author: Freja 'jat
-#+startup: overview
+#+startup: content
 
 * The keymap
 ** The layout
@@ -8,169 +8,76 @@ I primarily type in German, English and Swedish so the keyboard should be cababl
 For that I am using [[https://eurkey.steffen.bruentjen.eu/][EurKey]] - but US Intl should be fine too - on my system.  These are QWERTY layouts but they are able to output letters used in different languages using Alt Gr aka Right Alt.
 
 *** Base layer
-On the keyboard however I will use a modified version of [[https://sites.google.com/alanreiser.com/handsdown/home?authuser=0#h.rt23wndkh65l][hands down gold]], until something better comes up.
 #+name: base_layer
-| xxx | &kp z | &kp f | &kp m    | &kp p | &kp v    |          |         |          |           | &kp semi  | &kp dot  | &kp fslh | &kp sqt | &kp equal | xxx |
-| xxx | &kp r | &kp s | &kp n    | &kp d | &kp w    |          |         |          |           | &kp comma | &kp a    | &kp e    | &kp i   | &kp o     | xxx |
-| xxx | &kp x | &kp g | &kp l    | &kp c | &kp b    | &mo _adj | xxx     | xxx      | xxx       | &kp minus | &kp h    | &kp u    | &kp y   | &kp k     | xxx |
-|     |       |       | &kp lgui | xxx   | &mo _low | &kp t    | &kp ret | &kp bspc | &kp space | &mo _high | &kp ralt | &kp mute |         |           |     |
-
-*** g*ming layer
-Too lazy to config shit in every game I use a keyboard with.
-Currently deactivated since i don't use the keyboard to game atm.
-
-#+name: game_layer
-| xxx | &kp a | &kp w | &kp e    | &kp r   | &kp t    |           |              |     |     | xxx    | xxx    | &kp n3   | &kp n4 | xxx    | xxx |
-| xxx | &kp q | &kp s | &kp d    | &kp f   | &kp g    |           |              |     |     | &kp n7 | &kp n1 | &kp n2   | &kp n5 | &kp n6 | xxx |
-| xxx | &kp z | &kp x | &kp c    | &kp v   | &kp b    | ---       | &kp gesc     | --- | --- | xxx    | xxx    | xxx      | xxx    | xxx    | xxx |
-|     |       |       | &kp lgui | &kp tab | &kp lalt | &kp space | &lt _low ret | xxx | xxx | xxx    | xxx    | &kp mute |        |        |     |
+| &kp esc | &kp z | &kp f | &kp m      | &kp p | &kp v    | &kp semi  | &kp dot   | &kp fslh   | &kp sqt | &kp equal | &kp caps |
+| &kp tab | &kp r | &kp s | &kp n      | &kp d | &kp w    | &kp comma | &kp a     | &kp e      | &kp i   | &kp o     | &kp ralt |
+|         | &kp x | &kp g | &kp l      | &kp c | &kp b    | &kp minus | &kp h     | &kp u      | &kp y   | &kp k     |          |
+|         |       |       | &mo _lower | &kp t | &kp lsft | &kp ret   | &kp space | &mo _raise |         |           |          |
 
 *** lower layer
 #+name: low_layer
-| xxx | &kp n1 | &kp n2 | &kp n3 | &kp n4 | &kp n5 |     |     |     |     | &kps n1 | &kps n2 | &kps n3 | &kps n4 | &kps n5 | xxx |
-| xxx | &kp n6 | &kp n7 | &kp n8 | &kp n9 | &kp n0 |     |     |     |     | &kps n6 | &kps n7 | &kps n8 | &kps n9 | &kps n0 | xxx |
-| xxx | ---    | ---    | ---    | ---    | ---    | --- | --- | --- | --- | ---     | ---     | ---     | ---     | ---     | xxx |
-|     |        |        | ---    | ---    | ---    | --- | --- | --- | --- | ---     | ---     | ---     |         |         |     |
+| --- | &kp n1 | &kp n2 | &kp n3 | &kp n4 | &kp n5 | &kps n1 | &kps n2 | &kps n3 | &kps n4 | &kps n5 | --- |
+| --- | &kp n6 | &kp n7 | &kp n8 | &kp n9 | &kp n0 | &kps n6 | &kps n7 | &kps n8 | &kps n9 | &kps n0 | --- |
+|     | ---    | ---    | ---    | ---    | ---    | ---     | ---     | ---     | ---     | ---     |     |
+|     |        |        | ---    | ---    | ---    | ---     | ---     | ---     |         |         |     |
 
 *** raise layer
 #+name: high_layer
-| xxx | &kp print | &kp volu | ---      | ---       | ---      |     |     |     |     | &kp prev | &kp pause | &kp next | ---       | --- | xxx |
-| xxx | ---       | &kp vold | &kp prev | &kp pause | &kp next |     |     |     |     | &kp left | &kp down  | &kp up   | &kp right | --- | xxx |
-| xxx | &kp undo  | &kp cut  | &kp copy | &kp paste | ---      | --- | --- | --- | --- | ---      | ---       | ---      | ---       | --- | xxx |
-|     |           |          | ---      | ---       | ---      | --- | --- | --- | --- | ---      | ---       | ---      |           |     |     |
+| --- | &kp print | --- | --- | --- | --- | &kp prev | &kp pause | &kp next | ---       | --- | --- |
+| --- | ---       | --- | --- | --- | --- | &kp left | &kp down  | &kp up   | &kp right | --- | --- |
+|     | ---       | --- | --- | --- | --- | ---      | ---       | ---      | ---       | --- |     |
+|     |           |     | --- | --- | --- | &mo _adj | ---       | ---      |           |     |     |
 
 *** adjusting shit
-This layer contains stuff for adjusting, be it ~EE_HANDS~ or rgb stuff.
 #+name: adj_layer
-| xxx | &kp eelh  | &kp eerh  | xxx | xxx | xxx |     |     |     |     | xxx | &kp rgbhu | &kp rgbsu | &kp rgbvu | &kp rgbmu | xxx |
-| xxx | xxx       | xxx       | xxx | xxx | xxx |     |     |     |     | xxx | &kp rgbhd | &kp rgbsd | &kp rgbvd | &kp rgbmd | xxx |
-| xxx | &kp reset | &kp eeprt | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx       | xxx       | xxx       | xxx       | xxx |
-|     |           |           | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx       | xxx       |           |           |     |
+| xxx | xxx         | xxx              | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx |
+| xxx | xxx         | xxx              | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx |
+|     | &any &reset | &any &bootloader | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx |     |
+|     |             |                  | xxx | xxx | xxx | xxx | xxx | xxx |     |     |     |
 
 ** combos
 I've made defining combos way easier, the first cell contains what the combo should do and the following the positions of the keys which have to be pressed.
 Since i'm defining combos using the positions they are all based on the base layer making them independent of the active layer.
-Instead of using the wrapper ~COMBO~ i'm using ~COMBO_ACTION~ and handle the combos in ~process_combo_event()~, this allows me to do more complex stuff like ~SEND_STRING()~ or bigrams.
-Currently it supports ~&ss "stuff"~ to send strings next to the normal key definitions.
-Leave an empty table to disable this feature.  Leaving the first cell empty will do the trick too.
 #+name: combo-table
-| &kp tab                   |  2 |  3 |    |
-| &kp esc                   | 13 | 16 |    |
-| &kp bspc                  | 16 | 17 |    |
-| &kpc bspc                 | 18 | 19 |    |
-| &kps n9                   |  2 | 16 |    |
-| &kps n0                   | 19 |  9 |    |
-| &kp lbrc                  | 14 | 16 |    |
-| &kp rbrc                  | 19 | 21 |    |
-| &kps lbrc                 |  3 | 16 |    |
-| &kps rbrc                 | 19 |  8 |    |
-| &kp grave                 |  9 | 10 |    |
-| &kps grave                | 37 | 38 |    |
-| &kps sqt                  |  7 | 10 |    |
-| &kps semi                 |  6 |  7 |    |
-| &kps n1                   |  2 |  3 | 16 |
-| &kps fslh                 | 14 | 15 |  4 |
-| &kp bslh                  | 25 | 16 |    |
-| &kpag n5                  | 20 | 36 |    |
-| &ss ":kuzco_nice:"        |  3 | 43 |    |
-| &ss ":BerucaPervert:"     |  1 | 43 |    |
-| &ss ":hundi_kek:"         |  2 | 43 |    |
-| &ss ":rainbow::rainbow2:" |  4 | 43 |    |
+| &kp q      |  1 |  2 |    |
+| &kp j      |  3 |  4 |    |
+| &kpag a    | 25 | 27 |    |
+| &kpag o    | 30 | 32 |    |
+| &kpag u    | 30 | 33 |    |
+| &osm lsft  |  8 |  9 |    |
+| &osm lctl  | 25 | 26 |    |
+| &osm lalt  | 31 | 32 |    |
+| &kp bspc   | 19 | 20 |    |
+| &kpc bspc  | 15 | 16 |    |
+| &kps n1    |  2 |  3 | 16 |
+| &kps fslh  | 14 | 15 |  4 |
+| &kp bslh   | 12 | 16 |    |
+| &kp grave  |  9 | 10 |    |
+| &kps grave | 32 | 33 |    |
+| &kps sqt   |  7 | 10 |    |
+| &kps semi  |  6 |  7 |    |
+| &kps n9    |  2 | 16 |    |
+| &kps n0    | 19 |  9 |    |
+| &kp lbrc   |  3 | 16 |    |
+| &kp rbrc   | 19 |  8 |    |
+| &kps lbrc  |  2 |  4 |    |
+| &kps rbrc  |  6 |  8 |    |
 
-Sometimes it's easier to just use the wrapper because the kc can't easily called using stuff like ~register_code16()~, or other stuff stands in between.
-You can add those here.
-Neither osm nor caps word behave nicely when defining them manually and the alphas aren't shifted with caps word active.
-#+name: basic-combo-table
-| &osm lsft |  8 |  9 |
-| &osm lctl | 26 | 27 |
-| &osm lalt | 36 | 37 |
-| &kp caps  |  4 |  7 |
-| &kp q     |  1 |  2 |
-| &kp j     |  3 |  4 |
-| &kpag a   | 26 | 28 |
-| &kpag w   |  1 |  4 |
-| &kpag o   | 35 | 38 |
-| &kpag u   | 35 | 37 |
-| &kpag q   | 25 | 28 |
+| &ss ":kuzco_nice:"        | 3 | 43 |    |    |
+| &ss ":BerucaPervert:"     | 1 | 43 |    |    |
+| &ss ":hundi_kek:"         | 2 | 43 |    |    |
+| &ss ":rainbow::rainbow2:" | 4 | 43 |    |    |
 
 Heres a table with the positions for reference:
-|  0 |  1 |  2 |  3 |  4 |  5 |    |    |    |    |  6 |  7 |  8 |  9 | 10 | 11 |
-| 12 | 13 | 14 | 15 | 16 | 17 |    |    |    |    | 18 | 19 | 20 | 21 | 22 | 23 |
-| 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 |
-|    |    |    | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49 |    |    |    |
+|  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10 | 11 |
+| 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 |
+|    | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 |    |
+|    |    |    | 34 | 35 | 36 | 37 | 38 | 39 |    |    |    |
 
 ** encoder
-Currently i do volume control and window switching with the encoders.
-Simple structure is the function ~encoder_update_user(index, clockwise)~, this runs a simple /this encoder does this when turned clockwise, this then otherwise/.
-#+name: encoder
-#+begin_src C :main no :tangle no :results none
-bool is_alt_tab = false;
-uint16_t alt_tab_timer = 0;
-
-bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 1) {
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
-    } else if (index == 0) {
-        if (clockwise) {
-            if (!is_alt_tab) {
-                is_alt_tab = true;
-                register_code(KC_LALT);
-            }
-            alt_tab_timer = timer_read();
-            tap_code16(KC_TAB);
-        } else {
-            if (!is_alt_tab) {
-                is_alt_tab = true;
-                register_code(KC_LALT);
-            }
-            alt_tab_timer = timer_read();
-            tap_code16(S(KC_TAB));
-        }
-    }
-
-    return false;
-}
-
-void matrix_scan_user(void) {
-    if (is_alt_tab) {
-        if (timer_elapsed(alt_tab_timer) > 800) {
-            unregister_code(KC_LALT);
-            is_alt_tab = false;
-        }
-    }
-}
-#+end_src
-
-** one shot one kill
-Currently I'm using oneshot mods aka OSM on combos, these are keys which activate and hold the mod on press until a key (under normal circumstances) is pressed, the mod gets depressed/deactivated afterwards.
-The current problem with these is that they remain active too long so not only the first key gets the mod but a couple ones afterwards too so it makes shifting only the first letter in a sentence hard when typing fast.
-I use callums implementation for them.  For more information check callums userspace and the joinked stuff down in [[*fixing osm stuff][the building section]].
-I'm gonna take over the ~OSM()~ keycodes since this is basically osm except better.
-
-*** canceling oneshotkeys
-Since they don't use a timer and queue up indefinetly you need some way to cancel the keys when you missclicked or something.
-#+name: cancel-keys
-| &mo _high |
-
-*** ignoring keys
-Sometimes you don't want to activate the mods on some keys, e.g. to stack mods or use them across layers.
-#+name: ignore-keys
-| &osm lsft  |
-| &osm rsft  |
-| &osm lctl  |
-| &osm rctl  |
-| &osm lalt  |
-| &osm ralt  |
-| &osm lgui  |
-| &osm rgui  |
-| &mo _low   |
 
 * Abandon all hope, ye who enter here
-This section is the build section. from this point on it's code and code only, be it elisp or c.
+This section is the build section. From this point on it's code and code only.
 I would not recommend altering anything down there, escpecially the generator code, unless you know what you are doing.
 
 I try to write it fairly pessimistic, but if anything faulty goes through, qmk will complain about it.
@@ -196,139 +103,112 @@ This section contains stuff used for parsing the key definitions.
         code)))
 
 (defun parse-key (word)
-  "Parses the expression and returns the keycode.  It takes a string as input and ignores empty expressions"
-  (unless (eq word "")
+  "Parses the expression and returns the keycode."
     (pcase word
-      ((or "&nop" "xxx")                                                                          "KC_NO")
-      ((or "&trns" "___" "---")                                                                   "KC_TRNS")
-      ;; FIXME the `rx` shit does not work when tangling with a script/in batch mode
-      ((rx bos "&kp" (+ space) (let head (+ word)) (* space) eos)                                 (get-keycode head))
-      ((rx bos "&kps" (+ space) (let head (+ word)) (* space) eos)                                (format "S(%s)" (get-keycode head)))
-      ((rx bos "&kpc" (+ space) (let head (+ word)) (* space) eos)                                (format "C(%s)" (get-keycode head)))
-      ((rx bos "&kpa" (+ space) (let head (+ word)) (* space) eos)                                (format "A(%s)" (get-keycode head)))
-      ((rx bos "&kpag" (+ space) (let head (+ word)) (* space) eos)                               (format "RALT(%s)" (get-keycode head)))
-      ((rx bos "&kpg" (+ space) (let head (+ word)) (* space) eos)                                (format "G(%s)" (get-keycode head)))
-      ((rx bos "&tg" (+ space) (let head (+ word)) (* space) eos)                                 (format "TG(%s)" head))
-      ((rx bos "&lt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "LT(%s, %s)" arg (get-keycode head)))
-      ((rx bos "&mo" (+ space) (let head (+ word)) (* space) eos)                                 (format "MO(%s)" head))
-      ((rx bos "&mt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "MT(%s, %s)" (get-mod arg) (get-keycode head)))
-      ((rx bos "&osm" (+ space) (let head (+ word)) (* space) eos)                                (format "OSM(%s)" (get-mod head)))
-      (-                                                                                          (error "unknown expr `%s`" word)))))
-
-(defun get-key-at (pos)
-  "Get the keycode at `pos` in the base layer"
-  (let*
-      ((key-def (nth pos (remove "" (flatten-list base))))
-       (keycode (parse-key key-def)))
-    (pcase key-def
-      ((or "&nop" "xxx" "&trns" "---" "___")        (error "the key at pos %d is nop or transparent, abort" pos))
-      (-                                            keycode))))
+      ((or "&nop" "xxx")                                                                          "&none")
+      ((or "&trns" "___" "---")                                                                   "&trans")
+      ((rx bos "&kp" (+ space) (let head (+ word)) (* space) eos)                                 (format "&kp %s" (get-keycode head)))
+      ((rx bos "&kps" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LS(%s)" (get-keycode head)))
+      ((rx bos "&kpc" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LC(%s)" (get-keycode head)))
+      ((rx bos "&kpa" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LA(%s)" (get-keycode head)))
+      ((rx bos "&kpag" (+ space) (let head (+ word)) (* space) eos)                               (format "&kp RA(%s)" (get-keycode head)))
+      ((rx bos "&kpg" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LG(%s)" (get-keycode head)))
+      ((rx bos "&tg" (+ space) (let head (+ word)) (* space) eos)                                 (format "&tog %s" head))
+      ((rx bos "&lt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "&lt %s %s" arg (get-keycode head)))
+      ((rx bos "&mo" (+ space) (let head (+ word)) (* space) eos)                                 (format "&mo %s" head))
+      ((rx bos "&mt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "&mt %s %s" (get-mod arg) (get-keycode head)))
+      ((rx bos "&osm" (+ space) (let head (+ word)) (* space) eos)                                (format "&sk %s" (get-mod head)))
+      ((rx bos "&any" (+ space) (let head (* anychar) eos))                                       (format "%s" head))
+      (-                                                                                          (error "unknown expr `%s`" word))))
 #+end_src
 
 **** tables n shit
 A not so complete list of keycodes
 #+name: keycode_table
-| a     | KC_A      |
-| b     | KC_B      |
-| c     | KC_C      |
-| d     | KC_D      |
-| e     | KC_E      |
-| f     | KC_F      |
-| g     | KC_G      |
-| h     | KC_H      |
-| i     | KC_I      |
-| j     | KC_J      |
-| k     | KC_K      |
-| l     | KC_L      |
-| m     | KC_M      |
-| n     | KC_N      |
-| o     | KC_O      |
-| p     | KC_P      |
-| q     | KC_Q      |
-| r     | KC_R      |
-| s     | KC_S      |
-| t     | KC_T      |
-| u     | KC_U      |
-| v     | KC_V      |
-| w     | KC_W      |
-| x     | KC_X      |
-| y     | KC_Y      |
-| z     | KC_Z      |
-| n1    | KC_1      |
-| n2    | KC_2      |
-| n3    | KC_3      |
-| n4    | KC_4      |
-| n5    | KC_5      |
-| n6    | KC_6      |
-| n7    | KC_7      |
-| n8    | KC_8      |
-| n9    | KC_9      |
-| n0    | KC_0      |
-| ret   | KC_ENTER  |
-| esc   | KC_ESC    |
-| gesc  | KC_GESC   |
-| bspc  | KC_BSPACE |
-| del   | KC_DEL    |
-| tab   | KC_TAB    |
-| space | KC_SPACE  |
-| minus | KC_MINUS  |
-| equal | KC_EQUAL  |
-| lbrc  | KC_LBRC   |
-| rbrc  | KC_RBRC   |
-| fslh  | KC_SLASH  |
-| bslh  | KC_BSLASH |
-| semi  | KC_SCOLON |
-| dot   | KC_DOT    |
-| comma | KC_COMMA  |
-| sqt   | KC_QUOTE  |
-| grave | KC_GRAVE  |
-| lsft  | KC_LSHIFT |
-| rsft  | KC_RSHIFT |
-| lctl  | KC_LCTRL  |
-| rctl  | KC_RCTRL  |
-| lalt  | KC_LALT   |
-| ralt  | KC_RALT   |
-| lgui  | KC_LGUI   |
-| rgui  | KC_RGUI   |
-| caps  | KC_CAPS   |
-| mute  | KC_MUTE   |
-| left  | KC_LEFT   |
-| down  | KC_DOWN   |
-| up    | KC_UP     |
-| right | KC_RIGHT  |
-| volu  | KC_VOLU   |
-| vold  | KC_VOLD   |
-| pause | KC_MPLY   |
-| next  | KC_MNXT   |
-| prev  | KC_MPRV   |
-| undo  | KC_UNDO   |
-| cut   | KC_CUT    |
-| copy  | KC_COPY   |
-| print | KC_PSCR   |
-| paste | KC_PASTE  |
-| eelh  | EH_LEFT   |
-| eerh  | EH_RGHT   |
-| rgbhu | RGB_HUI   |
-| rgbhd | RGB_HUD   |
-| rgbsu | RGB_SAI   |
-| rgbsd | RGB_SAD   |
-| rgbvu | RGB_VAI   |
-| rgbvd | RGB_VAD   |
-| rgbmu | RGB_MOD   |
-| rgbmd | RGB_RMOD  |
-| reset | RESET     |
-| eeprt | EEP_RST   |
+| a     | A             |
+| b     | B             |
+| c     | C             |
+| d     | D             |
+| e     | E             |
+| f     | F             |
+| g     | G             |
+| h     | H             |
+| i     | I             |
+| j     | J             |
+| k     | K             |
+| l     | L             |
+| m     | M             |
+| n     | N             |
+| o     | O             |
+| p     | P             |
+| q     | Q             |
+| r     | R             |
+| s     | S             |
+| t     | T             |
+| u     | U             |
+| v     | V             |
+| w     | W             |
+| x     | X             |
+| y     | Y             |
+| z     | Z             |
+| n1    | N1            |
+| n2    | N2            |
+| n3    | N3            |
+| n4    | N4            |
+| n5    | N5            |
+| n6    | N6            |
+| n7    | N7            |
+| n8    | N8            |
+| n9    | N9            |
+| n0    | N0            |
+| ret   | RETURN        |
+| esc   | ESCAPE        |
+| bspc  | BACKSPACE     |
+| del   | DELETE        |
+| tab   | TAB           |
+| space | SPACE         |
+| minus | MINUS         |
+| equal | EQUAL         |
+| lbrc  | LEFT_BRACKET  |
+| rbrc  | RIGHT_BRACKET |
+| fslh  | SLASH         |
+| bslh  | BACKSLASH     |
+| semi  | SEMI          |
+| dot   | DOT           |
+| comma | COMMA         |
+| sqt   | SQT           |
+| grave | GRAVE         |
+| lsft  | LEFT_SHIFT    |
+| rsft  | RIGHT_SHIFT   |
+| lctl  | LEFT_CONTROL  |
+| rctl  | RIGHT_CONTROL |
+| lalt  | LEFT_ALT      |
+| ralt  | RIGHT_ALT     |
+| lgui  | LEFT_GUI      |
+| rgui  | RIGHT_GUI     |
+| caps  | CAPSLOCK      |
+| left  | LEFT          |
+| down  | DOWN          |
+| up    | UP            |
+| right | RIGHT         |
+| mute  | C_MUTE        |
+| volu  | C_VOL_UP      |
+| vold  | C_VOL_DN      |
+| pause | C_PLAY_PAUSE  |
+| next  | C_NEXT        |
+| prev  | C_PREV        |
+| print | PRINTSCREEN   |
 
 A semi complete list of modifier codes
 #+name: mod_table
-| lsft | MOD_LSFT |
-| rsft | MOD_RSFT |
-| lctl | MOD_LCTL |
-| rctl | MOD_RCTL |
-| lalt | MOD_LALT |
-| ralt | MOD_RALT |
-| lgui | MOD_LGUI |
-| rgui | MOD_RGUI |
+| lsft  | LEFT_SHIFT    |
+| rsft  | RIGHT_SHIFT   |
+| lctl  | LEFT_CONTROL  |
+| rctl  | RIGHT_CONTROL |
+| lalt  | LEFT_ALT      |
+| ralt  | RIGHT_ALT     |
+| lgui  | LEFT_GUI      |
+| rgui  | RIGHT_GUI     |
 
 *** layers
 For processing the table and generating the layers
@@ -337,116 +217,42 @@ For processing the table and generating the layers
 <<keycode-parsing>>
 
 (setq input (remove "" (flatten-tree input)) ; flat is justice
-      result "")
+      result "<")
 
 (while input
   (let ((word (pop input)))
-    (setq result (concat result (parse-key word) ", "))))
+    (setq result (concat result (parse-key word) " "))))
 
-(s-chop-suffix ", " result)  ; <- doesn't work outside emacs
+(concat result ">")
 #+end_src
 
 *** combos
 Parsing and generating the code for the combos
-#+name: combo-enable
-#+begin_src elisp :main no :var in=combo-table :result value drawer
-(if (equal (caar in) "")
-    "no" "yes")
-#+end_src
-
-#+name: get-combocount
-#+begin_src elisp :main no :var in=combo-table in2=basic-combo-table :result value drawer
-(+ (length in) (length in2))
-#+end_src
-
-#+name: generate-combosequence
-#+begin_src elisp :main no :noweb yes :var in=combo-table in2=basic-combo-table keycode=keycode_table modcode=mod_table base=base_layer :result value drawer
-<<keycode-parsing>>
-
-(setq result ""
-      id 0  ; too lazy to create names, I just use a running number
-      in (append in in2))
-
-(mapcar #'(lambda (x)
-            (let ((keydef (pop x)))
-              (if (eq "" keydef) (error "a combo can't do nothing"))
-              (if (eq "" (car x)) (error "combo `%s` seems to be empty" keydef))))
-        in)
-
-(while in
-  (setq row (remove "" (cdr (pop in)))
-        result (concat result (format "const uint16_t PROGMEM unique_combo%d[] = { " id)))
-  (while row
-    (setq result (concat result (get-key-at (pop row)) ", ")))
-  (setq result (concat result "COMBO_END, };\n")
-        id (1+ id)))
-
-(print result)
-#+end_src
-
-#+name: generate-combocombination
-#+begin_src elisp :main no :noweb yes :var in=combo-table in2=basic-combo-table keycode=keycode_table modcode=mod_table :result value drawer
-<<keycode-parsing>>
-
-(setq result ""
-      id 0)
-
-(while in
-  (setq key (pop in)  ; just to keep track, i don't actually need it
-        result (concat result (format "COMBO_ACTION(unique_combo%d), " id))
-        id (1+ id)))
-
-(while in2
-    (setq key (car (pop in2))
-          result (concat result (format "COMBO(unique_combo%d, %s), " id (parse-key key)))
-          id (1+ id)))
-
-(print result)
-#+end_src
-
-#+name: generate-combo-event
+#+name: generate-combos
 #+begin_src elisp :main no :noweb yes :var in=combo-table keycode=keycode_table modcode=mod_table :result value drawer
 <<keycode-parsing>>
 
-(setq result "switch (combo_index) { "
-      id 0)
+(setq result ""
+      id 0) ; using a running number for naming the combos
+
+;; check if the combos ain't empty or something
+(mapcar (lambda (x)
+          (let ((event (car x))
+                (tail (nth 2 x)))
+            (if (eq event "") (error "events are required in combos, abort"))
+            (if (eq tail "") (error "combo for `%s` seems to be empty, abort" event))))
+        in)
 
 (while in
-  (setq key (car (pop in))
-        result (concat result (format "case %d: " id)
-                       (pcase key
-                         ((rx bos "&ss" (+ space) (let head (+ nonl)) (* space) eos)    (format "if (pressed) SEND_STRING(%s); break; " head))
-                         (any                                                           (format "pressed ? register_code16(%s) : unregister_code16(%s); break; " (parse-key any) (parse-key any)))))
-        id (1+ id)))
+  (let* ((row (pop in))
+         (event (parse-key (car row)))
+         (pos ((lambda (x) (string-trim (format "%s" x) "(" ")")) (remove "" (cdr row)))))
+         ;(pos (mapconcat 'identity (nthcdr 2 row) " "))) ; doesn't work for some reason
+    (setq result (concat result (format "unique_combo%d { timeout-ms = <%d>; key-positions = <%s>; bindings = <%s>; };\n"
+            id 40 pos event))
+          id (1+ id))))
 
-(concat result "}")
-#+end_src
-
-*** osm
-#+name: cancel_osm
-#+begin_src elisp :main no :noweb yes :var in=cancel-keys keycode=keycode_table modcode=mod_table :results value drawer
-<<keycode-parsing>>
-
-(setq result "bool is_oneshot_cancel_key(uint16_t keycode) { switch (keycode) {")
-
-(while in
-  (unless (eq (parse-key (caar in)) "")
-    (setq result (concat result " case " (parse-key (car (pop in))) ": "))))
-
-(concat result "return true; default: return false;}}")
-#+end_src
-
-#+name: ignore_osm
-#+begin_src elisp :main no :noweb yes :var in=ignore-keys keycode=keycode_table modcode=mod_table :results value drawer
-<<keycode-parsing>>
-
-(setq result "bool is_oneshot_ignored_key(uint16_t keycode) {switch (keycode) {")
-
-(while in
-  (unless (eq (parse-key (caar in)) "")
-    (setq result (concat result " case " (parse-key (car (pop in))) ": "))))
-
-(concat result "return true; default: return false;}}")
+(print result)
 #+end_src
 
 ** stuff
@@ -459,382 +265,65 @@ Here we take everything from the section before and format these accordingly bef
  *
  * This is autogenerated using babel DO NOT EDIT.
  * Please refer to main.org in [[https://git.sr.ht/~jat/keymap]]
- *
- *
- * Copyright 2021-2022 Freja
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #+end_src
 
 *** matrix stuff
 #+name: keymap
-#+begin_src C :main no :tangle no :noweb yes :results none
-enum layers { _base = 0, _low, _high, _adj, };
+#+begin_src dts :main no :tangle no :noweb yes :results drawer
+keymap {
+    compatible = "zmk,keymap";
 
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-         [_base] = LAYOUT(<<generate-layer(input=base_layer)>>),
-         /* [_game] = LAYOUT(<<generate-layer(input=game_layer)>>), */
-         [_low] = LAYOUT(<<generate-layer(input=low_layer)>>),
-         [_high] = LAYOUT(<<generate-layer(input=high_layer)>>),
-         [_adj] = LAYOUT(<<generate-layer(input=adj_layer)>>),
-};
+    #define _base 0
+    #define _lower 1
+    #define _raise 2
+    #define _adj 3
+
+    base_layer {
+        bindings = <<generate-layer(input=base_layer)>>;
+        sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+    };
+    lower_layer { bindings = <<generate-layer(input=low_layer)>>; };
+    raise_layer { bindings = <<generate-layer(input=high_layer)>>; };
+    adjust_layer { bindings = <<generate-layer(input=adj_layer)>>; };
+}
 #+end_src
 
 *** combo stuff
 #+name: combo
-#+begin_src C :main no :noweb yes :result none
-#ifdef COMBO_ENABLE
-<<generate-combosequence()>>
-
-combo_t key_combos[COMBO_COUNT] = { <<generate-combocombination()>> };
-
-void process_combo_event(uint16_t combo_index, bool pressed) {
-    #ifdef CONSOLE_ENABLE
-    if (pressed) {
-        combo_t *combo = &key_combos[combo_index];
-        uint8_t idx = 0;
-        uint16_t combo_keycode;
-        while ((combo_keycode = pgm_read_word(&combo->keys[idx])) != COMBO_END) {
-            uprintf("0x%04X,NA,NA,%u,%u,0x%02X,0x%02X,0\n",
-                combo_keycode,
-                /* <missing row information> */
-                /* <missing column information> */
-                get_highest_layer(layer_state),
-                pressed,
-                get_mods(),
-                get_oneshot_mods()
-            );
-            idx++;
-        }
-    }
-    #endif
-
-    <<generate-combo-event()>>
+#+begin_src dts :main no :noweb yes :results none
+combos {
+    compatible = "zmk,combos";
+    <<generate-combos()>>
 }
-#endif
 #+end_src
 
-*** fixing osm stuff
-#+name: oneshot
-#+begin_src C :main no :noweb yes :results none
-<<cancel_osm()>>;
-
-<<ignore_osm()>>;
-
-<<oneshot_implementation>>;
-
-oneshot_state sft_state = os_up_unqueued;
-oneshot_state ctl_state = os_up_unqueued;
-oneshot_state alt_state = os_up_unqueued;
-oneshot_state gui_state = os_up_unqueued;
-#+end_src
-
-#+name: update_oneshot_states
-#+begin_src C :main no :results none
-update_oneshot(&sft_state, KC_LSHIFT, OSM(MOD_LSFT), keycode, record);
-update_oneshot(&ctl_state, KC_LCTRL, OSM(MOD_LCTL), keycode, record);
-update_oneshot(&alt_state, KC_LALT, OSM(MOD_LALT), keycode, record);
-update_oneshot(&gui_state, KC_LGUI, OSM(MOD_LGUI), keycode, record);
-#+end_src
-
-#+name: override_oneshot
-#+begin_src C :main no :results none
-case OSM(MOD_LSFT):
-case OSM(MOD_RSFT):
-case OSM(MOD_LCTL):
-case OSM(MOD_RCTL):
-case OSM(MOD_LALT):
-case OSM(MOD_RALT):
-case OSM(MOD_LGUI):
-case OSM(MOD_RGUI):
-    return false;
-#+end_src
-
-**** the implementation
-I just joinked callums oneshot implementation since I don't want to deal with foreign userspace stuff and depend on those.  Look at callums userspace for more information.
-#+name: oneshot_implementation
-#+begin_src C :main no :results none
-// the different states a oneshot key can be in
-typedef enum {
-    os_up_unqueued,
-    os_up_queued,
-    os_down_unused,
-    os_down_used,
-} oneshot_state;
-
-void update_oneshot(oneshot_state *state, uint16_t mod, uint16_t trigger, uint16_t keycode, keyrecord_t *record) {
-    if (keycode == trigger) {  // start osm
-        if (record->event.pressed) {
-            // Trigger keydown
-            if (*state == os_up_unqueued) {
-                register_code(mod);
-            }
-            *state = os_down_unused;
-        } else {
-            // Trigger keyup
-            switch (*state) {
-                case os_down_unused:
-                    // If we didn't use the mod while trigger was held, queue it.
-                    *state = os_up_queued;
-                    break;
-                case os_down_used:
-                    // If we did use the mod while trigger was held, unregister it.
-                    *state = os_up_unqueued;
-                    unregister_code(mod);
-                    break;
-                default:
-                    break;
-            }
-        }
-    } else {  // trigger osm and handle key
-        if (record->event.pressed) {
-            if (is_oneshot_cancel_key(keycode) && *state != os_up_unqueued) {
-                // Cancel oneshot on designated cancel keydown.
-                *state = os_up_unqueued;
-                unregister_code(mod);
-            }
-        } else {
-            if (!is_oneshot_ignored_key(keycode)) {
-                // On non-ignored keyup, consider the oneshot used.
-                switch (*state) {
-                    case os_down_unused:
-                        *state = os_down_used;
-                        break;
-                    case os_up_queued:
-                        *state = os_up_unqueued;
-                        unregister_code(mod);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
-}
+*** osm stuff
+#+name: osm
+#+begin_src dts :results none
+&sk {
+    quick-release;
+};
 #+end_src
 
 *** caps word
-#+name: process_caps_word
-#+begin_src C :main no :results none
-if (!process_caps_word(keycode, record)) { return false; }
-#+end_src
-
-#+name: override_caps
-#+begin_src C :main no :results none
-case KC_CAPS:
-    return false;
-#+end_src
-
-**** the implementation
-Check [[https://getreuer.info/posts/keyboards/caps-word/index.html][this]] for more information
-
-#+name: caps_word_implementation
-#+begin_src C :main no :results none
-static bool caps_word_active = false;
-
-void caps_word_set(bool active) {
-    if (active != caps_word_active) {
-        if (active) {
-            clear_mods();
-            clear_oneshot_mods();
-        } else {
-            unregister_weak_mods(MOD_BIT(KC_LSFT));
-        }
-
-        caps_word_active = active;
-    }
-}
-
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        // Keycodes that continue Caps Word, with shift applied.
-        case KC_A ... KC_Z:
-        case KC_MINS:
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
-            return true;
-
-        // Keycodes that continue Caps Word, without shifting.
-        case KC_1 ... KC_0:
-        case KC_BSPC:
-        case KC_DEL:
-        case KC_UNDS:
-            return true;
-
-        default:
-            return false;  // Deactivate Caps Word.
-    }
-}
-
-bool process_caps_word(uint16_t keycode, keyrecord_t* record) {
-    if (!caps_word_active) {
-        if (record->event.pressed && keycode == KC_CAPS) {
-            caps_word_set(true);
-            return false;
-        }
-        return true;
-    }
-
-    if (!record->event.pressed) { return true; }
-
-    if (!((get_mods() | get_oneshot_mods()) & ~MOD_MASK_SHIFT)) {
-        switch (keycode) {
-            // Ignore MO, TO, TG, TT, and OSL layer switch keys.
-            case QK_MOMENTARY ... QK_MOMENTARY_MAX:
-            case QK_TO ... QK_TO_MAX:
-            case QK_TOGGLE_LAYER ... QK_TOGGLE_LAYER_MAX:
-            case QK_LAYER_TAP_TOGGLE ... QK_LAYER_TAP_TOGGLE_MAX:
-            case QK_ONE_SHOT_LAYER ... QK_ONE_SHOT_LAYER_MAX:
-                return true;
-            case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-                if (record->tap.count == 0) {
-                    // Deactivate if a mod becomes active through holding a mod-tap key.
-                    caps_word_set(false);
-                    return true;
-                }
-                keycode &= 0xff;
-                break;
-            case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-                if (record->tap.count == 0) { return true; }
-                keycode &= 0xff;
-                break;
-        }
-        clear_weak_mods();
-        if (caps_word_press_user(keycode)) {
-            send_keyboard_report();
-            return true;
-        }
-    }
-
-    caps_word_set(false);
-    return true;
-}
+#+name: caps-word
+#+begin_src dts :main no :results none
+&caps_word {
+    continue-list = <UNDERSCORE MINUS BSPC LSHFT RSHFT>;
+};
 #+end_src
 ** putting it all together
-*** keymap.c
-#+begin_src C :noweb yes :tangle keymap.c :results none :no-expand
-<<header>>
+*** splaytoraid40.keymap
+#+begin_src dts :tangle config/splaytoraid40.keymap :noweb yes :no-expand :results drawer
 
-#include QMK_KEYBOARD_H
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
 
-<<keymap>>
+<<osm>>
 
-#ifdef ENCODER_ENABLE
-<<encoder>>
-#endif
-
-<<combo>>
-
-<<oneshot>>
-
-<<caps_word_implementation>>
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    #ifdef CONSOLE_ENABLE
-        if (record->event.pressed) {
-            uprintf("0x%04X,%u,%u,%u,%b,0x%02X,0x%02X,%u\n",
-                 keycode,
-                 record->event.key.row,
-                 record->event.key.col,
-                 get_highest_layer(layer_state),
-                 record->event.pressed,
-                 get_mods(),
-                 get_oneshot_mods(),
-                 record->tap.count
-                 );
-        }
-    #endif
-
-    <<update_oneshot_states>>
-    <<process_caps_word>>
-
-    switch (keycode) {
-        <<override_oneshot>>
-        <<override_caps>>
-        default: return true;
-    }
-}
-
-#+end_src
-
-*** config.h
-#+begin_src C :noweb yes :tangle config.h :results none :no-expand
-<<header>>
-
-#pragma once
-
-#define EE_HANDS
-
-#define LAYER_STATE_8BIT // decreases size
-
-#define TAPPING_TERM 300
-#define IGNORE_MOD_TAP_INTERRUPT
-
-#ifdef OLED_DRIVER_ENABLE
-#define OLED_DISPLAY_128X64
-#endif
-
-#ifdef NKRO_ENABLE
-#define FORCE_NKRO
-#endif
-
-#ifdef RGBLIGHT_ENABLE
-#define RGBLIGHT_LED_MAP {0,1,2,9,8,7,4,3,5,6,19,18,17,10,11,12,15,16,14,13}
-#define RGBLIGHT_SLEEP
-#define RGBLIGHT_EFFECT_BREATHING
-#define RGBLIGHT_EFFECT_KNIGHT
-
-#define RGBLIGHT_HUE_STEP 8
-#define RGBLIGHT_SAT_STEP 8
-#define RGBLIGHT_VAL_STEP 8
-#define RGBLIGHT_LIMIT_VAL 150
-#endif
-
-#ifdef RGB_MATRIX_ENABLE
-#define ENABLE_LED_MATRIX_SOLID
-/* #define ENABLE_LED_MATRIX_BREATHING */
-/* #define LED_MATRIX_KEYPRESSES */
-/* #define ENABLE_LED_MATRIX_SOLID_REACTIVE_SIMPLE */
-#endif
-
-#ifdef ENCODER_ENABLE
-#define ENCODER_RESOLUTION 2
-#define ENCODER_DIRECTION_FLIP
-#endif
-
-#ifdef COMBO_ENABLE
-#define COMBO_COUNT <<get-combocount()>>
-#define EXTRA_SHORT_COMBOS // decreases size
-#define COMBO_TERM 40
-#define COMBO_ONLY_FROM_LAYER 0
-#endif
-
-// define USB_POLLING_INTERVAL_MS 5
-#+end_src
-
-*** rules.mk
-#+begin_src C :tangle rules.mk :noweb yes :results none :no-expand
-OLED_DRIVER_ENABLE = no
-WPM_ENABLE = no
-RGBLIGHT_ENABLE = no
-RGB_MATRIX_ENABLE = yes
-COMBO_ENABLE = <<combo-enable()>>
-ENCODER_ENABLE = yes
-STENO_ENABLE = no
-NKRO_ENABLE = no
-CONSOLE_ENABLE = no
-
-BOOTLOADER=qmk-hid
-BOOTLOADER_SIZE=512
+/ {
+    <<combo>>;
+    <<keymap>>;
+};
 #+end_src
