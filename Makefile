@@ -1,6 +1,3 @@
-#FILES=keymap.c config.h rules.mk
-
-#KM=jat
 KB=splaytoraid40
 B=nice_nano
 
