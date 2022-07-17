@@ -11,4 +11,4 @@ build/$(KB)/zephyr/zmk.uf2: config/$(KB).keymap
 compile: build/$(KB)/zephyr/zmk.uf2 # only there to be called by taskrunner for compiling only
 
 flash: build/$(KB)/zephyr/zmk.uf2
-	cp build/$(KB)/zephyr/zmk.uf2 /run/media/freja/NICENANO/.
+	cp build/$(KB)/zephyr/zmk.uf2 /run/media/$(shell whoami)/NICENANO/.
