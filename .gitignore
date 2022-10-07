@@ -1,2 +1,4 @@
 build/*
-*.keymap
+config/*.keymap
+config/*.config
+config/*.conf
