@@ -4,15 +4,59 @@
 
 * The keymap
 ** The layout
-I primarily type in German, English and Swedish so the keyboard should be cabable or outputing the used characters like ~ü~ or ~å~.
-For that I am using [[https://eurkey.steffen.bruentjen.eu/][EurKey]] - but US Intl should be fine too - on my system.  These are QWERTY layouts but they are able to output letters used in different languages using Alt Gr aka Right Alt.
-
 *** Base layer
 #+name: base_layer
-| &kp esc | &kp z | &kp f | &kp m      | &kp p | &kp v    | &kp semi  | &kp dot   | &kp fslh   | &kp sqt | &kp equal | &kp caps |
-| &kp tab | &kp r | &kp s | &kp n      | &kp d | &kp w    | &kp comma | &kp a     | &kp e      | &kp i   | &kp o     | &kp ralt |
-|         | &kp x | &kp g | &kp l      | &kp c | &kp b    | &kp minus | &kp h     | &kp u      | &kp y   | &kp k     |          |
-|         |       |       | &mo _lower | &kp t | &kp lsft | &kp ret   | &kp space | &mo _raise |         |           |          |
+| xxx   | xxx   | &kp f | &kp m      | &kp p | &kp v   | &kp semi  | &kp dot   | &kp fslh   | &kp sqt | xxx   | &kp ralt  |
+| &kp z | &kp r | &kp s | &kp n      | &kp d | &kp w   | &kp comma | &kp a     | &kp e      | &kp i   | &kp o | &kp equal |
+|       | &kp x | &kp g | &kp l      | &kp c | &kp b   | &kp minus | &kp h     | &kp u      | &kp y   | &kp k |           |
+|       |       |       | &mo _lower | &kp t | &kp ret | &kp tab   | &kp space | &mo _raise |         |       |           |
+
+*** qwerty
+if i ever need qwerty for no reason whatsoever
+#+name: qwerty_layer
+| xxx | &kp q | &kp w | &kp e      | &kp r | &kp t   | &kp y     | &kp u     | &kp i      | &kp o | &kp p | xxx |
+| xxx | &kp r | &kp s | &kp n      | &kp d | &kp w   | &kp comma | &kp a     | &kp e      | &kp i | &kp o | xxx |
+|     | &kp x | &kp g | &kp l      | &kp c | &kp b   | &kp minus | &kp h     | &kp u      | &kp y | &kp k |     |
+|     |       |       | &mo _lower | &kp t | &kp ret | &kp lsft  | &kp space | &mo _raise |       |       |     |
+
+*** artsey.io
+#+name: artseyio_layer
+| xxx | &kp s | &kp t | &kp r | &kp a | xxx | xxx | xxx | xxx      | xxx | xxx | xxx |
+| xxx | &kp o | &kp i | &kp y | &kp e | xxx | xxx | xxx | xxx      | xxx | xxx | xxx |
+|     | xxx   | xxx   | xxx   | xxx   | xxx | xxx | xxx | xxx      | xxx | xxx |     |
+|     |       |       | xxx   | xxx   | xxx | xxx | xxx | &mo _adj |     |     |     |
+
+#+name: artseyio_table
+| &kp b     | 13 | 16 |    |    |
+| &kp c     | 15 | 16 |    |    |
+| &kp d     |  2 |  3 |  4 |    |
+| &kp f     |  3 |  4 |    |    |
+| &kp g     |  2 |  3 |    |    |
+| &kp h     | 14 | 16 |    |    |
+| &kp j     |  1 |  2 |    |    |
+| &kp k     | 13 | 15 |    |    |
+| &kp l     | 14 | 15 | 16 |    |
+| &kp m     | 13 | 14 | 15 |    |
+| &kp n     | 13 | 14 |    |    |
+| &kp p     | 13 | 14 | 16 |    |
+| &kp q     |  1 |  2 |  4 |    |
+| &kp u     | 14 | 15 |    |    |
+| &kp v     |  1 |  3 |    |    |
+| &kp w     |  1 |  4 |    |    |
+| &kp x     |  1 |  2 |  3 |    |
+| &kp z     |  1 |  2 |  3 |  4 |
+| &kp sqt   | 14 | 15 |  4 |    |
+| &kp dot   | 15 |  4 |    |    |
+| &kp comma | 14 |  4 |    |    |
+| &kp fslh  | 13 |  4 |    |    |
+| &kp space | 13 | 14 | 15 | 16 |
+| &kp ret   |  4 | 16 |    |    |
+| &kp esc   | 13 |  3 |  4 |    |
+| &osm lsft |  1 |  2 |  3 | 16 |
+| &osm lctl |  1 | 16 |    |    |
+| &osm lalt |  1 | 14 |    |    |
+| &osm lgui |  1 | 15 |    |    |
+| &kp caps  | 13 | 14 | 15 |  4 |
 
 *** lower layer
 #+name: low_layer
@@ -30,40 +74,43 @@ For that I am using [[https://eurkey.steffen.bruentjen.eu/][EurKey]] - but US In
 
 *** adjusting shit
 #+name: adj_layer
-| xxx | xxx         | xxx              | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx |
-| xxx | xxx         | xxx              | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx |
-|     | &any &reset | &any &bootloader | xxx | xxx | xxx | xxx | xxx | xxx | xxx | xxx |     |
-|     |             |                  | xxx | xxx | xxx | xxx | xxx | xxx |     |     |     |
+| &rgb RGB_HUI | &rgb RGB_SAI | &rgb RGB_BRI | xxx         | xxx              | xxx | xxx | xxx | xxx | xxx | xxx | &rgb RGB_ON  |
+| &rgb RGB_HUD | &rgb RGB_SAD | &rgb RGB_BRD | xxx         | xxx              | xxx | xxx | xxx | xxx | xxx | xxx | &rgb RGB_OFF |
+|              | xxx          | xxx          | xxx         | xxx              | xxx | xxx | xxx | xxx | xxx | xxx |              |
+|              |              |              | &any &reset | &any &bootloader | xxx | xxx | xxx | xxx |     |     |              |
 
 ** combos
-I've made defining combos way easier, the first cell contains what the combo should do and the following the positions of the keys which have to be pressed.
 Since i'm defining combos using the positions they are all based on the base layer making them independent of the active layer.
 #+name: combo-table
-| &kp q      |  1 |  2 |    |
-| &kp j      |  3 |  4 |    |
-| &kpag a    | 25 | 27 |    |
-| &kpag o    | 30 | 32 |    |
-| &kpag u    | 30 | 33 |    |
-| &osm lsft  |  8 |  9 |    |
-| &osm lctl  | 25 | 26 |    |
-| &osm lalt  | 31 | 32 |    |
-| &kp bspc   | 19 | 20 |    |
-| &kpc bspc  | 15 | 16 |    |
-| &kps n1    |  2 |  3 | 16 |
-| &kps fslh  | 14 | 15 |  4 |
-| &kp bslh   | 12 | 16 |    |
-| &kp grave  |  9 | 10 |    |
-| &kps grave | 32 | 33 |    |
-| &kps sqt   |  7 | 10 |    |
-| &kps semi  |  6 |  7 |    |
-| &kps n9    |  2 | 16 |    |
-| &kps n0    | 19 |  9 |    |
-| &kp lbrc   |  3 | 16 |    |
-| &kp rbrc   | 19 |  8 |    |
-| &kps lbrc  |  2 |  4 |    |
-| &kps rbrc  |  6 |  8 |    |
+| &kp lbrc        |  3 | 16 |    |
+| &kp lbkt        | 14 | 16 |    |
+| &kp rbkt        | 19 | 21 |    |
+| &kp rbrc        | 19 |  8 |    |
+| &kp q           |  1 |  2 |    |
+| &kp j           |  3 |  4 |    |
+| &kpag a         | 25 | 27 |    |
+| &kpag u         | 30 | 32 |    |
+| &kpag o         | 30 | 33 |    |
+| &osm lsft       |  8 |  9 |    |
+| &osm lctl       | 25 | 26 |    |
+| &osm lalt       | 31 | 32 |    |
+| &any &caps_word |  4 |  7 |    |
+| &kp esc         | 13 | 16 |    |
+| &kp tab         |  2 |  3 |    |
+| &kp bspc        | 19 | 20 |    |
+| &kpc bspc       | 19 | 20 | 21 |
+| &kps n1         |  2 |  3 | 16 |
+| &kps fslh       | 14 | 15 |  4 |
+| &kp bslh        | 12 | 16 |    |
+| &kp grave       |  9 | 10 |    |
+| &kps grave      | 32 | 33 |    |
+| &kps sqt        |  7 | 10 |    |
+| &kps semi       |  6 |  7 |    |
+| &kps n9         |  2 | 16 |    |
+| &kps n0         | 19 |  9 |    |
+| &kps equal      | 29 | 30 |    |
 
-| &ss ":kuzco_nice:"        | 3 | 43 |    |    |
+| &SS ":kuzco_nice:"        | 3 | 43 |    |    |
 | &ss ":BerucaPervert:"     | 1 | 43 |    |    |
 | &ss ":hundi_kek:"         | 2 | 43 |    |    |
 | &ss ":rainbow::rainbow2:" | 4 | 43 |    |    |
@@ -80,7 +127,7 @@ Heres a table with the positions for reference:
 This section is the build section. From this point on it's code and code only.
 I would not recommend altering anything down there, escpecially the generator code, unless you know what you are doing.
 
-I try to write it fairly pessimistic, but if anything faulty goes through, qmk will complain about it.
+I try to write it fairly pessimistic, but if anything faulty goes through, zmk will complain about it.
 
 ** generators and parser
 This section contains stuff used for parsing the key definitions.
@@ -118,6 +165,7 @@ This section contains stuff used for parsing the key definitions.
       ((rx bos "&mo" (+ space) (let head (+ word)) (* space) eos)                                 (format "&mo %s" head))
       ((rx bos "&mt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "&mt %s %s" (get-mod arg) (get-keycode head)))
       ((rx bos "&osm" (+ space) (let head (+ word)) (* space) eos)                                (format "&sk %s" (get-mod head)))
+      ((rx bos "&rgb" (+ space) (let head (+ anychar)) (* space) eos)                                (format "&rgb_ug %s" head))
       ((rx bos "&any" (+ space) (let head (* anychar) eos))                                       (format "%s" head))
       (-                                                                                          (error "unknown expr `%s`" word))))
 #+end_src
@@ -125,79 +173,81 @@ This section contains stuff used for parsing the key definitions.
 **** tables n shit
 A not so complete list of keycodes
 #+name: keycode_table
-| a     | A             |
-| b     | B             |
-| c     | C             |
-| d     | D             |
-| e     | E             |
-| f     | F             |
-| g     | G             |
-| h     | H             |
-| i     | I             |
-| j     | J             |
-| k     | K             |
-| l     | L             |
-| m     | M             |
-| n     | N             |
-| o     | O             |
-| p     | P             |
-| q     | Q             |
-| r     | R             |
-| s     | S             |
-| t     | T             |
-| u     | U             |
-| v     | V             |
-| w     | W             |
-| x     | X             |
-| y     | Y             |
-| z     | Z             |
-| n1    | N1            |
-| n2    | N2            |
-| n3    | N3            |
-| n4    | N4            |
-| n5    | N5            |
-| n6    | N6            |
-| n7    | N7            |
-| n8    | N8            |
-| n9    | N9            |
-| n0    | N0            |
-| ret   | RETURN        |
-| esc   | ESCAPE        |
-| bspc  | BACKSPACE     |
-| del   | DELETE        |
-| tab   | TAB           |
-| space | SPACE         |
-| minus | MINUS         |
-| equal | EQUAL         |
-| lbrc  | LEFT_BRACKET  |
-| rbrc  | RIGHT_BRACKET |
-| fslh  | SLASH         |
-| bslh  | BACKSLASH     |
-| semi  | SEMI          |
-| dot   | DOT           |
-| comma | COMMA         |
-| sqt   | SQT           |
-| grave | GRAVE         |
-| lsft  | LEFT_SHIFT    |
-| rsft  | RIGHT_SHIFT   |
-| lctl  | LEFT_CONTROL  |
-| rctl  | RIGHT_CONTROL |
-| lalt  | LEFT_ALT      |
-| ralt  | RIGHT_ALT     |
-| lgui  | LEFT_GUI      |
-| rgui  | RIGHT_GUI     |
-| caps  | CAPSLOCK      |
-| left  | LEFT          |
-| down  | DOWN          |
-| up    | UP            |
-| right | RIGHT         |
-| mute  | C_MUTE        |
-| volu  | C_VOL_UP      |
-| vold  | C_VOL_DN      |
-| pause | C_PLAY_PAUSE  |
-| next  | C_NEXT        |
-| prev  | C_PREV        |
-| print | PRINTSCREEN   |
+| a       | A             |
+| b       | B             |
+| c       | C             |
+| d       | D             |
+| e       | E             |
+| f       | F             |
+| g       | G             |
+| h       | H             |
+| i       | I             |
+| j       | J             |
+| k       | K             |
+| l       | L             |
+| m       | M             |
+| n       | N             |
+| o       | O             |
+| p       | P             |
+| q       | Q             |
+| r       | R             |
+| s       | S             |
+| t       | T             |
+| u       | U             |
+| v       | V             |
+| w       | W             |
+| x       | X             |
+| y       | Y             |
+| z       | Z             |
+| n1      | N1            |
+| n2      | N2            |
+| n3      | N3            |
+| n4      | N4            |
+| n5      | N5            |
+| n6      | N6            |
+| n7      | N7            |
+| n8      | N8            |
+| n9      | N9            |
+| n0      | N0            |
+| ret     | RETURN        |
+| esc     | ESCAPE        |
+| bspc    | BACKSPACE     |
+| del     | DELETE        |
+| tab     | TAB           |
+| space   | SPACE         |
+| minus   | MINUS         |
+| equal   | EQUAL         |
+| lbkt    | LEFT_BRACKET  |
+| rbkt    | RIGHT_BRACKET |
+| lbrc    | LEFT_BRACE    |
+| rbrc    | RIGHT_BRACE   |
+| fslh    | SLASH         |
+| bslh    | BACKSLASH     |
+| semi    | SEMI          |
+| dot     | DOT           |
+| comma   | COMMA         |
+| sqt     | SQT           |
+| grave   | GRAVE         |
+| lsft    | LEFT_SHIFT    |
+| rsft    | RIGHT_SHIFT   |
+| lctl    | LEFT_CONTROL  |
+| rctl    | RIGHT_CONTROL |
+| lalt    | LEFT_ALT      |
+| ralt    | RIGHT_ALT     |
+| lgui    | LEFT_GUI      |
+| rgui    | RIGHT_GUI     |
+| caps    | CAPSLOCK      |
+| left    | LEFT          |
+| down    | DOWN          |
+| up      | UP            |
+| right   | RIGHT         |
+| mute    | C_MUTE        |
+| volu    | C_VOL_UP      |
+| vold    | C_VOL_DN      |
+| pause   | C_PLAY_PAUSE  |
+| next    | C_NEXT        |
+| prev    | C_PREV        |
+| print   | PRINTSCREEN   |
 
 A semi complete list of modifier codes
 #+name: mod_table
@@ -218,6 +268,11 @@ For processing the table and generating the layers
 
 (setq input (remove "" (flatten-tree input)) ; flat is justice
       result "<")
+
+((lambda (foo x)
+ (let ((ln (length foo)))
+   (unless (eq x ln) (error "missing key in layer; required %d, found %d" x ln))))
+ input 40)
 
 (while input
   (let ((word (pop input)))
@@ -246,10 +301,11 @@ Parsing and generating the code for the combos
 (while in
   (let* ((row (pop in))
          (event (parse-key (car row)))
-         (pos ((lambda (x) (string-trim (format "%s" x) "(" ")")) (remove "" (cdr row)))))
+         (pos ((lambda (x) (string-trim (format "%s" x) "(" ")")) (remove "" (cdr row))))) ; FIXME awful hack
          ;(pos (mapconcat 'identity (nthcdr 2 row) " "))) ; doesn't work for some reason
-    (setq result (concat result (format "unique_combo%d { timeout-ms = <%d>; key-positions = <%s>; bindings = <%s>; };\n"
-            id 40 pos event))
+    ; TODO make timeout dynamically adjustable
+    (setq result (concat result (format "\nunique_combo%d { timeout-ms = <%d>; key-positions = <%s>; bindings = <%s>; };"
+            id 50 pos event))
           id (1+ id))))
 
 (print result)
@@ -259,7 +315,7 @@ Parsing and generating the code for the combos
 Here we take everything from the section before and format these accordingly before taking everything together.
 *** header
 #+name: header
-#+begin_src C :main no :tangle no :results none
+#+begin_src dts :main no :tangle no :results none
 /* -*- buffer-read-only: t -*-
  * vim:ro
  *
@@ -283,9 +339,18 @@ keymap {
         bindings = <<generate-layer(input=base_layer)>>;
         sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
     };
-    lower_layer { bindings = <<generate-layer(input=low_layer)>>; };
-    raise_layer { bindings = <<generate-layer(input=high_layer)>>; };
-    adjust_layer { bindings = <<generate-layer(input=adj_layer)>>; };
+
+    lower_layer {
+        bindings = <<generate-layer(input=low_layer)>>;
+    };
+
+    raise_layer {
+        bindings = <<generate-layer(input=high_layer)>>;
+    };
+
+    adjust_layer {
+        bindings = <<generate-layer(input=adj_layer)>>;
+    };
 }
 #+end_src
 
@@ -315,15 +380,36 @@ combos {
 #+end_src
 ** putting it all together
 *** splaytoraid40.keymap
-#+begin_src dts :tangle config/splaytoraid40.keymap :noweb yes :no-expand :results drawer
+#+begin_src dts :main no :tangle config/splaytoraid40.keymap :noweb yes :no-expand :results none
+<<header>>
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/rgb.h>
 
 <<osm>>
+<<caps-word>>
 
 / {
     <<combo>>;
+
     <<keymap>>;
 };
+#+end_src
+
+*** splaytoraid40.conf
+#+begin_src conf :main no :tangle config/splaytoraid40.conf :noweb yes :noexpand :results none
+CONFIG_ZMK_USB_LOGGING=n
+
+CONFIG_ZMK_IDLE_TIMEOUT=1800000 # 30'
+
+# CONFIG_ZMK_KSCAN_DEBOUNCE_PRESS_MS=7
+# CONFIG_ZMK_KSCAN_DEBOUNCE_RELEASE_MS=7
+
+CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=80
+
+CONFIG_ZMK_RGB_UNDERGLOW_HUE_STEP=1
+CONFIG_ZMK_RGB_UNDERGLOW_SAT_STEP=1
+CONFIG_ZMK_RGB_UNDERGLOW_BRT_STEP=5
+CONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_IDLE=y # i often leave my pc powered on
 #+end_src
