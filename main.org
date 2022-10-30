@@ -4,29 +4,35 @@
 
 * The keymap
 ** The layout
+#+name: keycount
+| 40 |
+
+#+name: layers
+| _base  |
+| _lower |
+| _raise |
+| _adj   |
+
 *** Base layer
 #+name: base_layer
-| xxx   | xxx   | &kp f | &kp m      | &kp p | &kp v   | &kp semi  | &kp dot   | &kp fslh   | &kp sqt | xxx   | &kp ralt  |
-| &kp z | &kp r | &kp s | &kp n      | &kp d | &kp w   | &kp comma | &kp a     | &kp e      | &kp i   | &kp o | &kp equal |
-|       | &kp x | &kp g | &kp l      | &kp c | &kp b   | &kp minus | &kp h     | &kp u      | &kp y   | &kp k |           |
-|       |       |       | &mo _lower | &kp t | &kp ret | &kp tab   | &kp space | &mo _raise |         |       |           |
+| xxx   | xxx   | &kp F | &kp M      | &kp P | &kp V      |   | &kp SEMI  | &kp DOT   | &kp FSLH   | &kp SQT | xxx   | &kp RALT  |
+| &kp Z | &kp R | &kp S | &kp N      | &kp D | &kp W      |   | &kp COMMA | &kp A     | &kp E      | &kp I   | &kp O | &kp EQUAL |
+|       | &kp X | &kp G | &kp L      | &kp C | &kp B      |   | &kp MINUS | &kp H     | &kp U      | &kp Y   | &kp K |           |
+|       |       |       | &mo _lower | &kp T | &kp RETURN |   | &kp TAB   | &kp SPACE | &mo _raise |         |       |           |
 
 *** qwerty
 if i ever need qwerty for no reason whatsoever
-#+name: qwerty_layer
-| xxx | &kp q | &kp w | &kp e      | &kp r | &kp t   | &kp y     | &kp u     | &kp i      | &kp o | &kp p | xxx |
-| xxx | &kp r | &kp s | &kp n      | &kp d | &kp w   | &kp comma | &kp a     | &kp e      | &kp i | &kp o | xxx |
-|     | &kp x | &kp g | &kp l      | &kp c | &kp b   | &kp minus | &kp h     | &kp u      | &kp y | &kp k |     |
-|     |       |       | &mo _lower | &kp t | &kp ret | &kp lsft  | &kp space | &mo _raise |       |       |     |
+| xxx | &kp q | &kp w | &kp e      | &kp r | &kp t      |   | &kp y     | &kp u     | &kp i      | &kp o | &kp p | xxx |
+| xxx | &kp r | &kp s | &kp n      | &kp d | &kp w      |   | &kp comma | &kp a     | &kp e      | &kp i | &kp o | xxx |
+|     | &kp x | &kp g | &kp l      | &kp c | &kp b      |   | &kp minus | &kp h     | &kp u      | &kp y | &kp k |     |
+|     |       |       | &mo _lower | &kp t | &kp RETURN |   | &kp lsft  | &kp space | &mo _raise |       |       |     |
 
 *** artsey.io
-#+name: artseyio_layer
-| xxx | &kp s | &kp t | &kp r | &kp a | xxx | xxx | xxx | xxx      | xxx | xxx | xxx |
-| xxx | &kp o | &kp i | &kp y | &kp e | xxx | xxx | xxx | xxx      | xxx | xxx | xxx |
-|     | xxx   | xxx   | xxx   | xxx   | xxx | xxx | xxx | xxx      | xxx | xxx |     |
-|     |       |       | xxx   | xxx   | xxx | xxx | xxx | &mo _adj |     |     |     |
+| xxx | &kp s | &kp t | &kp r | &kp a | xxx |   | xxx | xxx | xxx      | xxx | xxx | xxx |
+| xxx | &kp o | &kp i | &kp y | &kp e | xxx |   | xxx | xxx | xxx      | xxx | xxx | xxx |
+|     | xxx   | xxx   | xxx   | xxx   | xxx |   | xxx | xxx | xxx      | xxx | xxx |     |
+|     |       |       | xxx   | xxx   | xxx |   | xxx | xxx | &mo _adj |     |     |     |
 
-#+name: artseyio_table
 | &kp b     | 13 | 16 |    |    |
 | &kp c     | 15 | 16 |    |    |
 | &kp d     |  2 |  3 |  4 |    |
@@ -60,60 +66,60 @@ if i ever need qwerty for no reason whatsoever
 
 *** lower layer
 #+name: low_layer
-| --- | &kp n1 | &kp n2 | &kp n3 | &kp n4 | &kp n5 | &kps n1 | &kps n2 | &kps n3 | &kps n4 | &kps n5 | --- |
-| --- | &kp n6 | &kp n7 | &kp n8 | &kp n9 | &kp n0 | &kps n6 | &kps n7 | &kps n8 | &kps n9 | &kps n0 | --- |
-|     | ---    | ---    | ---    | ---    | ---    | ---     | ---     | ---     | ---     | ---     |     |
-|     |        |        | ---    | ---    | ---    | ---     | ---     | ---     |         |         |     |
+| --- | &kp N1 | &kp N2 | &kp N3 | &kp N4 | &kp N5 |   | &kp LS(N1) | &kp LS(N2) | &kp LS(N3) | &kp LS(N4) | &kp LS(N5) | --- |
+| --- | &kp N6 | &kp N7 | &kp N8 | &kp N9 | &kp N0 |   | &kp LS(N6) | &kp LS(N7) | &kp LS(N8) | &kp LS(N9) | &kp LS(N0) | --- |
+|     | ---    | ---    | ---    | ---    | ---    |   | ---        | ---        | ---        | ---        | ---        |     |
+|     |        |        | ---    | ---    | ---    |   | ---        | ---        | ---        |            |            |     |
 
 *** raise layer
 #+name: high_layer
-| --- | &kp print | --- | --- | --- | --- | &kp prev | &kp pause | &kp next | ---       | --- | --- |
-| --- | ---       | --- | --- | --- | --- | &kp left | &kp down  | &kp up   | &kp right | --- | --- |
-|     | ---       | --- | --- | --- | --- | ---      | ---       | ---      | ---       | --- |     |
-|     |           |     | --- | --- | --- | &mo _adj | ---       | ---      |           |     |     |
+| --- | &kp PRINTSCREEN | --- | --- | --- | --- |   | &kp C_PREV | &kp C_PLAY_PAUSE | &kp C_NEXT | ---       | --- | --- |
+| --- | ---             | --- | --- | --- | --- |   | &kp LEFT   | &kp DOWN         | &kp UP     | &kp RIGHT | --- | --- |
+|     | ---             | --- | --- | --- | --- |   | ---        | ---              | ---        | ---       | --- |     |
+|     |                 |     | --- | --- | --- |   | &mo _adj   | ---              | ---        |           |     |     |
 
 *** adjusting shit
 #+name: adj_layer
-| &rgb RGB_HUI | &rgb RGB_SAI | &rgb RGB_BRI | xxx         | xxx              | xxx | xxx | xxx | xxx | xxx | xxx | &rgb RGB_ON  |
-| &rgb RGB_HUD | &rgb RGB_SAD | &rgb RGB_BRD | xxx         | xxx              | xxx | xxx | xxx | xxx | xxx | xxx | &rgb RGB_OFF |
-|              | xxx          | xxx          | xxx         | xxx              | xxx | xxx | xxx | xxx | xxx | xxx |              |
-|              |              |              | &any &reset | &any &bootloader | xxx | xxx | xxx | xxx |     |     |              |
+| &rgb_ug RGB_HUI | &rgb_ug RGB_SAI | &rgb_ug RGB_BRI | xxx         | xxx              | xxx |   | xxx | xxx | xxx | xxx | xxx | &rgb_ug RGB_ON  |
+| &rgb_ug RGB_HUD | &rgb_ug RGB_SAD | &rgb_ug RGB_BRD | xxx         | xxx              | xxx |   | xxx | xxx | xxx | xxx | xxx | &rgb_ug RGB_OFF |
+|                 | xxx             | xxx             | xxx         | xxx              | xxx |   | xxx | xxx | xxx | xxx | xxx |                 |
+|                 |                 |                 | &reset      | &bootloader      | xxx |   | xxx | xxx | xxx |     |     |                 |
+
+** macros
+ye, gotta do some macros
+#+name: macro-table
+| rainbow | :string ":rainbow::rainbow2:" |   |
 
 ** combos
 Since i'm defining combos using the positions they are all based on the base layer making them independent of the active layer.
 #+name: combo-table
-| &kp lbrc        |  3 | 16 |    |
-| &kp lbkt        | 14 | 16 |    |
-| &kp rbkt        | 19 | 21 |    |
-| &kp rbrc        | 19 |  8 |    |
-| &kp q           |  1 |  2 |    |
-| &kp j           |  3 |  4 |    |
-| &kpag a         | 25 | 27 |    |
-| &kpag u         | 30 | 32 |    |
-| &kpag o         | 30 | 33 |    |
-| &osm lsft       |  8 |  9 |    |
-| &osm lctl       | 25 | 26 |    |
-| &osm lalt       | 31 | 32 |    |
-| &any &caps_word |  4 |  7 |    |
-| &kp esc         | 13 | 16 |    |
-| &kp tab         |  2 |  3 |    |
-| &kp bspc        | 19 | 20 |    |
-| &kpc bspc       | 19 | 20 | 21 |
-| &kps n1         |  2 |  3 | 16 |
-| &kps fslh       | 14 | 15 |  4 |
-| &kp bslh        | 12 | 16 |    |
-| &kp grave       |  9 | 10 |    |
-| &kps grave      | 32 | 33 |    |
-| &kps sqt        |  7 | 10 |    |
-| &kps semi       |  6 |  7 |    |
-| &kps n9         |  2 | 16 |    |
-| &kps n0         | 19 |  9 |    |
-| &kps equal      | 29 | 30 |    |
-
-| &SS ":kuzco_nice:"        | 3 | 43 |    |    |
-| &ss ":BerucaPervert:"     | 1 | 43 |    |    |
-| &ss ":hundi_kek:"         | 2 | 43 |    |    |
-| &ss ":rainbow::rainbow2:" | 4 | 43 |    |    |
+| &kp LBRC          |  3 | 16 |    |
+| &kp LBKT          | 14 | 16 |    |
+| &kp RBKT          | 19 | 21 |    |
+| &kp RBRC          | 19 |  8 |    |
+| &kp Q             |  1 |  2 |    |
+| &kp J             |  3 |  4 |    |
+| &kp RA(A)         | 25 | 27 |    |
+| &kp RA(U)         | 30 | 32 |    |
+| &kp RA(O)         | 30 | 33 |    |
+| &sk LSFT          |  8 |  9 |    |
+| &sk LCTL          | 25 | 26 |    |
+| &sk LALT          | 31 | 32 |    |
+| &caps_word        |  4 |  7 |    |
+| &kp ESCAPE        | 13 | 16 |    |
+| &kp BACKSPACE     | 19 | 20 |    |
+| &kp LC(BACKSPACE) | 19 | 20 | 21 |
+| &kp LS(N1)        |  2 |  3 | 16 |
+| &kp LS(FSLH)      | 14 | 15 |  4 |
+| &kp BSLH          | 12 | 16 |    |
+| &kp GRAVE         |  9 | 10 |    |
+| &kp LS(GRAVE)     | 32 | 33 |    |
+| &kp LS(SQT)       |  7 | 10 |    |
+| &kp LS(SEMI)      |  6 |  7 |    |
+| &kp LS(N9)        |  2 | 16 |    |
+| &kp LS(N0)        | 19 |  9 |    |
+| &kp LS(EQUAL)     | 29 | 30 |    |
+| &rainbow          |  0 | 24 |    |
 
 Heres a table with the positions for reference:
 |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10 | 11 |
@@ -121,7 +127,6 @@ Heres a table with the positions for reference:
 |    | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 |    |
 |    |    |    | 34 | 35 | 36 | 37 | 38 | 39 |    |    |    |
 
-** encoder
 
 * Abandon all hope, ye who enter here
 This section is the build section. From this point on it's code and code only.
@@ -135,180 +140,122 @@ This section contains stuff used for parsing the key definitions.
 *** keycodes
 #+name: keycode-parsing
 #+begin_src elisp :results none
-(defun get-keycode (name)
-  "Returns the keycode if it exists."
-  (let ((code (nth 1 (assoc name keycode))))
-    (if (not code)
-        (error "The key %s does't exist - yet." name)
-        code)))
-
-(defun get-mod (name)
-  "Returns the mod if it exists."
-  (let ((code (nth 1 (assoc name modcode))))
-    (if (not code)
-        (error "The mod %s does't exist." name)
-        code)))
-
 (defun parse-key (word)
-  "Parses the expression and returns the keycode."
+  "parse the keycode (and check if the syntax is correct <-- TBA)"
     (pcase word
-      ((or "&nop" "xxx")                                                                          "&none")
-      ((or "&trns" "___" "---")                                                                   "&trans")
-      ((rx bos "&kp" (+ space) (let head (+ word)) (* space) eos)                                 (format "&kp %s" (get-keycode head)))
-      ((rx bos "&kps" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LS(%s)" (get-keycode head)))
-      ((rx bos "&kpc" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LC(%s)" (get-keycode head)))
-      ((rx bos "&kpa" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LA(%s)" (get-keycode head)))
-      ((rx bos "&kpag" (+ space) (let head (+ word)) (* space) eos)                               (format "&kp RA(%s)" (get-keycode head)))
-      ((rx bos "&kpg" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LG(%s)" (get-keycode head)))
-      ((rx bos "&tg" (+ space) (let head (+ word)) (* space) eos)                                 (format "&tog %s" head))
-      ((rx bos "&lt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "&lt %s %s" arg (get-keycode head)))
-      ((rx bos "&mo" (+ space) (let head (+ word)) (* space) eos)                                 (format "&mo %s" head))
-      ((rx bos "&mt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "&mt %s %s" (get-mod arg) (get-keycode head)))
-      ((rx bos "&osm" (+ space) (let head (+ word)) (* space) eos)                                (format "&sk %s" (get-mod head)))
-      ((rx bos "&rgb" (+ space) (let head (+ anychar)) (* space) eos)                                (format "&rgb_ug %s" head))
-      ((rx bos "&any" (+ space) (let head (* anychar) eos))                                       (format "%s" head))
-      (-                                                                                          (error "unknown expr `%s`" word))))
+      ((or "&none" "xxx")   "&none")
+      ((or "&trans" "---")  "&trans")
+      (-                    (print word))))
+      ;; ((rx bos "&kp" (+ space) (let head (+ word)) (* space) eos)                                 (format "&kp %s" (get-keycode head)))
+      ;; ((rx bos "&kps" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LS(%s)" (get-keycode head)))
+      ;; ((rx bos "&kpc" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LC(%s)" (get-keycode head)))
+      ;; ((rx bos "&kpa" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LA(%s)" (get-keycode head)))
+      ;; ((rx bos "&kpag" (+ space) (let head (+ word)) (* space) eos)                               (format "&kp RA(%s)" (get-keycode head)))
+      ;; ((rx bos "&kpg" (+ space) (let head (+ word)) (* space) eos)                                (format "&kp LG(%s)" (get-keycode head)))
+      ;; ((rx bos "&tg" (+ space) (let head (+ word)) (* space) eos)                                 (format "&tog %s" head))
+      ;; ((rx bos "&lt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "&lt %s %s" arg (get-keycode head)))
+      ;; ((rx bos "&mo" (+ space) (let head (+ word)) (* space) eos)                                 (format "&mo %s" head))
+      ;; ((rx bos "&mt" (+ space) (let arg (+ word)) (+ space) (let head (+ word)) (* space) eos)    (format "&mt %s %s" (get-mod arg) (get-keycode head)))
+      ;; ((rx bos "&osm" (+ space) (let head (+ word)) (* space) eos)                                (format "&sk %s" (get-mod head)))
+      ;; ((rx bos "&rgb" (+ space) (let head (+ anychar)) (* space) eos)                                (format "&rgb_ug %s" head))
+      ;; ((rx bos "&any" (+ space) (let head (* anychar) eos))                                       (format "%s" head))
 #+end_src
-
-**** tables n shit
-A not so complete list of keycodes
-#+name: keycode_table
-| a       | A             |
-| b       | B             |
-| c       | C             |
-| d       | D             |
-| e       | E             |
-| f       | F             |
-| g       | G             |
-| h       | H             |
-| i       | I             |
-| j       | J             |
-| k       | K             |
-| l       | L             |
-| m       | M             |
-| n       | N             |
-| o       | O             |
-| p       | P             |
-| q       | Q             |
-| r       | R             |
-| s       | S             |
-| t       | T             |
-| u       | U             |
-| v       | V             |
-| w       | W             |
-| x       | X             |
-| y       | Y             |
-| z       | Z             |
-| n1      | N1            |
-| n2      | N2            |
-| n3      | N3            |
-| n4      | N4            |
-| n5      | N5            |
-| n6      | N6            |
-| n7      | N7            |
-| n8      | N8            |
-| n9      | N9            |
-| n0      | N0            |
-| ret     | RETURN        |
-| esc     | ESCAPE        |
-| bspc    | BACKSPACE     |
-| del     | DELETE        |
-| tab     | TAB           |
-| space   | SPACE         |
-| minus   | MINUS         |
-| equal   | EQUAL         |
-| lbkt    | LEFT_BRACKET  |
-| rbkt    | RIGHT_BRACKET |
-| lbrc    | LEFT_BRACE    |
-| rbrc    | RIGHT_BRACE   |
-| fslh    | SLASH         |
-| bslh    | BACKSLASH     |
-| semi    | SEMI          |
-| dot     | DOT           |
-| comma   | COMMA         |
-| sqt     | SQT           |
-| grave   | GRAVE         |
-| lsft    | LEFT_SHIFT    |
-| rsft    | RIGHT_SHIFT   |
-| lctl    | LEFT_CONTROL  |
-| rctl    | RIGHT_CONTROL |
-| lalt    | LEFT_ALT      |
-| ralt    | RIGHT_ALT     |
-| lgui    | LEFT_GUI      |
-| rgui    | RIGHT_GUI     |
-| caps    | CAPSLOCK      |
-| left    | LEFT          |
-| down    | DOWN          |
-| up      | UP            |
-| right   | RIGHT         |
-| mute    | C_MUTE        |
-| volu    | C_VOL_UP      |
-| vold    | C_VOL_DN      |
-| pause   | C_PLAY_PAUSE  |
-| next    | C_NEXT        |
-| prev    | C_PREV        |
-| print   | PRINTSCREEN   |
-
-A semi complete list of modifier codes
-#+name: mod_table
-| lsft  | LEFT_SHIFT    |
-| rsft  | RIGHT_SHIFT   |
-| lctl  | LEFT_CONTROL  |
-| rctl  | RIGHT_CONTROL |
-| lalt  | LEFT_ALT      |
-| ralt  | RIGHT_ALT     |
-| lgui  | LEFT_GUI      |
-| rgui  | RIGHT_GUI     |
 
 *** layers
 For processing the table and generating the layers
+#+name: test-keycode
+| xxx   | xxx   | &kp F | &kp M      | &kp P | &kp V      |   | &kp SEMI  | &kp DOT   | &kp FSLH   | &kp SQT | xxx   | &kp RALT  |
+| &kp Z | &kp R | &kp S | &kp N      | &kp D | &kp W      |   | &kp COMMA | &kp A     | &kp E      | &kp I   | &kp O | &kp EQUAL |
+|       | &kp X | &kp G | &kp L      | &kp C | &kp B      |   | &kp MINUS | &kp H     | &kp U      | &kp Y   | &kp K |           |
+|       |       |       | &mo _lower | &kp T | &kp RETURN |   | &kp TAB   | &kp SPACE | &mo _raise |         |       |           |
+
 #+name: generate-layer
-#+begin_src elisp :var input=base_layer keycode=keycode_table modcode=mod_table :noweb yes :results value drawer
+#+begin_src elisp :var input=test-keycode count=keycount :noweb yes :results value drawer
 <<keycode-parsing>>
 
-(setq input (remove "" (flatten-tree input)) ; flat is justice
-      result "<")
+(setq input (remove "" (flatten-tree input))) ; flat is justice
 
-((lambda (foo x)
- (let ((ln (length foo)))
-   (unless (eq x ln) (error "missing key in layer; required %d, found %d" x ln))))
- input 40)
+(let ((ln (length input))
+      (x (caar count)))
+  (unless (eq ln x) (error "invalid layout size, required %d, found %d" x ln)))
 
-(while input
-  (let ((word (pop input)))
-    (setq result (concat result (parse-key word) " "))))
+(concat "<" (string-join (mapcar #'parse-key input) " ") ">")
+#+end_src
 
-(concat result ">")
+#+name: layer-names
+#+begin_src elisp :var in=layers :results value drawer
+(string-join (seq-map-indexed #'(lambda (e i) (format "#define %s %d" e i)) (flatten-tree in)) "\n")
 #+end_src
 
 *** combos
 Parsing and generating the code for the combos
+#+name: test-combo
+| &foo | 1 |   |
+| &bar | 3 | 2 |
+
 #+name: generate-combos
-#+begin_src elisp :main no :noweb yes :var in=combo-table keycode=keycode_table modcode=mod_table :result value drawer
+#+begin_src elisp :main no :noweb yes :var in=test-combo :result value drawer
 <<keycode-parsing>>
 
-(setq result ""
-      id 0) ; using a running number for naming the combos
+(cl-flet ((check-combo
+           (row id)
+           (let ((event (pop row))
+                 (tail (remove "" row)))
+             (if (eq event "") (error "combo %d appears to have no binding defined" id))
+             (if (eq tail nil) (error "combo %d appears to have no key-positions defined" id)))))
+  (seq-map-indexed #'check-combo in))
 
-;; check if the combos ain't empty or something
-(mapcar (lambda (x)
-          (let ((event (car x))
-                (tail (nth 2 x)))
-            (if (eq event "") (error "events are required in combos, abort"))
-            (if (eq tail "") (error "combo for `%s` seems to be empty, abort" event))))
-        in)
+(cl-flet ((parse-combo
+           (row id)
+           (let* ((event (parse-key (pop row)))
+                  (tail (string-join (mapcar (lambda (x) (format "%d" x)) (remove "" row)) " ")))
+             (format "c%d { timeout-ms <%d>; key-positions = <%s>; bindings = <%s>; };" id 40 tail event))))
+  (string-join (seq-map-indexed #'parse-combo in) "\n"))
+#+end_src
+
+*** macros
+#+name: test-macro
+| bar  | :press &kp F   | :tap &kp Z | :release &kp N8 |   |   |
+| foo  | &kp A          | &kp B      |                 |   |   |
+| fuck | :string "fuck" |            |                 |   |   |
+
+#+name: generate-macros
+#+begin_src elisp :var in=test-macro :noweb yes :results value drawer
+<<keycode-parsing>>
+
+(defun process-string (raw)
+  "prases a sting to a list of keycodes for zmk to take"
+  (let ((keycodes (mapcar
+                   (lambda (s)
+                       (setq s (string s))
+                       (pcase s
+                         ((rx letter)  (pcase s
+                                         ((rx lower)  (format "&kp %s" (upcase s)))
+                                         ((rx upper)  (error "stop shouting"))))
+                         ((rx num)  (format "&kp N%s" s))
+                         (":"  '"&kp COLON")
+                         (-  (error "tba %s - %s" s (string s)))))
+                   raw)))
+    (string-join keycodes " ")))
+
+(defun process-binding-def (raw)
+  "parses a definition, returning the binding"
+  (pcase raw
+    ((rx bos ":press" (+ space) (let word "&" (* (or word space))) (*? space) eos)  (format "<&macro_press %s>" (parse-key word)))
+    ((rx bos ":release" (+ space) (let word "&" (* (or word space))) (*? space) eos)  (format "<&macro_release %s>" (parse-key word)))
+    ((rx bos (? ":tap" (+ space)) (let word "&" (* (or word space))) (*? space) eos)  (format "<&macro_tap %s>" (parse-key word)))
+    ((rx bos ":string" (* space) "\"" (let word (* anychar)) "\"" (*? space) eos)  (format "<&macro_tap %s>" (process-string word)))
+    (-  (error "bad definition in macro: '%s'" raw))))
+
+(setq result "")
 
 (while in
-  (let* ((row (pop in))
-         (event (parse-key (car row)))
-         (pos ((lambda (x) (string-trim (format "%s" x) "(" ")")) (remove "" (cdr row))))) ; FIXME awful hack
-         ;(pos (mapconcat 'identity (nthcdr 2 row) " "))) ; doesn't work for some reason
-    ; TODO make timeout dynamically adjustable
-    (setq result (concat result (format "\nunique_combo%d { timeout-ms = <%d>; key-positions = <%s>; bindings = <%s>; };"
-            id 50 pos event))
-          id (1+ id))))
+  (let* ((row (remove "" (pop in)))
+        (label (car row))
+        (bindings (string-join (mapcar #'process-binding-def (cdr row)) ", ")))
+    (setq result (concat result (format "ZMK_MACRO(%s, wait-ms = <10>; tap-ms = <10>; bindings = %s;)\n" label bindings)))))
 
-(print result)
+(string-trim result)
 #+end_src
 
 ** stuff
@@ -330,10 +277,7 @@ Here we take everything from the section before and format these accordingly bef
 keymap {
     compatible = "zmk,keymap";
 
-    #define _base 0
-    #define _lower 1
-    #define _raise 2
-    #define _adj 3
+    <<layer-names()>>
 
     base_layer {
         bindings = <<generate-layer(input=base_layer)>>;
@@ -359,10 +303,17 @@ keymap {
 #+begin_src dts :main no :noweb yes :results none
 combos {
     compatible = "zmk,combos";
-    <<generate-combos()>>
+    <<generate-combos(in=combo-table)>>
 }
 #+end_src
 
+*** macrocosm
+#+name: macros
+#+begin_src dts :main no :noweb yes :results none
+macros {
+    <<generate-macros(in=macro-table)>>
+}
+#+end_src
 *** osm stuff
 #+name: osm
 #+begin_src dts :results none
@@ -388,9 +339,12 @@ combos {
 #include <dt-bindings/zmk/rgb.h>
 
 <<osm>>
+
 <<caps-word>>
 
 / {
+    <<macros>>;
+
     <<combo>>;
 
     <<keymap>>;
@@ -401,7 +355,7 @@ combos {
 #+begin_src conf :main no :tangle config/splaytoraid40.conf :noweb yes :noexpand :results none
 CONFIG_ZMK_USB_LOGGING=n
 
-CONFIG_ZMK_IDLE_TIMEOUT=1800000 # 30'
+CONFIG_ZMK_IDLE_TIMEOUT=600000
 
 # CONFIG_ZMK_KSCAN_DEBOUNCE_PRESS_MS=7
 # CONFIG_ZMK_KSCAN_DEBOUNCE_RELEASE_MS=7
@@ -411,5 +365,5 @@ CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=80
 CONFIG_ZMK_RGB_UNDERGLOW_HUE_STEP=1
 CONFIG_ZMK_RGB_UNDERGLOW_SAT_STEP=1
 CONFIG_ZMK_RGB_UNDERGLOW_BRT_STEP=5
-CONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_IDLE=y # i often leave my pc powered on
+CONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_IDLE=y
 #+end_src
