@@ -89,6 +89,7 @@ if i ever need qwerty for no reason whatsoever
 ye, gotta do some macros
 #+name: macro-table
 | rainbow | :string ":rainbow::rainbow2:" |   |
+| ic      | :string ":mkd_I::mkd_C:"      |   |
 
 ** combos
 Since i'm defining combos using the positions they are all based on the base layer making them independent of the active layer.
@@ -119,7 +120,7 @@ Since i'm defining combos using the positions they are all based on the base lay
 | &kp LS(N9)        |  2 | 16 |    |
 | &kp LS(N0)        | 19 |  9 |    |
 | &kp LS(EQUAL)     | 29 | 30 |    |
-| &rainbow          |  0 | 24 |    |
+| &ic               |  0 | 24 |    |
 
 Heres a table with the positions for reference:
 |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10 | 11 |
@@ -209,7 +210,7 @@ Parsing and generating the code for the combos
            (row id)
            (let* ((event (parse-key (pop row)))
                   (tail (string-join (mapcar (lambda (x) (format "%d" x)) (remove "" row)) " ")))
-             (format "c%d { timeout-ms <%d>; key-positions = <%s>; bindings = <%s>; };" id 40 tail event))))
+             (format "c%d { timeout-ms = <%d>; key-positions = <%s>; bindings = <%s>; };" id 40 tail event))))
   (string-join (seq-map-indexed #'parse-combo in) "\n"))
 #+end_src
 
@@ -217,7 +218,7 @@ Parsing and generating the code for the combos
 #+name: test-macro
 | bar  | :press &kp F   | :tap &kp Z | :release &kp N8 |   |   |
 | foo  | &kp A          | &kp B      |                 |   |   |
-| fuck | :string "fuck" |            |                 |   |   |
+| fuck | :string "Fuck" |            |                 |   |   |
 
 #+name: generate-macros
 #+begin_src elisp :var in=test-macro :noweb yes :results value drawer
@@ -229,11 +230,13 @@ Parsing and generating the code for the combos
                    (lambda (s)
                        (setq s (string s))
                        (pcase s
-                         ((rx letter)  (pcase s
-                                         ((rx lower)  (format "&kp %s" (upcase s)))
-                                         ((rx upper)  (error "stop shouting"))))
+                         ((rx letter)  (let ((case-fold-search nil)) (pcase s
+                                         ((rx upper)  (format "&kp LS(%s)" s))
+                                         ((rx lower)  (format "&kp %s" (upcase s))))))
                          ((rx num)  (format "&kp N%s" s))
                          (":"  '"&kp COLON")
+                         ("_"  '"&kp UNDERSCORE")
+                         (" "  '"&kp SPACE")
                          (-  (error "tba %s - %s" s (string s)))))
                    raw)))
     (string-join keycodes " ")))
@@ -257,6 +260,13 @@ Parsing and generating the code for the combos
 
 (string-trim result)
 #+end_src
+
+#+RESULTS: generate-macros
+:results:
+ZMK_MACRO(bar, wait-ms = <10>; tap-ms = <10>; bindings = <&macro_press &kp F>, <&macro_tap &kp Z>, <&macro_release &kp N8>;)
+ZMK_MACRO(foo, wait-ms = <10>; tap-ms = <10>; bindings = <&macro_tap &kp A>, <&macro_tap &kp B>;)
+ZMK_MACRO(fuck, wait-ms = <10>; tap-ms = <10>; bindings = <&macro_tap &kp LS(F) &kp U &kp C &kp K>;)
+:end:
 
 ** stuff
 Here we take everything from the section before and format these accordingly before taking everything together.
