@@ -1,5 +1,7 @@
-# keymaps
+# keymap
 
-This repo is my approach to code my keymaps using literate programming.
-It's written in org and elisp which generates the files needed for the creation of the firmware.
+this is my kmk config for the splaytoraid rev3, it uses pog for some of the config.
 
+## installation
+
+simply copy the folder as is in the circuitpython drive and reload.
