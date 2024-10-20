@@ -16,7 +16,7 @@
     status = "okay";
 
     pio0_spi: pio0_spi0 {
-        pinctrl-0 = <&pio0_spi_default>;
+        pinctrl-0 = <&pio0_spi0_default>;
         pinctrl-names = "default";
 
         compatible = "raspberrypi,pico-spi-pio";
