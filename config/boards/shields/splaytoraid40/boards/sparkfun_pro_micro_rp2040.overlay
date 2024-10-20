@@ -1,7 +1,7 @@
 #include <dt-bindings/led/led.h>
 
 &pinctrl {
-    pio0_spi_default: pio0_spi_default {
+    pio0_spi0_default: pio0_spi0_default {
         group1 {
             pinmux = <PIO0_P5>, <PIO0_P20>;
         };
@@ -12,12 +12,13 @@
     };
 };
 
-&spi0 {
+&pio0 {
     status = "okay";
 
-    pio0_spi: pio0_spi {
+    pio0_spi: pio0_spi0 {
         pinctrl-0 = <&pio0_spi_default>;
         pinctrl-names = "default";
+
         compatible = "raspberrypi,pico-spi-pio";
 
         #address-cells = <1>;
@@ -34,7 +35,7 @@
 
         // spi
         reg = <0>;
-        spi-max-frequency = <5250000>;
+        spi-max-frequency = <4000000>;
 
         // ws2812
         chain-length = <12>;
